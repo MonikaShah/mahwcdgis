@@ -566,8 +566,8 @@ function setView(layerName, selectedBoundary) {
             }
             response.json().then(function(geojsonData) {
                 area = L.geoJson(geojsonData.features).addTo(mymap)
-                lat = area.getBounds()._northEast.lat
-                lng = area.getBounds()._northEast.lng
+                let lat = area.getBounds()._northEast.lat
+                let lng = area.getBounds()._northEast.lng
                 mymap.setView([lat, lng - 0.4], 10)
             });
         }).catch(function(err) {
