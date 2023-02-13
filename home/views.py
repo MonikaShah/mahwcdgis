@@ -1,8 +1,10 @@
 from django.shortcuts import render
-from .models import RuralInfraAwcAcEnglishconverted
+from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCenter, SwadhaarGreh, UjjwalGreh
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
+
+
 
 # Create your views here.
 def homePage(request):
@@ -62,6 +64,7 @@ def viewMap(request):
         return JsonResponse(context)
     
     else:
+        # print(WomenStateHome.objects.values('report_date'))
         awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
         # awcr = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type__in= ['मुख्य',"मिनी"],district='Akola').count()
         # print(awcr)
@@ -157,4 +160,56 @@ def about_us(request):
     return render(request, 'about_us.html')
 
 def viewWcdMap(request):
-    return render(request, 'viewWcdMap.html')
+    if request.method == "POST":
+        print()
+    else:
+        awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
+        district = RuralInfraAwcAcEnglishconverted.objects.values('district').order_by('district').distinct()
+        taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
+        context = {'awc': awc, 'district':district,'taluka':taluka}
+        return render(request, 'viewWcdMap.html', context)
+    
+def women_state_home(request):
+    wsh = request.GET.get('wsh')
+    #print(wsh)
+    w1=""
+    if wsh!="":
+        w1 = list(WomenStateHome.objects.values(wsh).order_by(wsh).distinct())
+    #print(w1)
+    return JsonResponse({'w1':w1})
+
+def one_stop_center(request):
+    osc = request.GET.get('osc')
+    #print(osc)
+    o1=""
+    if osc!="":
+        o1 = list(OneStopCenter.objects.values(osc).order_by(osc).distinct())
+    #print(o1)
+    return JsonResponse({'o1':o1})
+
+def counselling_center(request):
+    cc = request.GET.get('cc')
+    #print(cc)
+    c1=""
+    if cc!="":
+        c1 = list(CounsellingCenter.objects.values(cc).order_by(cc).distinct())
+    #print(c1)
+    return JsonResponse({'c1':c1})
+
+def swadhaar_greh(request):
+    sg = request.GET.get('sg')
+    #print(sg)
+    s1=""
+    if sg!="":
+        s1 = list(SwadhaarGreh.objects.values(sg).order_by(sg).distinct())
+    #print(s1)
+    return JsonResponse({'s1':s1})
+
+def ujjwal_greh(request):
+    ug = request.GET.get('ug')
+    #print(ug)
+    u1=""
+    if ug!="":
+        u1 = list(UjjwalGreh.objects.values(ug).order_by(ug).distinct())
+    #print(u1)
+    return JsonResponse({'u1':u1})
