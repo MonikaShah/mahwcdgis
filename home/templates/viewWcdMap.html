@@ -1,5 +1,1139 @@
 {% extends 'base_map_1.html' %}
 {% load static%} {% block content %}
+<style>
+    table,
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+        border-collapse: collapse;
+        padding: 2px 3px;
+        text-align: center;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: #c9dbe6;
+    }
+
+    #checkboxes {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 25px;
+        background: #D3D3D3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #FF0000;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #FF0000;
+        cursor: pointer;
+    }
+
+    .sliderticks {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    .sliderticks p {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 1px;
+        background: #D3D3D3;
+        height: 10px;
+        line-height: 40px;
+        margin: 0 0 20px 0;
+    }
+
+    input[type="range"]::-moz-range-track {
+        padding: 0 10px;
+        background: repeating-linear-gradient(to right, #ccc, #ccc 10%, #000 10%, #000 11%, #ccc 11%, #ccc 20%);
+    }
+
+    #checkboxes3 label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+
+    #checkboxes3 {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+
+    #checkboxes label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+    /* #checkboxes label:hover {
+  background-color: #1e90ff;
+} */
+
+    #checkboxes2 label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+
+    #checkboxes2 {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+
+    .btn {
+        margin: 10px;
+    }
+
+    .border {
+        padding: 6px 8px;
+        border-style: groove;
+        border-radius: 5px;
+        margin: 20px;
+    }
+
+    .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+
+    .table {
+        border-collapse: collapse;
+        padding: 50px;
+        font-weight: bold;
+        /* background:rgba(191, 149, 233, 0.473); */
+    }
+    /* css to customize Leaflet default styles  */
+
+    .leaflet-popup-content-wrapper {
+        background: rgba(0, 0, 0, 0.9);
+        color: #ffffff;
+    }
+
+    .leaflet-popup-content {
+        font-weight: bold;
+    }
+
+    h6 {
+        color: blue;
+    }
+
+    .select {
+        background-color: rgb(116, 109, 109);
+        width: 40%;
+        margin-left: 100px;
+        ;
+        color: white;
+    }
+
+    .select.highlight {
+        background: rgb(0, 0, 0);
+        color: white;
+    }
+
+    .circle {
+        background-color: red;
+        border-radius: 50%;
+    }
+
+    .table-legend {
+        border-collapse: collapse;
+        padding: 2px 3px;
+        width: 100%;
+        font-size: small;
+        /* font-weight: bold; */
+        background: #fff;
+    }
+
+    .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+
+    .legend {
+        line-height: 18px;
+        color: #555;
+    }
+
+    .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+</style>
+
 <div id="side-bar" style="background-color: rgba(255, 255, 255);">
+
+    <div class="mobileShow">
+
+        <div style="text-align: center">
+            <button style="display: inline-block ;position: relative; background: #000; opacity: 0.60;" id="closebutton" name="closebutton" class="btn btn-secondary"><span class="fa fa-bars"></span></button>
+        </div>
+
+    </div>
+
+    <div class="border">
+        <div>
+            <form id="wcd_form" action="viewWcdMap" method="POST">
+                <div class="tooltips" title="Please select the District">
+                    <select name="district__in" class='form-control mb-2 mt-2' id = "district">
+                      <option value=""> Select District</option>
+                      {% for i in district %}
+                      <option value="{{ i.district }}">{{ i.district }}</option>
+                      {% endfor %}
+                     </select>
+                </div>
+
+                <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
+                    <select name="block_n__in" class='form-control mb-2 mt-2' id="block_s">
+                    <option value=""> Select Taluka </option>
+                    {% for i in taluka %}
+                    <option value="{{ i.block_n }}">{{ i.block_n }}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+
+                <h6>Women State Home</h6>
+                <select name="wsh" class='form-control mb-2 mt-2' id="wsh">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='women_state_home'>Women State Home</option>
+                    <option value='address'>Address</option>
+                    <option value='contact'>Contact</option>
+                    <option value='gmail'>Gmail</option>
+                    <option value='capacity'>Capacity</option>
+                    <option value='no_reported_women'>Number of women admitted during the reporting month</option>
+                    <option value='no_reported_childn'>Number of children with admissions admitted during the reporting month</option>
+                    <option value='superintendent_nam'>Name of Superintendent</option>
+                    <option value='superintendent_contact'>Superintendent's mobile number</option>
+                    <option value='date_appoint_or_charge'>Regular Appointment /Additional Charge of Superintendent Dated</option>
+                    <option value='scantioned_posts_no'>Number of posts sanctioned</option>
+                    <option value='filled_posts_no'>Number of posts filled</option>
+                    <option value='empty_posts'>Number of Vacancies</option>
+                    <option value='constr_type'>Construction type of State House building</option>
+                    <option value='area'>Total Construction Area of ​​State House (Sq. Ft.)</option>
+                    <option value='no_printer/scanner'>Total Number of Printers/Scanners</option>
+                    <option value='net_conn?'>Availability of internet connection</option>
+                    <option value='cooking_utensils?'>Are there enough utensils and cooking utensils?</option>
+                    <option value='reported_no_females'>Number of **Females** on the first day of the reporting month</option>
+                    <option value='reported_no_childrn'>Number of **children with women** on the first day of the reporting month</option>
+                    <option value='no_upto_12th'>Number of beneficiaries studying upto 12th</option>
+                    <option value='no_benefi_degree/grad'>Number of Beneficiaries pursuing Degree / Post Graduation</option>
+                    <option value='no_other_edu_benefi'>Number of beneficiaries receiving other education</option>
+                    <option value='training/industry_nam1'>Vocational Training / Name of Industry 1</option>
+                    <option value='training/industry_nam2'>Vocational Training / Name of Industry 2</option>
+                    <option value='training/industry_nam3'>Vocational Training / Name of Industry 3</option>
+                    <option value='training/industry_nam4'>Vocational Training / Name of Industry 4</option>
+                    <option value='no_elegble_females_benefit_maher'>Number of eligible female enrollees benefited under Maher scheme during the reporting month</option>
+                    <option value='no_1stchildrn_benefit_Maher'>Number of first children benefited under Maher scheme during the reporting month</option>
+                    <option value='no_2ndchildrn_benefit_Maher'>Number of second children benefited under Maher Yojana during the reporting month</option>
+                </select>
+                <style>
+                    .txt{
+                        visibility: hidden;
+                        position: absolute;
+                        z-index: 1;
+                        margin-left: 5px;
+                        background-color:#c9dbe6 ;
+                        color: #000;
+                        border:#000 1px solid;
+                    }
+                    .add_filter:hover .txt{
+                        visibility: visible;
+                    }
+                    .cls_txt{
+                        visibility: hidden;
+                    }
+                    .cls:hover .cls_txt{
+                        visibility: visible;
+                    }
+                    
+                </style>
+                <!-- <div class="add_filter" style="width: fit-content; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div> -->
+                <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div>
+                <script>
+                    function a(id){
+                        var x=document.getElementById(id);
+                        if(!opn){
+                            
+                            x.style.display='block';
+                            // x.click()
+                            // x.size = x.options.length;
+                            opn = true
+                        }else{
+                            x.style.display='none';
+                            opn = false
+                        }
+                    }
+                </script>
+                <p id="selected_optn1" >
+
+                </p>
+
+                <h6>One Stop Center</h6>
+                <select class='form-control mb-2 mt-2' name="osc" id="osc">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='one_stop_center'>One Stop Center</option>
+                    <option value='one_stop_center_name'>Name of One Stop Center</option>
+                    <option value='osc_address'>Address</option>
+                    <option value='osc_landline'>Landline</option>
+                    <option value='osc_mobile'>Mobile No</option>
+                    <option value='osc_gmail'>Gmail</option>
+                    <option value='accomodated_women'>How many women are accommodated?</option>
+                    <option value='women_reg_resid'>Total number of women admitted for residence during the reporting month:</option>
+                    <option value='childn_wom_reg'>Number of children with women admitted for residence during the reporting month</option>
+                    <option value='center_admin_nam'>Name of Center Administrator</option>
+                    <option value='admin_contact'>Admin Mobile Number</option>
+                    <option value='no_posts_sanc'>Number of posts sanctioned</option>
+                    <option value='filled_posts'>Number of posts filled</option>
+                    <option value='empty_posts'>Number of Vacancies</option>
+                    <option value='osc_const_type'>Location of building of One Stop Center</option>
+                    <option value='osc_in_hospt?'>Is the one stop center building in the hospital premises?</option>
+                    <option value='bed_count'>Number of beds</option>
+                    <option value='refrigerator'>Is a refrigerator available?</option>
+                    <option value='comp_peripherals'>Are computer peripherals (desktop, printer, scanner) available?</option>
+                    <option value='telephone_available'>Is telephone (name of center) available?</option>
+                    <option value='net_conn'>Is there an internet connection available?</option>
+                    <option value='welcome_kit'>Is a welcome kit available?</option>
+                    <option value='pantry_items'>Are pantry items (mini kitchen) available?</option>
+                    <option value='cctv'>Is CCTV installed and working?</option>
+                </select>
+                <p id="selected_optn2" >
+
+                </p>
+
+                <h6>Counselling Center</h6>
+                <select class='form-control mb-2 mt-2' name="cc" id="cc">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='counselling_center'>Counselling Center</option>
+                    <option value='cc_address'>Address</option>
+                    <option value='cc_contact'>Contact</option>
+                    <option value='org_to_run_cc'>Name of the organization appointed to run the Counseling Centre</option>
+                    <option value='addres_to_run_cc'>Complete address of the organization appointed to run the Counseling Centre</option>
+                    <option value='nam_of_officers'>Name of the Officers of the Institute</option>
+                    <option value='contact_of_officers'>Phone numbers of office bearers of the organization</option>
+                    <option value='gmail_of_cc'>Gmail ID of Counseling Center</option>
+                    <option value='counselor_nam1'>Counselor Name 1</option>
+                    <option value='counselor_contact1'>Counselor Mobile Number 1</option>
+                    <option value='counselor_nam2'>Counselor Name 2</option>
+                    <option value='counselor_contact2'>Counselor Mobile Number 2</option>
+                    <option value='seprt_tele_avail?'>Is separate telephone connection available in the Counseling Centre</option>
+                </select>
+                <p id="selected_optn3" >
+
+                </p>
+
+                <h6>Swadhaar Greh</h6>
+                <select class='form-control mb-2 mt-2' name="sg" id="sg">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='swadhaar_home'>Swadhaar Greh</option>
+                    <option value='address'>Address</option>
+                    <option value='building_type'>Building Type</option>
+                    <option value='contact'>Contact</option>
+                    <option value='mobile_no'>Mobile No</option>
+                    <option value='gmail'>Gmail</option>
+                    <option value='approval_date'>Approval Date</option>
+                    <option value='capacity'>The admitted sanctioned capacity of the institution</option>
+                    <option value='women_admitted'>Total number of women admitted during the reporting month</option>
+                    <option value='children_with_women'>Total number of children with women admitted during the reporting month</option>
+                    <option value='superintendent_nam'>Name of Superintendent</option>
+                    <option value='superintendent_contact'>Superintendent's mobile number</option>
+                    <option value='no_posts'>Number of posts sanctioned</option>
+                    <option value='filled_no_posts'>Number of posts filled</option>
+                    <option value='no_vacancies'>Number of Vacancies</option>
+                    <option value='nursery_facility?'>Is there a nursery facility in Swadhar Sanstha?</option>
+                    <option value='cooking_utensils?'>Are there enough cooking utensils and utensils?</option>
+                    <option value='net_conn?'>Is the internet facility up to date?</option>
+                    <option value='first_aid_kit?'>Is the first aid kit updated?</option>
+                    <option value='no_cctv'>Number of CCTV Cameras in Swadhar Institution</option>
+                    <option value='no_running_water_filters'>Number of running water filters</option>
+                </select>
+                <p id="selected_optn4" >
+
+                </p>
+                
+                <h6>Ujjwal Greh</h6>
+                <select class='form-control mb-2 mt-2' name="ug" id="ug">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='ujjwal_greh'>Ujjwal Greh</option>
+                    <option value='address'>Address</option>
+                    <option value='constr_type'>Construction Type</option>
+                    <option value='contact'>Contact</option>
+                    <option value='mobile_no'>Mobile No</option>
+                    <option value="gmail">Gmail</option>
+                    <option value='approval_date'>Approval Date</option>
+                    <option value='admitted_approved_no'>Institution's admitted approved number</option>
+                    <option value='admitted_sanctioned_capacity'>The admitted sanctioned capacity of the institution</option>
+                    <option value='no_women_admitted'>Total number of women admitted during the reporting month</option>
+                    <option value='no_childn_with_women'>Total number of children with women admitted during the reporting month</option>
+                    <option value='project_director_nam'>Name of the Project Director</option>
+                    <option value='project_director_contact'>Project Director's mobile number</option>
+                    <option value='no_posts_sanctioned'>Number of posts sanctioned</option>
+                    <option value='no_posts_filled'>Number of posts filled</option>
+                    <option value='no_empty_posts'>Number of vacancies</option>
+                    <option value='nursery_facility?'>Is there a nursery facility in Ujwala Institute?</option>
+                    <option value='cooking_utensils?'>Are there enough cooking utensils and utensils?</option>
+                    <option value='net_conn?'>Is the internet facility up to date?</option>
+                    <option value='first_aid_kit?'>Is the first aid kit updated?</option>
+                    <option value='no_cctv'>Number of CCTV Cameras in Ujwala Institute</option>
+                    <option value='no_working_water_filter'>Number of working water filters</option>
+                </select>
+                <p id="selected_optn5" >
+
+                </p>
+                
+            </form>
+        </div>
+    </div>
+
+    <button onclick="clearAll()" id="clear-data"class="btn btn-primary">Clear All</button>
+
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+
+    var points=[];
+    var districtLayer;
+    var talLayer;
+    
+    var Raigad = [ 'Select Taluka', 'Pen','Alibag','Murud','Panvel','Uran','Karjat','Khalapur','Mangaon']
+    var Ratnagiri = ['Select Taluka','Ratnagiri','Sangameshwar','Lanja','Rajapur ','Chiplun','Guhagar','Dapoli','Mandangad','Khed']
+    var Sindhudurg = ['Select Taluka','Kankavli','Vaibhavwadi','Devgad','Malwan','Sawantwadi','Kudal','Vengurla','Dodamarg (Kasal)']
+    var Palghar = ['Select Taluka','Palghar','Vasai','Dahanu','Talasari','Jawhar','Mokhada','Vada','Vikramgad']
+    var nashik  = ['Select Taluka', 'Nashik','Igatpuri','Dindori','Peth','Trimbakeshwar','Kalwan','Deola','Surgana','Baglan(Satana)','Malegaon','Nandagaon','Chandwad','Niphad','Sinnar','Yeola']
+    var Nandurbar = ['Select Taluka', 'Nandurbar','Navapur','Shahada','Talode','Akkalkuwa','Akrani(Dhadgaon)']
+    var Dhule= ['Select Taluka', 'Dhule','Sakri','Sindkheda','Shirpur']
+    var mumbai_suburb = ['Select Taluka','Kurla','Mulund','Andheri','Borivali']
+    var Mumbai_City = ['Select Taluka','Mumbai']
+    var Jalgaon = ['Select Taluka', 'Jalgaon','Jamner','Erandol','Dharangaon','Bhusawal','Raver','Muktainagar','Yawal','Amalner','Parola','Chopda','Pachora','Bhadgaon','Chalisgaon']
+    var Buldhana = ['Select Taluka', 'Buldhana','Chikhli','Deulgaon','Jalgaon Jamod','Sangrampur','Malkapur','Motala','Nandura','Khamgaon','Shegaon','Mehkar','Sindkhed Raja','Lonar']
+    var Akola = ['Select Taluka', 'Akola','Akot','Telhara','Patur','Murtajapur','Barshitakli']
+    var Washim = ['Select Taluka', 'Wahim','Malegaon','Risod','Mangrulpir','Karanja','Manora']
+    var Thane=['Select Taluka','Thane','Kalyan','Murbad','Bhiwandi','shahapur','Ulhasnagar','Ambarnath']
+    var amravati = ['Select Taluka', 'Amravati','Bhatukali','Nandgaon Khandeshwar','Dharni (Amravati)','Chikhaldara','Achalpur','Chandurbazar','Morshi','Warud','Daryapur','Anjangaon-Surji','Chandur','Dhamangaon','Tiosa']
+    var Wardha = ['Select Taluka', '	Wardha','Deoli','Seloo','Arvi','Ashti','Karanja','Hinganghat','Samudrapur']
+    var nagpur = ['Select Taluka', 'Nagpur','Kamptee','Hingna','Katol','Narkhed','Savner','Kalameshwar','Ramtek','Mouda','Parseoni','Umred','Kuhi','Bhiwapur']
+    var Bhandara = ['Select Taluka', 'Bhandara','Tumsar','Pauni','Mohadi','Sakoli','Lakhni','Lakhandur']
+    var Gondia = ['Select Taluka', 'Gondia','Tiroda','Goregaon','Arjuni Morgaon','Amgaon','Salekasa','Sadak Arjuni ','Deori']
+    var gadchiroli = ['Select Taluka', 'Gadchiroli','Dhanora','Chamorshi','Mulchera','Desaiganj (Vadasa)','Armori','Kurkheda','Korchi','Korchi','Bhamragad','Sironcha']
+    var Chandrapur = ['Select Taluka', 'Chandrapur','Saoli','Mul','Ballarpur','Pombhurna','Gondpimpri','Warora','Chimur','Bhadravati','Bramhapuri','Nagbhid ','Sindewahi','Rajura','Korpana','Jivati']
+    var Yavatmal = ['Select Taluka', 'Yavatmal','Arni','Babhulgaon','Kalamb','Darwha','Digras','Ner','Pusad','Umarkhed','Mahagaon','Kelapur (Pandharkawada)','Ralegaon','Ghatanji','Wani','Maregaon','Zari Jamani']
+    var Nanded = ['Select Taluka', 'Nanded','Ardhapur','Mudkhed','Bhokar','Umri','Loha','Kandhar','Kinwat','Himayatnagar','Hadgaon','Mahur','Deglur','Mukhed','Dharmabad','Biloli','Naigaon (Khairgaon)']
+    var Hingoli = ['Select Taluka', 'Hingoli','Sengaon','Kalamnuri','Basmath','Aundha Nagnath']
+    var Parbhani = ['Select Taluka', 'Parbhani','Sonpeth','Gangakhed','Palam','Purna','Sailu','Jintur','Manwath','Pathri']
+    var Jalna = ['Select Taluka', 'Jalna','Bhokardan','Jafrabad','Badnapur','Ambad','Ghansawangi','Partur','Mantha']
+    var aurangabad = ['Select Taluka', 'Aurangabad','Kannad','Soegaon','Sillod','Phulambri','Khuldabad','Vaijapur','Gangapur','Paithan']
+    var Beed= ['Select Taluka', 'Beed','Ashti','Patoda','Shirur-Kasar','Georai','Majalgaon','Wadwani','Kaij','Dharur','Parli','Ambejogai']
+    var Latur = ['Select Taluka', 'Latur','Renapur','Ahmedpur','Jalkot','Chakur','Shirur Anantpal','Ausa','Nilanga','Deoni','	Udgir',]
+    var Osmanabad = ['Select Taluka', 'Osmanabad','Tuljapur','Bhum','Paranda','Washi','Kalamb','Lohara','Umarga']
+    var Solapur_North = ['Select Taluka', 'Solapur North','Barshi','Solapur South','Akkalkot','Madha','Karmala','Pandharpur','Mohol','Malshiras','Sangole','Mangalvedhe']
+    var Ahmadnagar = ['Select Taluka', 'nagar','Shevgaon','Pathardi','Parner','Sangamner','Kopargaon','Akola','Shrirampur','Nevasa','Rahata','Rahuri','Shrigonda ','Karjat','Jamkhed']
+    var pune = ['Select Taluka', 'Pune City','Haveli','Haveli - PCMC, PCMC','Khed (Rajgurunagar)','Junnar','Ambegaon (Ghodegaon)','Maval (Vadgaon)','Mulshi (Paud)','Shirur','Purandhar (Saswad)','Velhe','Bhor','Baramati','Indapur','Daund']
+    var Satara = ['Select Taluka', 'Satara','Jaoli','Koregaon','Wai','Mahabaleshwar','Khandala','Phaltan','Maan (Dahiwadi)','Khatav (Vaduj)','Patan','Karad']
+    var Sangli = ['Select Taluka', 'Miraj','Kavathe-Mahankal','Tasgaon','Jat','Walwa (Islampur)','Shirala','Khanapur-Vita ','Atpadi','Palus','Kadegaon']
+    var Kolhapur = ['Select Taluka', 'Karvir','Panhala','Shahuwadi','Kagal','Hatkanangale','Shirol','Radhanagari','Gaganbawada','Bhudargad','Gadhinglaj','Chandgad','Ajra']
+    
+    /*
+    const download = ()=>{
+        const rows = [['awc_code','district','project','beat','latitude','longitude','altitude','accuracy','objectid','st_code','st_name','dist_code','dist_name','ac_no','ac_name','start','end','division','district_1','project_2','Beat_3','Anganwadi_4','agan_type','agancbuil_const','aganc_forrent','yes_moveagan_govpre','no_owner_agancbuil','child_sitagan','child_weigh_material','child_weigh_mat_working','adult_wtequip','adult_wteq_working','infant_meter','infant_meter_working','stadiometer','stadm_working','maint_repair_need','agan_drinkwat_avail','agan_tap','plumb_workcond','toil_fac','toil_working','electricity_connection','solar_powersupply','agan_tv','tv_working','agan_fenc','agan_back_gard','space_own_garden','vac_agan','post_vac','post_vac_aw_worker','post_vac_help','pro_fill_agan_post','child0_6monage','child6mon_3yr','child3 _6yrs','tot_no_child','preg_moth_agan','brestfeed_moth_agan','preg_lact_moth','aadh_notlinknuttrack','preg_lact_mothaadh_notlinked_nuttrack','child_weigh_meas_agan_mar22','child_heigh_meas_agan_mar22','no_suv_child_agan_Jan_mar22','no_suv_child_recthr_jan_mar22','child_sam_agan_jan_mar22','child_rec_vcdc_fac','sam_child_agan_vcdc_jan_mar22','sam_agan_nrc_jan_mar22','no_adol_girl_dropsch_agan','child_agan_sch_engl_priv_nurs','ifyes_childenrol_agan_sch_priv_nurs_engl','agan_rec_migr_bene','bene_agan_migr_indist','agan_bene_migr_outdist','benetot_migr_out','migrbenetot_agancentarea','agan_serv_migr_outaganarea','ifyes_aganspen10pergdp_endmar22','ifyes_gp_spent_10pergdp_endmarch22','aay','totno_child_serv_aay_6mon_6yrs','preg_lact_mother_serv_aay_ecd','parvisit_inibalasch','parent_visit_past_year','balasch','agan_und_balasch','work_comund_balasch_mar22','ifcom_ongo_task_comp_undbalasch','ifcom_ongo_task_comp_undbalasch1','ifcom_ongo_task_comp_undbalasch_sandpit','ifcom_ongo_task_comp_undbalasch_lawn','ifcom_ongo_task_comp_undbalasch_display','ifcom_ongo_task_comp_undbalasch_writboar','sign_sup_chserv','sign_sup_headmisurl','_id','_uuid','_submission_time','_validation_status','_notes','_status','_submitted_by','_tags','_index']]
+        for(point of points){
+            const row=[]
+            for(attr in point.data){
+                row.push(point.data[attr])
+            }
+            rows.push(row);
+    
+        }
+        console.log(rows[1]);
+    
+    
+        const bom = "\uFEFF"
+        let csvContent = "data:text/csv;charset=utf-8," +bom+ rows.map(e => e.join(",")).join("\n");
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href",encodedUri);
+        link.setAttribute("download", "my_data.csv");
+        document.body.appendChild(link); // Required for FF
+    
+        link.click();
+    }*/
+    
+    var DistrictSelected="";
+    $("#district").change(function(){
+        //document.getElementById('post-form').submit()
+        //document.getElementById('cate').click()
+        // document.getElementById('cate_submit').click();
+        DistrictSelected = $(this).val();
+        var optionsList;
+        var htmlString = "";
+    
+        if(districtLayer){
+            mymap.removeLayer(districtLayer)
+        }
+    
+    var wms_layer;
+    var data = fetchJSON("{% static 'data/districts.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+        data.features.forEach(function(feature) {
+            //console.log(feature.properties.Block)
+            if(DistrictSelected!=""){
+                //console.log(feature.properties)
+                if(feature.properties.district==DistrictSelected){
+                    wms_layer = L.geoJson(feature.geometry)
+                    wms_layer.addTo(mymap)
+                }
+            }
+            districtLayer = wms_layer;
+        });
+        
+    });   
+    
+    
+        switch (DistrictSelected) {
+          case "Raigad":
+              optionsList = Raigad;
+              break;
+          case "Ratnagiri":
+              optionsList = Ratnagiri;
+              break;
+          case "Sindhudurg":
+              optionsList = Sindhudurg;
+              break;
+          case "mumbai_suburb":
+              optionsList = mumbai_suburb;
+              break;
+          case "Mumbai City":
+              optionsList = Mumbai_City;
+              break;
+          case "Thane":
+              optionsList = Thane;
+              break;
+          case "Palghar":
+              optionsList = Palghar;
+              break;
+          case "Nashik":
+              optionsList = nashik;
+              break;
+          case "Nandurbar":
+              optionsList = Nandurbar;
+              break;
+          case  "Dhule":
+              optionsList = Dhule;
+              break;
+          case "Jalgaon":
+              optionsList = Jalgaon;
+              break;
+          case "Buldhana":
+              optionsList = Buldhana;
+              break;
+          case "Akola":
+              optionsList = Akola;
+              break;
+          case "Washim":
+              optionsList = Washim;
+              break;
+          case  "Amravati":
+              optionsList = amravati;
+              break;
+          case "Wardha":
+              optionsList = Wardha;
+              break;
+          case  "Nagpur":
+              optionsList = nagpur;
+              break;
+          case "Bhandara":
+              optionsList = Bhandara;
+              break;
+          case  "Gondia":
+              optionsList = Gondia;
+              break;
+          case "Gadchiroli":
+              optionsList = gadchiroli;
+              break;
+          case  "Chandrapur":
+              optionsList = Chandrapur;
+              break;
+          case "Yavatmal":
+              optionsList = Yavatmal;
+              break;
+          case  "Nanded":
+              optionsList = Nanded;
+              break;
+          case "Hingoli":
+              optionsList = Hingoli;
+              break;
+          case  "Parbhani":
+              optionsList = Parbhani;
+              break;
+          case "Jalna":
+              optionsList = Jalna;
+              break;
+          case  "Aurangabad":
+              optionsList = aurangabad;
+              break;
+          case  "Beed":
+              optionsList = Beed;
+              break;
+          case "Latur":
+              optionsList = Latur ;
+              break;
+          case  "Osmanabad":
+              optionsList = Osmanabad;
+              break;
+          case  "Solapur_North":
+              optionsList = Solapur_North;
+              break;
+          case "Ahmadnagar":
+              optionsList = Ahmadnagar;
+              break;
+          case  "Pune":
+              optionsList = pune;
+              break;
+          case "Satara":
+              optionsList = Satara;
+              break;
+          case  "Sangli":
+              optionsList = Sangli;
+              break;
+          case "Kolhapur":
+              optionsList = Kolhapur;
+              break;
+    
+      }
+    
+      // console.log(optionsList)
+        if(optionsList!=undefined){
+            htmlString = htmlString+"<option value=''> Select Taluka </option>";
+            for(var i = 1; i < optionsList.length; i++){
+            htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
+            }
+        }
+        $("#block_s").html(htmlString);
+    
+      console.log('not')
+    
+      });
+    
+    $('#block_s').change(function(){
+        putWMSLayertaluka();
+        //document.getElementById('cate_submit').click();
+        //document.getElementById('fs').click()
+        //document.getElementById("post-form").submit();
+    })
+
+    function fetchJSON(url) {
+        return fetch(url)
+          .then(function(response) {
+            return response.json();
+          });
+      }
+
+
+    function putWMSLayertaluka() {
+    // clear_tallayer();
+
+    if(talLayer){
+        mymap.removeLayer(talLayer)
+    }
+    var taluka = document.getElementById('block_s').value;
+
+    var wms_layer;
+    var data = fetchJSON("{% static 'data/talukas.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+        data.features.forEach(function(feature) {
+            //console.log(feature.properties.Block)
+            if(DistrictSelected!=""){
+                if(feature.properties.Block==taluka && feature.properties.District==DistrictSelected){
+                    //console.log(feature.geometry)
+                    wms_layer = L.geoJson(feature.geometry)
+                    wms_layer.addTo(mymap)
+                }
+            }else{
+                if(feature.properties.Block==taluka){
+                    //console.log(feature.geometry)
+                    wms_layer = L.geoJson(feature.geometry)
+                    wms_layer.addTo(mymap)
+                }
+            }
+            talLayer=wms_layer;
+        });
+        
+    });   
+    
+    }
+
+    
+function clearAll(){
+
+    DistrictSelected="";
+    points.forEach(p=>{
+        mymap.removeLayer(p)
+    })
+    points=[]
+    if(districtLayer){
+        mymap.removeLayer(districtLayer)
+    }
+    document.getElementById('district').value = "";
+    if(talLayer){
+        mymap.removeLayer(talLayer)
+    }
+    document.getElementById('block_s').value = "";
+
+    var htm = '<option value=""> Select Taluka </option>'
+                '{% for i in taluka %}'
+                htm=htm+'<option value='+'{{ i.block_n }}'+'>{{ i.block_n }}</option>'
+                '{% endfor %}'
+            $('#block_s').html(htm)
+
+    document.getElementById('category_1').value=""
+
+    // console.log(document.getElementById('cate').getElementsByTagName('input'))
+    for(var i=0;i<document.getElementById('cate').getElementsByTagName('input').length;i++){
+        if(document.getElementById('cate').getElementsByTagName('input')[i].checked){
+            document.getElementById('cate').getElementsByTagName('input')[i].checked=false;
+        }
+    }
+
+    //document.getElementById('cate1').value=""
+    // document.getElementById('chk-1').innerHTML=""
+    /*
+    document.getElementById('category_2').value=""
+    //document.getElementById('cate2').value=""
+    document.getElementById('chk-2').innerHTML=""
+    document.getElementById('category_3').value=""
+    //document.getElementById('cate3').value=""
+    document.getElementById('chk-3').innerHTML=""
+    */
+    
+
+    //document.getElementById('cate_val1').style.display = 'none';
+    //$("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+    //document.getElementById('cate_val1').value="";
+
+    //document.getElementById('cate_val2').style.display = 'none';
+    //$("#cate_val2").html("<option value='"+"'>"+ 'Select' +"</option>");
+    //document.getElementById('cate_val2').value="";
+
+    //document.getElementById('cate_val3').style.display = 'none';
+    //$("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
+    //document.getElementById('cate_val3').value="";
+    mymap.setView([19.000, 74.999],7);
+}
+
+$(document).ready(
+    $('#wcd_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'map' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                //console.log(data["data"])
+                d = JSON.parse(data["data"])
+                //console.log(d)
+                plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+    $('#wsh').on('change',function(){
+        var wsh = $('#wsh').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'women_state_home' %}",
+            dataType: 'json',
+            data: {wsh},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                console.log(data)
+                if(data['w1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    /*
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
+
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
+                    })
+                    $("#cate_val1").html(htmlString);
+                    */
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("wsh").value+`'>`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('wsh').value+`","`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.w1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("wsh").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn1').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    //$('.chkc-1').click(function(){
+                    //    document.getElementById('cate_submit').click();
+                    //})
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    /*
+                    document.getElementById('cate_val1').style.display = 'none';
+                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+                    document.getElementById('cate_val1').value="";
+                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
+                    */
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#osc').on('change',function(){
+        var osc = $('#osc').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'one_stop_center' %}",
+            dataType: 'json',
+            data: {osc},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['o1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    /*
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
+
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
+                    })
+                    $("#cate_val1").html(htmlString);
+                    */
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("osc").value+`'>`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('osc').value+`","`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.o1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("osc").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn2').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    //$('.chkc-1').click(function(){
+                    //    document.getElementById('cate_submit').click();
+                    //})
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    /*
+                    document.getElementById('cate_val1').style.display = 'none';
+                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+                    document.getElementById('cate_val1').value="";
+                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
+                    */
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#cc').on('change',function(){
+        var cc = $('#cc').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'counselling_center' %}",
+            dataType: 'json',
+            data: {cc},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['c1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    /*
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
+
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
+                    })
+                    $("#cate_val1").html(htmlString);
+                    */
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("cc").value+`'>`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('cc').value+`","`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("cc").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn3').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    //$('.chkc-1').click(function(){
+                    //    document.getElementById('cate_submit').click();
+                    //})
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    /*
+                    document.getElementById('cate_val1').style.display = 'none';
+                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+                    document.getElementById('cate_val1').value="";
+                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
+                    */
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#sg').on('change',function(){
+        var sg = $('#sg').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'swadhaar_greh' %}",
+            dataType: 'json',
+            data: {sg},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['s1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    /*
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
+
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
+                    })
+                    $("#cate_val1").html(htmlString);
+                    */
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("sg").value+`'>`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('sg').value+`","`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.s1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("sg").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn4').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    //$('.chkc-1').click(function(){
+                    //    document.getElementById('cate_submit').click();
+                    //})
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    /*
+                    document.getElementById('cate_val1').style.display = 'none';
+                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+                    document.getElementById('cate_val1').value="";
+                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
+                    */
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#ug').on('change',function(){
+        var ug = $('#ug').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'ujjwal_greh' %}",
+            dataType: 'json',
+            data: {ug},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['u1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    /*
+                    var htmlString="<option value=''>"+ 'Select' +"</option>";
+
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
+                    })
+                    $("#cate_val1").html(htmlString);
+                    */
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("ug").value+`'>`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('ug').value+`","`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.u1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("ug").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn5').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    //$('.chkc-1').click(function(){
+                    //    document.getElementById('cate_submit').click();
+                    //})
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    /*
+                    document.getElementById('cate_val1').style.display = 'none';
+                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
+                    document.getElementById('cate_val1').value="";
+                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
+                    */
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+)
+
+function removeOptn(a,b){
+    // console.log(document.getElementById(a).getElementsByTagName('input'))
+    for(var i=0;i<document.getElementById(a).getElementsByTagName('input').length;i++){
+        if(document.getElementById(a).getElementsByTagName('input')[i].checked){
+            document.getElementById(a).getElementsByTagName('input')[i].checked=false;
+            // document.getElementById('cate_submit').click();
+            break;
+        }
+    }
+    document.getElementById('wsh').innerHTML+='<option value="'+a+'">'+b+'</option>';
+    document.getElementById(a).remove()
+    console.log(`${a} ${b}`)
+    // document.getElementById('cate_submit').click();
+    // sortSelect(document.getElementById('category_1'))
+}
+
+function plotData(){
+    //for(x in d){
+    //    console.log(d[x].fields.latitude)
+    //}
+    if(d==undefined || d == ""){
+        alert("No results for this selection")
+        clearAll()
+    }
+    console.log(`pltdata called`)
+    replot()
+    for(x in d){
+        var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+        point.addTo(mymap)
+        point.data=d[x].fields;
+        point.bindPopup(`<div><img src="${d[x].fields}"><br>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Anganwadi Type: ${d[x].fields.agan_type}<br>Construction: ${d[x].fields.agancbuil_field}<br>Sitangan: ${d[x].fields.child_sitagan}</div>`)
+        points.push(point)
+    }
+}
+
+function replot(){
+    points.forEach(p=>{
+        mymap.removeLayer(p)
+    })
+    points=[]
+
+}
+</script>
 {% endblock %}
