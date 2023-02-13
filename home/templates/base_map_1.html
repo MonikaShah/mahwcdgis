@@ -238,7 +238,14 @@ img{
               <div class="stm-navigation__default">
                 <ul style="list-style: none;">
                   <li ><a href="{% url 'homepage' %}">Home</a></li>
-                  <li ><a href="{% url 'map' %}">Map</a></li>
+                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">Map</a>
+                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;  z-index:11111;">
+                      <ul style="list-style-type: none; padding: 0;">
+                        <li style="padding: 5px;"><a href="{% url 'map' %}">IDCS Maps</a></li><br>
+                        <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                      </ul>
+                    </div>
+                  </li>
                   <li ><a href="{% url 'about_us' %}">About Us</a>
                   <!-- <li onmouseover="document.getElementById('about').style.display='block'" onmouseleave="document.getElementById('about').style.display='none'"><a href="">About Us</a>
                     <div id="about" style="position: absolute;z-index:1111;background-color:white; display:none;">
@@ -283,7 +290,14 @@ img{
             <div class="stm-navigation__default_mob">
               <ul style="list-style: none;">
                 <li ><a href="{% url 'homepage' %}">Home</a></li>
-                <li ><a href="{% url 'map' %}">Map</a></li>
+                <li ><a onclick="funct()">Map</a>
+                  <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
+                    <ul style="list-style-type: none; padding: 0;">
+                      <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">IDCS Maps</a></li><br>
+                      <li style="padding: 5px; margin:0;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                    </ul>
+                  </div>
+                </li>
                 <li ><a href="{% url 'about_us' %}">About Us</a>
                 <!-- <li id="about" onclick="aboutdd()"><a aria-disabled="true">About Us</a>
                 <ul id="about_list" style="list-style-type: none; color:white;font-family:Poppins;display:none;">
@@ -340,10 +354,12 @@ img{
          <!-- ======= Footer ======= -->
          <div class="stm-footer" style="background-color: #200751;">
           <div style="margin: 0 4%;padding:67px 15px 0 15px;color:white;">
+            
+            <div><h3 style="color: aliceblue; text-align: center; font-family:Poppins;">Designed and Developed at</h3></div>
             <div id="footer-main" style="display: flex;">
               <div>
-                <div class="titlee"><h4 style="color: white;">RAJMATA JIJAU MOTHER-CHILD HEALTH & NUTRITION MISSION</h4></div>
-                <div class="content" style="padding-right: 30px;">Maharashtra was the first state in the country to take a decision to tackle malnutrition in
+                <div class="titlee"><h4 style="color: white;font-family:Poppins;">RAJMATA JIJAU MOTHER-CHILD HEALTH & NUTRITION MISSION</h4></div>
+                <div class="content" style="padding-right: 30px;font-family:Poppins;">Maharashtra was the first state in the country to take a decision to tackle malnutrition in
                   ‘Mission – mode’ and with this purpose, <b>Rajmata Jijau Mother – Child Health &amp; Nutrition</b>
                   Mission was established. The first phase of the Mission was set up in 2005, and the
                   second phase started in 2011 and the third phase in 2017. The aim of the Mission is to
@@ -352,12 +368,12 @@ img{
                   </div>
               </div>
               <div>
-                <div><h4 style="color: #fff;">CONTACT US</h4></div>
+                <div><h4 style="color: #fff;font-family:Poppins;">CONTACT US</h4></div>
                 <div style="border: 1px solid ; border-radius: 3px;"><div class="widget_contacts_inner" itemscope="" itemtype="http://schema.org/Organization" style="padding: 24px 38px 5px 38px;" >
 
                   <div class="stm-icontext stm-icontext_style2 stm-icontext__address" data-title="Address">
           <i class="stm-icontext__icon fa fa-home"></i>
-          <span class="stm-icontext__text" itemprop="address">
+          <span class="stm-icontext__text" itemprop="address" style="font-family:Poppins;">
               Address:-  Rajmata Jijau Mother-Child Health and Nutrition Mission, Department of Women and Child Development, Government of Maharashtra 8th Floor, New Mantralay, Beside G.T. Hospital Complex, Lokmanya Tilak Road, Mumbai, Maharashtra-400001                    </span>
       </div>
                   <!-- <div class="stm-icontext stm-icontext_style2 stm-icontext__phone" data-title="Phone">
@@ -376,7 +392,6 @@ img{
           </div></div>
               </div>
             </div>
-            <div><h3 style="color: aliceblue; text-align: center;">Designed and Developed at</h3></div>
             <div>
               <div style="padding: 20px;" class="stm-footer__bottom">
               <div class="stm_markup stm_markup_right stm_markup_50">
@@ -590,6 +605,17 @@ $('.select').click(function () {
     pp.style.display='none';
     document.getElementById('close').style.display = 'none';
     document.getElementById('open').style.display = 'block';
+  }
+
+  var opn = false;
+  function funct(){
+    if(!opn){
+      document.getElementById('map_optn').style.display = 'block'
+      opn=true
+    }else{
+      document.getElementById('map_optn').style.display = 'none'
+      opn=false
+    }
   }
 </script>
 
