@@ -168,8 +168,21 @@ def viewWcdMap(request):
         taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
         context = {'awc': awc, 'district':district,'taluka':taluka}
         return render(request, 'viewWcdMap.html', context)
-    
+
+@csrf_exempt
 def women_state_home(request):
+    if request.method == 'POST':
+        y={}
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                y[k]=v
+        print(y," pppp")
+        data =  WomenStateHome.objects.filter(**y)
+        # print(data)
+        data = serializers.serialize('json', data)
+        context={"data":data}
+        return JsonResponse(context)
+        
     wsh = request.GET.get('wsh')
     #print(wsh)
     w1=""
@@ -178,7 +191,20 @@ def women_state_home(request):
     #print(w1)
     return JsonResponse({'w1':w1})
 
+@csrf_exempt
 def one_stop_center(request):
+    if request.method == 'POST':
+        y={}
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                y[k]=v
+        print(y," pppp")
+        data =  OneStopCenter.objects.filter(**y)
+        # print(data)
+        data = serializers.serialize('json', data)
+        context={"data":data}
+        return JsonResponse(context)
+    
     osc = request.GET.get('osc')
     #print(osc)
     o1=""
@@ -187,7 +213,20 @@ def one_stop_center(request):
     #print(o1)
     return JsonResponse({'o1':o1})
 
+@csrf_exempt
 def counselling_center(request):
+    if request.method == 'POST':
+        y={}
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                y[k]=v
+        print(y," pppp")
+        data =  CounsellingCenter.objects.filter(**y)
+        # print(data)
+        data = serializers.serialize('json', data)
+        context={"data":data}
+        return JsonResponse(context)
+    
     cc = request.GET.get('cc')
     #print(cc)
     c1=""
@@ -196,7 +235,20 @@ def counselling_center(request):
     #print(c1)
     return JsonResponse({'c1':c1})
 
+@csrf_exempt
 def swadhaar_greh(request):
+    if request.method == 'POST':
+        y={}
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                y[k]=v
+        print(y," pppp")
+        data =  SwadhaarGreh.objects.filter(**y)
+        # print(data)
+        data = serializers.serialize('json', data)
+        context={"data":data}
+        return JsonResponse(context)
+    
     sg = request.GET.get('sg')
     #print(sg)
     s1=""
@@ -205,7 +257,20 @@ def swadhaar_greh(request):
     #print(s1)
     return JsonResponse({'s1':s1})
 
+@csrf_exempt
 def ujjwal_greh(request):
+    if request.method == 'POST':
+        y={}
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                y[k]=v
+        print(y," pppp")
+        data =  UjjwalGreh.objects.filter(**y)
+        # print(data)
+        data = serializers.serialize('json', data)
+        context={"data":data}
+        return JsonResponse(context)
+    
     ug = request.GET.get('ug')
     #print(ug)
     u1=""
