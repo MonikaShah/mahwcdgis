@@ -20,11 +20,11 @@ urlpatterns = [
     path('mr/what-we-do', views.about_wwd_mr, name='mr/what-we-do'),
     path('mr/partners', views.about_p_mr, name='mr/partners'),
     path('wcdmap', views.viewWcdMap,name='viewWcdMap'),
-    path("women_state_home", views.women_state_home, name="women_state_home"),
-    path("one_stop_center", views.one_stop_center, name="one_stop_center"),
-    path("counselling_center", views.counselling_center, name="counselling_center"),
-    path("swadhaar_greh", views.swadhaar_greh, name="swadhaar_greh"),
-    path("ujjwal_greh", views.ujjwal_greh, name="ujjwal_greh"),
+    # path("women_state_home", views.women_state_home, name="women_state_home"),
+    # path("one_stop_center", views.one_stop_center, name="one_stop_center"),
+    # path("counselling_center", views.counselling_center, name="counselling_center"),
+    # path("swadhaar_greh", views.swadhaar_greh, name="swadhaar_greh"),
+    # path("ujjwal_greh", views.ujjwal_greh, name="ujjwal_greh"),
     
    
     
