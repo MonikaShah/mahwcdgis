@@ -321,7 +321,7 @@
                 }
                 
             </style>
-            <div class="add_filter" style="width: fit-content; ">
+            <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
                 <i onclick="a()" class="fas fa-plus"></i>
                 <span class="txt">Add Filter</span>
             </div>
@@ -642,10 +642,11 @@ var data = fetchJSON("{% static 'data/districts.geojson' %}")
     data.features.forEach(function(feature) {
         //console.log(feature.properties.Block)
         if(DistrictSelected!=""){
-            console.log(feature.properties)
+            //console.log(feature.properties)
             if(feature.properties.district==DistrictSelected){
                 wms_layer = L.geoJson(feature.geometry)
                 wms_layer.addTo(mymap)
+                mymap.fitBounds(wms_layer.getBounds())
             }
         }
         districtLayer = wms_layer;
@@ -991,6 +992,7 @@ var data = fetchJSON("{% static 'data/talukas.geojson' %}")
                 console.log(feature.geometry)
                 wms_layer = L.geoJson(feature.geometry)
                 wms_layer.addTo(mymap)
+                mymap.fitBounds(wms_layer.getBounds() )
             }
         }
         talLayer=wms_layer;
