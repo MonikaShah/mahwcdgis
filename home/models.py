@@ -162,7 +162,7 @@ class WomenStateHome(models.Model):
 class OneStopCenter(models.Model):
     report_date=models.DateField(blank=True, null=True)
     section=models.CharField(max_length=254, blank=True, null=True)
-    one_stop_center=models.CharField(max_length=254, blank=True, null=True)
+    district=models.CharField(max_length=254, db_column='one_stop_center', blank=True, null=True)
     one_stop_center_name=models.CharField(max_length=254, blank=True, null=True)
     osc_address=models.CharField(max_length=254, blank=True, null=True)
     osc_landline=models.CharField(max_length=254, blank=True, null=True)
@@ -256,7 +256,7 @@ class UjjwalGreh(models.Model):
     constr_type=models.CharField(max_length=254, blank=True, null=True)
     contact=models.CharField(max_length=254, blank=True, null=True)
     mobile_no=models.CharField(max_length=254, blank=True, null=True)
-    gmail=models.CharField(max_length=254, blank=True, null=True)
+    #gmail=models.CharField(max_length=254, blank=True, null=True)
     latitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     longitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
     approval_date=models.DateField(blank=True, null=True)
