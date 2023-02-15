@@ -207,6 +207,9 @@
         margin-right: 8px;
         opacity: 0.7;
     }
+    .leaflet-popup-content-wrapper{
+        background: white;
+    }
 </style>
 
 <div id="side-bar" style="background-color: rgba(255, 255, 255);">
@@ -1442,22 +1445,57 @@ function plotData(d, optn){
         if(d[x].fields.latitude!=null && d[x].fields.longitude!=null){
             if(optn=="wsh"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
             if(optn=="osc"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon2});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
             if(optn=="cc"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon3});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
             if(optn=="sg"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon4});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
             if(optn=="ug"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon5});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
             point.addTo(mymap)
             point.data=d[x].fields;
-            point.bindPopup(`<div><img src="${d[x].fields}"><br>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Anganwadi Type: ${d[x].fields.agan_type}<br>Construction: ${d[x].fields.agancbuil_field}<br>Sitangan: ${d[x].fields.child_sitagan}</div>`)
+            
             points.push(point)
 
         }
