@@ -282,13 +282,73 @@
 
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="women_state_home" id=""> Women State Home </label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="one_stop_center" id=""> One Stop Center</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center" id=""> Counselling Center</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center" disabled id=""> Counselling Center (Work in progress)</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" disabled id=""> Working Women Hostel (Work in progress)</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id=""> Mumbai Police Stations</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="working_women_hostel" id=""> Mumbai Police Stations Jurisdiction</label><br>
+
+
         <button id="plot" style="display: none;" type="submit">Plot</button>
     </div>
 </form>
+<script>
+
+    var p_plotted=false
+    function plot_police_stations(){
+        if(!p_plotted){
+            var wms_layer;
+            points=[]
+            var data = fetchJSON("{% static 'data/Point_polie_Station.geojson' %}")
+            .then(function(data) { 
+        
+            // do what you want to do with `data` here...
+                data.features.forEach(e => {
+                    wms_layer = L.marker([e.geometry.coordinates[1],e.geometry.coordinates[0]],{icon: icon6})
+                    wms_layer.addTo(mymap)
+                    htm=""
+                    for (const key in e.properties) {
+                        if (e.properties.hasOwnProperty(key)) {
+                        htm = htm+`${key}: ${e.properties[key]}<br>`
+                        }
+                    }
+                    wms_layer.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    points.push(wms_layer)
+                });
+            
+            }); 
+            p_plotted=true;
+        }else{
+            points.forEach(e=>{
+                mymap.removeLayer(e)
+            })
+            p_plotted=false
+        }
+          
+    }
+
+    var pj_plotted=false;
+    var wms_layer;
+    function plot_police_jurisdiction(){
+        if(!pj_plotted){
+        var data = fetchJSON("{% static 'data/police_jurisdiction.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+        wms_layer = L.geoJson(data)
+        wms_layer.addTo(mymap)
+        mymap.fitBounds(wms_layer.getBounds())
+
+        });   
+        pj_plotted=true;
+        }else{
+            wms_layer.remove()
+            pj_plotted=false
+        }
+    }
+
+</script>
 
      <!-- <div class="border">
         <div>
@@ -1544,6 +1604,14 @@ var icon4 = L.icon({
 });
 var icon5 = L.icon({
     iconUrl:  "{% static 'map/pinmargerpink.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon6 = L.icon({
+    iconUrl:  "{% static 'map/police.png' %}",
     iconSize:     [30, 30], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
