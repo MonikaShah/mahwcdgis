@@ -5,7 +5,7 @@
           <div class="stm-header__cell-1 stm-header__cell_left-1" style="display: flex; justify-content: flex-start;width:100%;"> 
             <div class="" style="display: flex;">
               <div><a href=""><img style="height:100px;" src="{% static 'GoM.png' %}" alt=""></a></div>
-              <div><a href=""><img src="{% static 'wp-content/uploads/2020/11/logoweb.png' %}" alt=""></a></div>
+              {% comment %} <div><a href=""><img src="{% static 'wp-content/uploads/2020/11/logoweb.png' %}" alt=""></a></div> {% endcomment %}
               <div><a href=""><img src="{% static 'WCD Logo_PNG.png' %}" alt=""></a></div>
             </div>
           </div>
@@ -14,7 +14,14 @@
               <div class="stm-navigation__default-1">
                 <ul style="list-style: none;">
                   <li ><a href="{% url 'mr' %}">मुख्यपृष्ठ</a></li>
-                  <li ><a href="{% url 'map' %}">Map</a></li>
+                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">Map</a>
+                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;">
+                      <ul style="list-style-type: none; padding: 0;">
+                        <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
+                        <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                      </ul>
+                    </div>
+                  </li>
                 <li ><a href="{% url 'about_us' %}">आमच्याविषयी</a>
                   <!-- <li onmouseover="document.getElementById('about').style.display='block'" onmouseleave="document.getElementById('about').style.display='none'"><a href="">आमच्याविषयी</a>
                     <div id="about" style="position: absolute;z-index:1111;background-color:white; display:none;">
@@ -59,7 +66,14 @@
             <div class="stm-navigation__default_mob">
               <ul style="list-style: none;">
                 <li ><a href="{% url 'mr' %}">मुख्यपृष्ठ</a></li>
-                <li ><a href="{% url 'map' %}">Map</a></li>
+                <li ><a onclick="funct()">Map</a>
+                  <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
+                    <ul style="list-style-type: none; padding: 0;">
+                      <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
+                      <li style="padding: 5px; margin:0;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                    </ul>
+                  </div>
+                </li>
                 <li ><a href="{% url 'about_us' %}">आमच्याविषयी</a>
                 <!-- <li id="about" onclick="aboutdd()"><a aria-disabled="true">आमच्याविषयी</a>
                 <ul id="about_list" style="list-style-type: none; color:white;font-family:Poppins;display:none;">
@@ -92,7 +106,7 @@
       <div class="" style="display: flex;">
         <div style="display: flex;flex-direction:row;width:-webkit-fill-available;justify-content:center;">
           <div><a href=""><img style="height:100px;" src="{% static 'GoM.png' %}" alt=""></a></div>
-          <div><a href=""><img src="{% static 'wp-content/uploads/2020/11/logoweb.png' %}" alt=""></a></div>
+          {% comment %} <div><a href=""><img src="{% static 'wp-content/uploads/2020/11/logoweb.png' %}" alt=""></a></div> {% endcomment %}
           <div><a href=""><img src="{% static 'WCD Logo_PNG.png' %}" alt=""></a></div>
 
         </div>
@@ -115,5 +129,16 @@
     pp.style.display='none';
     document.getElementById('close').style.display = 'none';
     document.getElementById('open').style.display = 'block';
+  }
+
+  var opn = false;
+  function funct(){
+    if(!opn){
+      document.getElementById('map_optn').style.display = 'block'
+      opn=true
+    }else{
+      document.getElementById('map_optn').style.display = 'none'
+      opn=false
+    }
   }
 </script>
