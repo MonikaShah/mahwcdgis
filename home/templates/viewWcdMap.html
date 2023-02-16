@@ -286,8 +286,8 @@
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" disabled id=""> Working Women Hostel (Work in progress)</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id=""> Mumbai Police Stations</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="working_women_hostel" id=""> Mumbai Police Stations Jurisdiction</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Mumbai Police Stations</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br>
 
 
         <button id="plot" style="display: none;" type="submit">Plot</button>
@@ -299,7 +299,7 @@
     function plot_police_stations(){
         if(!p_plotted){
             var wms_layer;
-            points=[]
+            ppoints=[]
             var data = fetchJSON("{% static 'data/Point_polie_Station.geojson' %}")
             .then(function(data) { 
         
@@ -314,13 +314,13 @@
                         }
                     }
                     wms_layer.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
-                    points.push(wms_layer)
+                    ppoints.push(wms_layer)
                 });
             
             }); 
             p_plotted=true;
         }else{
-            points.forEach(e=>{
+            ppoints.forEach(e=>{
                 mymap.removeLayer(e)
             })
             p_plotted=false
@@ -1010,6 +1010,13 @@ function clearAll(){
     document.getElementById('district').value = "";
     if(talLayer){
         mymap.removeLayer(talLayer)
+    }
+
+    if(document.getElementById('mumbai_police_station').checked){
+        document.getElementById('mumbai_police_station').dispatchEvent(new Event('change'))
+    }
+    if(document.getElementById('mumbai_police_jurisdiction').checked){
+        document.getElementById('mumbai_police_jurisdiction').dispatchEvent(new Event('change'))
     }
     // document.getElementById('block_s').value = "";
 /*
