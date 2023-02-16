@@ -68,9 +68,10 @@ def viewMap(request):
         awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
         # awcr = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type__in= ['मुख्य',"मिनी"],district='Akola').count()
         # print(awcr)
+        project = RuralInfraAwcAcEnglishconverted.objects.values('project').order_by('project').distinct()
         district = RuralInfraAwcAcEnglishconverted.objects.values('district').order_by('district').distinct()
         taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
-        context = {'awc': awc, 'district':district,'taluka':taluka}
+        context = {'awc': awc, 'district':district,'taluka':taluka,'project':project}
         return render(request,'viewMap.html',context)
         # return render(request, 'viewMap.html')
 
@@ -224,6 +225,36 @@ def viewWcdMap(request):
         taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
         context = {'awc': awc, 'district':district,'taluka':taluka}
         return render(request, 'viewWcdMap.html', context)
+
+def dist_proj(request):
+    district = request.GET.get('input[district]')
+    
+    y={}
+    if(district!=None):
+        y['district__in']=[district]
+    pp = RuralInfraAwcAcEnglishconverted.objects.filter(**y).values('project').distinct()
+    
+    pp = list(pp)
+    context={"pp":pp}
+    
+    return JsonResponse(context)
+
+def tal_proj(request):
+    taluka = request.GET.get('input[taluka]')
+    
+    y={}
+    if(taluka!=None):
+        y['block_n__in']=[taluka]
+    pp = RuralInfraAwcAcEnglishconverted.objects.filter(**y).values('project').distinct()
+    
+    pp = list(pp)
+    context={"pp":pp}
+    
+    return JsonResponse(context)
+    
+    
+    
+    
 
 # @csrf_exempt
 # def women_state_home(request):
