@@ -249,6 +249,15 @@
                 {% endfor %}
                </select>
         </div>
+
+        <div class="tooltips" title="Please select the Maharashtra's Project" id="block">
+            <select onchange="document.getElementById('cate_submit').click()" name="project__in" class='form-control mb-2 mt-2' id="project">
+              <option value=""> Select Project </option>
+              {% for i in project %}
+              <option value="{{ i.project }}">{{ i.project }}</option>
+              {% endfor %}
+             </select>
+      </div>
         
             <div class="dd-1">
                 <select onchange="this.style.display='none';" class='form-control mb-2 mt-2' name="" id="category_1">
@@ -654,6 +663,30 @@ var data = fetchJSON("{% static 'data/districts.geojson' %}")
     
 });   
 
+var input={} 
+
+if(DistrictSelected!=""){
+    input.district = DistrictSelected;
+}
+
+$.ajax({
+    type:"GET",
+    url: "{% url 'dist_proj' %}",
+    dataType: 'json',
+    data: {input},
+    success: function(data){
+        //console.log(data)
+        //d = JSON.parse(data["data"])
+        //console.log(data['c1'])
+        var htm = "<option value=''> Select Project</option>"
+        data.pp.forEach(e=>{
+            htm=htm+`<option value='${e.project}'>${e.project}</option>`
+        })
+        $('#project').html(htm)
+
+    }
+})
+
 
     switch (DistrictSelected) {
       case "Raigad":
@@ -782,7 +815,32 @@ var data = fetchJSON("{% static 'data/districts.geojson' %}")
 
 $('#block_s').change(function(){
     putWMSLayertaluka();
+    var input={} 
+
+if(taluka!=""){
+    input.taluka = taluka;
+}
+
+$.ajax({
+    type:"GET",
+    url: "{% url 'tal_proj' %}",
+    dataType: 'json',
+    data: {input},
+    success: function(data){
+        //console.log(data)
+        //d = JSON.parse(data["data"])
+        //console.log(data['c1'])
+        var htm = "<option value=''> Select Project</option>"
+        data.pp.forEach(e=>{
+            htm=htm+`<option value='${e.project}'>${e.project}</option>`
+        })
+        $('#project').html(htm)
+
+    }
+})
     document.getElementById('cate_submit').click();
+
+    
     //document.getElementById('fs').click()
     //document.getElementById("post-form").submit();
 })
@@ -944,14 +1002,14 @@ function putWMSLayerdist() {
 
 
 }
-
+var taluka
   function putWMSLayertaluka() {
     // clear_tallayer();
 
     if(talLayer){
         mymap.removeLayer(talLayer)
     }
-    var taluka = document.getElementById('block_s').value;
+    taluka = document.getElementById('block_s').value;
     /*
     var dist = document.getElementById('district').value;
     var taluka = document.getElementById('block_s').value;
@@ -1356,7 +1414,8 @@ $(document).ready(
             }
         })
         //console.log($('#category_1').val())
-    })
+    }),
+    
 
 )
 
