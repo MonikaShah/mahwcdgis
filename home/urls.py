@@ -25,6 +25,9 @@ urlpatterns = [
     # path("counselling_center", views.counselling_center, name="counselling_center"),
     # path("swadhaar_greh", views.swadhaar_greh, name="swadhaar_greh"),
     # path("ujjwal_greh", views.ujjwal_greh, name="ujjwal_greh"),
+    path('dist_proj', views.dist_proj,name='dist_proj'),
+    path('tal_proj', views.tal_proj,name='tal_proj'),
+    
     
    
     
