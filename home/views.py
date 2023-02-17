@@ -34,9 +34,18 @@ def viewMap(request):
         for k,v in dict(request.POST).items():
             if(v[0]!=""):
                 y[k]=v
-        print(y," pppp")
-        print(RuralInfraAwcAcEnglishconverted.objects.filter(**y).count(),"   ssss")
-        district =  RuralInfraAwcAcEnglishconverted.objects.filter(**y)
+        #print(y," pppp")
+        
+        z=['latitude', 'longitude', 'district', 'block_n', 'project', 'beat', 'anganwadi_field']
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                if k[:-4] not in ['district', 'block_n', 'project', 'beat', 'anganwadi_field']:
+                    z.append(k[:-4])
+        # print(z, 'k')
+
+        # print(RuralInfraAwcAcEnglishconverted.objects.filter(**y).count(),"   ssss")
+        district =  RuralInfraAwcAcEnglishconverted.objects.filter(**y).values(*tuple(z)).distinct()
+        # print(district)
         # filters = {}
         # if dist!="":
         #     filters['district'] = dist
@@ -59,7 +68,8 @@ def viewMap(request):
         
         # district =RuralInfraAwcAcEnglishconverted.objects.filter(**filters)
         # district = RuralInfraAwcAcEnglishconverted.objects.filter(district='')
-        district = serializers.serialize('json', district)
+        # district = serializers.serialize('json', district)
+        district = list(district)
         context={"data":district}
         return JsonResponse(context)
     
