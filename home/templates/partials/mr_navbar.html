@@ -18,7 +18,14 @@
                     <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;">
                       <ul style="list-style-type: none; padding: 0;">
                         <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
-                        <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >WCD Maps</a>
+                          <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" style="display: none;">
+                            <ul style="list-style-type: none;padding-top:10px;">
+                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
+                              <li style="padding: 5px;"><a >Child Institutes (Work in progress)</a></li>
+                            </ul>
+                          </div>
+                        </li>
                       </ul>
                     </div>
                   </li>
@@ -70,7 +77,14 @@
                   <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
                     <ul style="list-style-type: none; padding: 0;">
                       <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
-                      <li style="padding: 5px; margin:0;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                      <li style="margin: 0;"><a onclick="opn_sub()">WCD Maps</a>
+                        <div id="mob-sub" style="display: none;">
+                          <ul style="list-style-type: none;">
+                            <li style="padding: 5px; margin: 0;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
+                            <li style="padding: 5px; margin: 0;"><a >Child Institutes (Work in progress)</a></li>
+                          </ul>
+                        </div>
+                      </li>
                     </ul>
                   </div>
                 </li>
@@ -83,7 +97,7 @@
                 </ul>
                 </li> -->
                 <li ><a href="{% url 'mr/contact_us' %}">संपर्क करा</a></li>
-                <li><div class="stm-header__cell-1 stm-header__cell_right-1" style="width:100%;display: flex; justify-content: flex-end; align-items:center;">
+                <li><div class="stm-header__cell-1 stm-header__cell_right-1" style="width:100%;display: flex;  align-items:center;">
                   <div style="display: flex; ">
                     <div>
                       <a href="{% url 'homepage' %}"><span style="color: white; font-size:15px;font-family:Poppins;">English</span></a>
@@ -139,6 +153,17 @@
     }else{
       document.getElementById('map_optn').style.display = 'none'
       opn=false
+    }
+  }
+
+  var sub = false
+  function opn_sub(){
+    if(!sub){
+      document.getElementById('mob-sub').style.display = 'block'
+      sub=true
+    }else{
+      document.getElementById('mob-sub').style.display = 'none'
+      sub=false
     }
   }
 </script>
