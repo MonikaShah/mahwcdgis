@@ -4,15 +4,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-QXP0M0T6F7"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-QXP0M0T6F7');
-</script>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -251,17 +242,17 @@ img{
                 <ul style="list-style: none;">
                   <li ><a href="{% url 'homepage' %}">Home</a></li>
                   <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">Map</a>
-                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;  z-index:11111;">
+                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;  z-index:11111; border: 1px black solid;">
                       <ul style="list-style-type: none; padding: 0;">
-                        <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
                         <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >WCD Maps</a>
-                          <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" style="display: none;">
-                            <ul style="list-style-type: none;padding-top:10px;">
+                          <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" style="display: none;position: fixed; background: white; border: 1px black solid;">
+                            <ul style="list-style-type: none;padding:10px 0;">
                               <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
                               <li style="padding: 5px;"><a >Child Institutes (Work in progress)</a></li>
                             </ul>
                           </div>
-                        </li>
+                        </li><br>
+                        <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
                       </ul>
                     </div>
                   </li>
@@ -312,7 +303,6 @@ img{
                 <li ><a onclick="funct()">Map</a>
                   <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
                     <ul style="list-style-type: none; padding: 0;">
-                      <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
                       <li style="margin: 0;"><a onclick="opn_sub()">WCD Maps</a>
                         <div id="mob-sub" style="display: none;">
                           <ul style="list-style-type: none;">
@@ -320,7 +310,8 @@ img{
                             <li style="padding: 5px; margin: 0;"><a >Child Institutes (Work in progress)</a></li>
                           </ul>
                         </div>
-                      </li>
+                      </li><br>
+                      <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">ICDS Maps</a></li>
                     </ul>
                   </div>
                 </li>
