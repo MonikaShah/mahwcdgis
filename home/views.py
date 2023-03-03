@@ -10,6 +10,9 @@ from django.core import serializers
 def homePage(request):
     return render(request, 'viewHome.html')
 
+def ga(request):
+    return render(request, 'ga.html')
+
 @csrf_exempt
 def viewMap(request):
     if request.method == "POST":
