@@ -207,6 +207,9 @@
         margin-right: 8px;
         opacity: 0.7;
     }
+    .leaflet-popup-content-wrapper{
+        background: white;
+    }
 </style>
 
 <div id="side-bar" style="background-color: rgba(255, 255, 255);">
@@ -218,8 +221,136 @@
         </div>
 
     </div>
+    {% csrf_token %}
+    <form id="wsh_form" action="wcdmap" method="POST">
 
     <div class="border">
+
+        <!-- <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
+            <select name="section" class='form-control mb-2 mt-2' id="section">
+            <option value=""> Select Section </option>
+            <option value="Amravati">Amravati</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Pune">Pune</option>
+            <option value="Nashik">Nashik</option>
+            </select>
+        </div> -->
+
+        <div class="tooltips" title="Please select the District">
+            <select onchange="replot(); document.getElementById('plot').click()" name="district" class='form-control mb-2 mt-2' id = "district">
+            <option value=""> Select District</option>
+            <option value="Ahmednagar">Ahmednagar</option>
+            <option value="Akola">Akola</option>
+            <option value="Amravati">Amravati</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Beed">Beed</option>
+            <option value="Bhandara">Bhandara</option>
+            <option value="Buldhana">Buldhana</option>
+            <option value="Chandrapur">Chandrapur</option>
+            <option value="Gadchiroli">Gadchiroli</option>
+            <option value="Gondia">Gondia</option>
+            <option value="Hingoli">Hingoli</option>
+            <option value="Jalgaon">Jalgaon</option>
+            <option value="Jalna">Jalna</option>
+            <option value="Kolhapur">Kolhapur</option>
+            <option value="Latur">Latur</option>
+            <option value="Mumbai City">Mumbai City</option>
+            <option value="Mumbai Suburban">Mumbai Suburban</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Nanded">Nanded</option>
+            <option value="Nashik">Nashik</option>
+            <option value="Osmanabad">Osmanabad</option>
+            <option value="Palghar">Palghar</option>
+            <option value="Parbhani">Parbhani</option>
+            <option value="Pune">Pune</option>
+            <option value="Raigad">Raigad</option>
+            <option value="Ratnagiri">Ratnagiri</option>
+            <option value="Sangli">Sangli</option>
+            <option value="Satara">Satara</option>
+            <option value="Sindhudurg">Sindhudurg</option>
+            <option value="Solapur North">Solapur North</option>
+            <option value="Thane"> Thane</option>
+            <option value="Wardha">Wardha</option>
+            <option value="Washim">Washim</option>
+            <option value="Yavatmal">Yavatmal</option>
+             </select>
+        </div>
+
+        
+
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="women_state_home" id=""> Women State Home </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="one_stop_center" id=""> One Stop Center</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center" disabled id=""> Counselling Center (Work in progress)</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" disabled id=""> Working Women Hostel (Work in progress)</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Mumbai Police Stations</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br>
+
+
+        <button id="plot" style="display: none;" type="submit">Plot</button>
+    </div>
+</form>
+<script>
+
+    var p_plotted=false
+    function plot_police_stations(){
+        if(!p_plotted){
+            var wms_layer;
+            ppoints=[]
+            var data = fetchJSON("{% static 'data/Point_polie_Station.geojson' %}")
+            .then(function(data) { 
+        
+            // do what you want to do with `data` here...
+                data.features.forEach(e => {
+                    wms_layer = L.marker([e.geometry.coordinates[1],e.geometry.coordinates[0]],{icon: icon6})
+                    wms_layer.addTo(mymap)
+                    htm=""
+                    for (const key in e.properties) {
+                        if (e.properties.hasOwnProperty(key)) {
+                        htm = htm+`${key}: ${e.properties[key]}<br>`
+                        }
+                    }
+                    wms_layer.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    ppoints.push(wms_layer)
+                });
+            
+            }); 
+            p_plotted=true;
+        }else{
+            ppoints.forEach(e=>{
+                mymap.removeLayer(e)
+            })
+            p_plotted=false
+        }
+          
+    }
+
+    var pj_plotted=false;
+    var wms_layer;
+    function plot_police_jurisdiction(){
+        if(!pj_plotted){
+        var data = fetchJSON("{% static 'data/police_jurisdiction.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+        wms_layer = L.geoJson(data)
+        wms_layer.addTo(mymap)
+        mymap.fitBounds(wms_layer.getBounds())
+
+        });   
+        pj_plotted=true;
+        }else{
+            wms_layer.remove()
+            pj_plotted=false
+        }
+    }
+
+</script>
+
+     <!-- <div class="border">
         <div>
             <div class="tooltips" title="Please select the District">
                 <select  name="district__in" class='form-control mb-2 mt-2' id = "district">
@@ -238,6 +369,7 @@
                 {% endfor %}
                 </select>
             </div>
+
             {% csrf_token %}
             <form id="wsh_form" action="viewWcdMap" method="POST">
                 
@@ -299,12 +431,12 @@
                         visibility: visible;
                     }
                     
-                </style>
+                </style> -->
                 <!-- <div class="add_filter" style="width: fit-content; ">
                     <i onclick="a()" class="fas fa-plus"></i>
                     <span class="txt">Add Filter</span>
                 </div> -->
-                <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
+                <!-- <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
                     <i onclick="a()" class="fas fa-plus"></i>
                     <span class="txt">Add Filter</span>
                 </div>
@@ -487,7 +619,7 @@
                 
             </form>
         </div>
-    </div>
+    </div> -->
 
     <button onclick="clearAll()" id="clear-data"class="btn btn-primary">Clear All</button>
 
@@ -500,7 +632,16 @@
     var points=[];
     var districtLayer;
     var talLayer;
-    
+
+    /*
+    var Amravati =['','Akola' ,'Amravati','Buldhana','Yavatmal','Washim']
+    var Aurangabad=['','Aurangabad','Beed','Jalna','Osmanabad' , 'Nanded', 'Latur','Parbhani' ,'Hingoli']
+    var Mumbai=['','Mumbai City','mumbai_suburb','Thane','Palghar','Raigad', 'Ratnagiri','Sindhudurg']
+    var Nagpur=['','Bhandara','Chandrapur','Gadchiroli','Gondia','Nagpur',' Wardha']
+    var Pune=['','Sangli','Satara','Solapur_North', 'Kolhapur' ,'Pune']
+    var Nashik=['','Dhule','Jalgaon','Nandurbar', 'Nashik','Ahmednagar']
+    */
+    /*
     var Raigad = [ 'Select Taluka', 'Pen','Alibag','Murud','Panvel','Uran','Karjat','Khalapur','Mangaon']
     var Ratnagiri = ['Select Taluka','Ratnagiri','Sangameshwar','Lanja','Rajapur ','Chiplun','Guhagar','Dapoli','Mandangad','Khed']
     var Sindhudurg = ['Select Taluka','Kankavli','Vaibhavwadi','Devgad','Malwan','Sawantwadi','Kudal','Vengurla','Dodamarg (Kasal)']
@@ -532,12 +673,12 @@
     var Latur = ['Select Taluka', 'Latur','Renapur','Ahmedpur','Jalkot','Chakur','Shirur Anantpal','Ausa','Nilanga','Deoni','	Udgir',]
     var Osmanabad = ['Select Taluka', 'Osmanabad','Tuljapur','Bhum','Paranda','Washi','Kalamb','Lohara','Umarga']
     var Solapur_North = ['Select Taluka', 'Solapur North','Barshi','Solapur South','Akkalkot','Madha','Karmala','Pandharpur','Mohol','Malshiras','Sangole','Mangalvedhe']
-    var Ahmadnagar = ['Select Taluka', 'nagar','Shevgaon','Pathardi','Parner','Sangamner','Kopargaon','Akola','Shrirampur','Nevasa','Rahata','Rahuri','Shrigonda ','Karjat','Jamkhed']
+    var Ahmednagar = ['Select Taluka', 'nagar','Shevgaon','Pathardi','Parner','Sangamner','Kopargaon','Akola','Shrirampur','Nevasa','Rahata','Rahuri','Shrigonda ','Karjat','Jamkhed']
     var pune = ['Select Taluka', 'Pune City','Haveli','Haveli - PCMC, PCMC','Khed (Rajgurunagar)','Junnar','Ambegaon (Ghodegaon)','Maval (Vadgaon)','Mulshi (Paud)','Shirur','Purandhar (Saswad)','Velhe','Bhor','Baramati','Indapur','Daund']
     var Satara = ['Select Taluka', 'Satara','Jaoli','Koregaon','Wai','Mahabaleshwar','Khandala','Phaltan','Maan (Dahiwadi)','Khatav (Vaduj)','Patan','Karad']
     var Sangli = ['Select Taluka', 'Miraj','Kavathe-Mahankal','Tasgaon','Jat','Walwa (Islampur)','Shirala','Khanapur-Vita ','Atpadi','Palus','Kadegaon']
     var Kolhapur = ['Select Taluka', 'Karvir','Panhala','Shahuwadi','Kagal','Hatkanangale','Shirol','Radhanagari','Gaganbawada','Bhudargad','Gadhinglaj','Chandgad','Ajra']
-    
+    */
     /*
     const download = ()=>{
         const rows = [['awc_code','district','project','beat','latitude','longitude','altitude','accuracy','objectid','st_code','st_name','dist_code','dist_name','ac_no','ac_name','start','end','division','district_1','project_2','Beat_3','Anganwadi_4','agan_type','agancbuil_const','aganc_forrent','yes_moveagan_govpre','no_owner_agancbuil','child_sitagan','child_weigh_material','child_weigh_mat_working','adult_wtequip','adult_wteq_working','infant_meter','infant_meter_working','stadiometer','stadm_working','maint_repair_need','agan_drinkwat_avail','agan_tap','plumb_workcond','toil_fac','toil_working','electricity_connection','solar_powersupply','agan_tv','tv_working','agan_fenc','agan_back_gard','space_own_garden','vac_agan','post_vac','post_vac_aw_worker','post_vac_help','pro_fill_agan_post','child0_6monage','child6mon_3yr','child3 _6yrs','tot_no_child','preg_moth_agan','brestfeed_moth_agan','preg_lact_moth','aadh_notlinknuttrack','preg_lact_mothaadh_notlinked_nuttrack','child_weigh_meas_agan_mar22','child_heigh_meas_agan_mar22','no_suv_child_agan_Jan_mar22','no_suv_child_recthr_jan_mar22','child_sam_agan_jan_mar22','child_rec_vcdc_fac','sam_child_agan_vcdc_jan_mar22','sam_agan_nrc_jan_mar22','no_adol_girl_dropsch_agan','child_agan_sch_engl_priv_nurs','ifyes_childenrol_agan_sch_priv_nurs_engl','agan_rec_migr_bene','bene_agan_migr_indist','agan_bene_migr_outdist','benetot_migr_out','migrbenetot_agancentarea','agan_serv_migr_outaganarea','ifyes_aganspen10pergdp_endmar22','ifyes_gp_spent_10pergdp_endmarch22','aay','totno_child_serv_aay_6mon_6yrs','preg_lact_mother_serv_aay_ecd','parvisit_inibalasch','parent_visit_past_year','balasch','agan_und_balasch','work_comund_balasch_mar22','ifcom_ongo_task_comp_undbalasch','ifcom_ongo_task_comp_undbalasch1','ifcom_ongo_task_comp_undbalasch_sandpit','ifcom_ongo_task_comp_undbalasch_lawn','ifcom_ongo_task_comp_undbalasch_display','ifcom_ongo_task_comp_undbalasch_writboar','sign_sup_chserv','sign_sup_headmisurl','_id','_uuid','_submission_time','_validation_status','_notes','_status','_submitted_by','_tags','_index']]
@@ -562,6 +703,28 @@
     
         link.click();
     }*/
+
+    var legend = L.control({position: 'topright'});
+
+legend.onAdd = function (mymap) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    
+        div.innerHTML +=`<i style="background: blue; width: 18px; height: 18px; opacity: 0.7;"></i> Women State Home <br>
+        <i style="background: red; width: 18px; height: 18px; opacity: 0.7;"></i> One Stop Center <br>
+        <i style="background: orange; width: 18px; height: 18px; opacity: 0.7;"></i> Counselling Center <br>
+        <i style="background: green; width: 18px; height: 18px; opacity: 0.7;"></i> Swadhaar Greh <br>
+        <i style="background: #e83e8c; width: 18px; height: 18px; opacity: 0.7;"></i> Ujjwal Greh <br>`
+    
+
+    return div;
+};
+
+legend.addTo(mymap);
     
     var DistrictSelected="";
     $("#district").change(function(){
@@ -593,13 +756,14 @@
                 if(feature.properties.district==DistrictSelected){
                     wms_layer = L.geoJson(feature.geometry)
                     wms_layer.addTo(mymap)
+                    mymap.fitBounds(wms_layer.getBounds())
                 }
             }
             districtLayer = wms_layer;
         });
         
     });   
-    
+    /*
     
         switch (DistrictSelected) {
           case "Raigad":
@@ -695,8 +859,8 @@
           case  "Solapur_North":
               optionsList = Solapur_North;
               break;
-          case "Ahmadnagar":
-              optionsList = Ahmadnagar;
+          case "Ahmednagar":
+              optionsList = Ahmednagar;
               break;
           case  "Pune":
               optionsList = pune;
@@ -723,15 +887,71 @@
         $("#block_s").html(htmlString);
     
       console.log('not')
-    
+    */
       });
+      var sectionLayer;
+
+      $('#section').change(function(){
+        selectedSection = $(this).val()
+        var wms_layer="";
+        var htmlString="";
+        var data = fetchJSON("{% static 'data/section.geojson' %}")
+        .then(function(data) { 
     
+        // do what you want to do with `data` here...
+            data.features.forEach(function(feature) {
+                console.log(feature.properties)
+                if(selectedSection!=""){
+                    //console.log(feature.properties)
+                    if(feature.properties.Region==selectedSection){
+                        wms_layer = L.geoJson(feature.geometry)
+                        wms_layer.addTo(mymap)
+                    }
+                }
+                sectionLayer = wms_layer;
+            });               
+        });   
+
+        switch(selectedSection){
+            case "Amravati":
+                optionsList = Amravati;
+                break;
+            case "Aurangabad":
+                optionsList = Aurangabad
+                break;
+            case "Mumbai":
+                optionsList = Mumbai
+                break;
+            case "Nagpur":
+                optionsList = Nagpur
+                break;
+            case "Pune":
+                optionsList = Pune
+                break;
+            case "Nashik":
+                optionsList = Nashik
+                break;
+        }
+
+        if(optionsList!=undefined){
+            htmlString = htmlString+"<option value=''> Select District </option>";
+            for(var i = 1; i < optionsList.length; i++){
+            htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
+            }
+        }
+        $("#district").html(htmlString);
+
+    })
+
+
+    /*
     $('#block_s').change(function(){
         putWMSLayertaluka();
         //document.getElementById('cate_submit').click();
         //document.getElementById('fs').click()
         //document.getElementById("post-form").submit();
     })
+    */
 
     function fetchJSON(url) {
         return fetch(url)
@@ -747,7 +967,7 @@
     if(talLayer){
         mymap.removeLayer(talLayer)
     }
-    var taluka = document.getElementById('block_s').value;
+    // var taluka = document.getElementById('block_s').value;
 
     var wms_layer;
     var data = fetchJSON("{% static 'data/talukas.geojson' %}")
@@ -791,8 +1011,15 @@ function clearAll(){
     if(talLayer){
         mymap.removeLayer(talLayer)
     }
-    document.getElementById('block_s').value = "";
 
+    if(document.getElementById('mumbai_police_station').checked){
+        document.getElementById('mumbai_police_station').dispatchEvent(new Event('change'))
+    }
+    if(document.getElementById('mumbai_police_jurisdiction').checked){
+        document.getElementById('mumbai_police_jurisdiction').dispatchEvent(new Event('change'))
+    }
+    // document.getElementById('block_s').value = "";
+/*
     var htm = '<option value=""> Select Taluka </option>'
                 '{% for i in taluka %}'
                 htm=htm+'<option value='+'{{ i.block_n }}'+'>{{ i.block_n }}</option>'
@@ -800,13 +1027,14 @@ function clearAll(){
             $('#block_s').html(htm)
 
     document.getElementById('category_1').value=""
+    */
 
     // console.log(document.getElementById('cate').getElementsByTagName('input'))
-    for(var i=0;i<document.getElementById('cate').getElementsByTagName('input').length;i++){
-        if(document.getElementById('cate').getElementsByTagName('input')[i].checked){
-            document.getElementById('cate').getElementsByTagName('input')[i].checked=false;
-        }
-    }
+    //for(var i=0;i<document.getElementById('cate').getElementsByTagName('input').length;i++){
+        //if(document.getElementById('cate').getElementsByTagName('input')[i].checked){
+        //    document.getElementById('cate').getElementsByTagName('input')[i].checked=false;
+        //}
+    //}
 
     //document.getElementById('cate1').value=""
     // document.getElementById('chk-1').innerHTML=""
@@ -831,10 +1059,72 @@ function clearAll(){
     //document.getElementById('cate_val3').style.display = 'none';
     //$("#cate_val3").html("<option value='"+"'>"+ 'Select' +"</option>");
     //document.getElementById('cate_val3').value="";
+    var opts = document.getElementsByClassName("optn")
+    for(var i=0;i<opts.length;i++){
+        if(opts[i].checked)opts[i].checked=false
+    }
     mymap.setView([19.000, 74.999],7);
 }
 
 $(document).ready(
+    $('#wsh_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'viewWcdMap' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                //data["d1"].forEach(e=>{
+                //    console.log(e)
+                //})
+                d1 = JSON.parse(data["d1"])
+                if(d1!="") {
+                    plotData(d1,"wsh");
+                    console.log("d1")
+                }
+
+                d2 = JSON.parse(data["d2"])
+                console.log(d2)
+                if(d2!="") {
+                    plotData(d2,"osc");
+                }
+
+                d3 = JSON.parse(data["d3"])
+                if(d3!="") {
+                    plotData(d3,"cc");
+                }
+
+                d4 = JSON.parse(data["d4"])
+                if(d4!="") {
+                    plotData(d4,"sg");
+                }
+
+                d5 = JSON.parse(data["d5"])
+                console.log(d5)
+                if(d5!="") {
+                    plotData(d5,"ug");
+                }
+                //plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+    {% comment %}
+    /*
     $('#wsh_form').submit(async function(e){
         e.preventDefault();
         var serializedData = $(this).serialize();
@@ -862,7 +1152,9 @@ $(document).ready(
         })
         console.log(' belowhjkhjh');
     }),
+    */
 
+    /*
     $('#osc_form').submit(async function(e){
         e.preventDefault();
         var serializedData = $(this).serialize();
@@ -991,15 +1283,8 @@ $(document).ready(
                     //document.getElementById('cate1').value = document.getElementById("category_1").value
                     // console.log(document.getElementById('cate1').value)
                     // document.getElementById('cate_val1').style.display = 'block';
-                    /*
-                    var htmlString="<option value=''>"+ 'Select' +"</option>";
+                   
 
-                    data.c1.forEach(e=>{
-                        for(k in e)
-                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
-                    })
-                    $("#cate_val1").html(htmlString);
-                    */
 
                     var htm = "";
                     htm+=`<div id='`+document.getElementById("wsh").value+`'>`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('wsh').value+`","`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
@@ -1018,12 +1303,7 @@ $(document).ready(
                     //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
                 }else{
                     //document.getElementById('chk-1').innerHTML=""
-                    /*
-                    document.getElementById('cate_val1').style.display = 'none';
-                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
-                    document.getElementById('cate_val1').value="";
-                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
-                    */
+                    
                 }
 
             }
@@ -1046,15 +1326,7 @@ $(document).ready(
                     //document.getElementById('cate1').value = document.getElementById("category_1").value
                     // console.log(document.getElementById('cate1').value)
                     // document.getElementById('cate_val1').style.display = 'block';
-                    /*
-                    var htmlString="<option value=''>"+ 'Select' +"</option>";
-
-                    data.c1.forEach(e=>{
-                        for(k in e)
-                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
-                    })
-                    $("#cate_val1").html(htmlString);
-                    */
+                    
 
                     var htm = "";
                     htm+=`<div id='`+document.getElementById("osc").value+`'>`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('osc').value+`","`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
@@ -1073,12 +1345,7 @@ $(document).ready(
                     //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
                 }else{
                     //document.getElementById('chk-1').innerHTML=""
-                    /*
-                    document.getElementById('cate_val1').style.display = 'none';
-                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
-                    document.getElementById('cate_val1').value="";
-                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
-                    */
+                    
                 }
 
             }
@@ -1101,15 +1368,7 @@ $(document).ready(
                     //document.getElementById('cate1').value = document.getElementById("category_1").value
                     // console.log(document.getElementById('cate1').value)
                     // document.getElementById('cate_val1').style.display = 'block';
-                    /*
-                    var htmlString="<option value=''>"+ 'Select' +"</option>";
-
-                    data.c1.forEach(e=>{
-                        for(k in e)
-                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
-                    })
-                    $("#cate_val1").html(htmlString);
-                    */
+                    
 
                     var htm = "";
                     htm+=`<div id='`+document.getElementById("cc").value+`'>`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('cc').value+`","`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
@@ -1128,12 +1387,7 @@ $(document).ready(
                     //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
                 }else{
                     //document.getElementById('chk-1').innerHTML=""
-                    /*
-                    document.getElementById('cate_val1').style.display = 'none';
-                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
-                    document.getElementById('cate_val1').value="";
-                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
-                    */
+                    
                 }
 
             }
@@ -1156,15 +1410,7 @@ $(document).ready(
                     //document.getElementById('cate1').value = document.getElementById("category_1").value
                     // console.log(document.getElementById('cate1').value)
                     // document.getElementById('cate_val1').style.display = 'block';
-                    /*
-                    var htmlString="<option value=''>"+ 'Select' +"</option>";
-
-                    data.c1.forEach(e=>{
-                        for(k in e)
-                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
-                    })
-                    $("#cate_val1").html(htmlString);
-                    */
+                    
 
                     var htm = "";
                     htm+=`<div id='`+document.getElementById("sg").value+`'>`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('sg').value+`","`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
@@ -1183,12 +1429,7 @@ $(document).ready(
                     //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
                 }else{
                     //document.getElementById('chk-1').innerHTML=""
-                    /*
-                    document.getElementById('cate_val1').style.display = 'none';
-                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
-                    document.getElementById('cate_val1').value="";
-                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
-                    */
+                   
                 }
 
             }
@@ -1211,15 +1452,7 @@ $(document).ready(
                     //document.getElementById('cate1').value = document.getElementById("category_1").value
                     // console.log(document.getElementById('cate1').value)
                     // document.getElementById('cate_val1').style.display = 'block';
-                    /*
-                    var htmlString="<option value=''>"+ 'Select' +"</option>";
-
-                    data.c1.forEach(e=>{
-                        for(k in e)
-                        htmlString = htmlString+"<option value='"+ e[k] +"'>"+ e[k] +"</option>";
-                    })
-                    $("#cate_val1").html(htmlString);
-                    */
+                   
 
                     var htm = "";
                     htm+=`<div id='`+document.getElementById("ug").value+`'>`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('ug').value+`","`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
@@ -1238,18 +1471,14 @@ $(document).ready(
                     //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
                 }else{
                     //document.getElementById('chk-1').innerHTML=""
-                    /*
-                    document.getElementById('cate_val1').style.display = 'none';
-                    $("#cate_val1").html("<option value='"+"'>"+ 'Select' +"</option>");
-                    document.getElementById('cate_val1').value="";
-                    document.getElementById('cate_val1').dispatchEvent(new Event('change'));
-                    */
+                   
                 }
 
             }
         })
         //console.log($('#category_1').val())
     }),
+    */{% endcomment %}
 )
 
 function removeOptn(a,b){
@@ -1268,22 +1497,75 @@ function removeOptn(a,b){
     // sortSelect(document.getElementById('category_1'))
 }
 
-function plotData(){
+function plotData(d, optn){
     //for(x in d){
     //    console.log(d[x].fields.latitude)
     //}
+    console.log(d)
     if(d==undefined || d == ""){
         alert("No results for this selection")
         clearAll()
     }
     console.log(`pltdata called`)
-    replot()
+    //replot()
     for(x in d){
-        var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
-        point.addTo(mymap)
-        point.data=d[x].fields;
-        point.bindPopup(`<div><img src="${d[x].fields}"><br>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Anganwadi Type: ${d[x].fields.agan_type}<br>Construction: ${d[x].fields.agancbuil_field}<br>Sitangan: ${d[x].fields.child_sitagan}</div>`)
-        points.push(point)
+        if(d[x].fields.latitude!=null && d[x].fields.longitude!=null){
+            if(optn=="wsh"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+            }
+            if(optn=="osc"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon2});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+            }
+            if(optn=="cc"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon3});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+            }
+            if(optn=="sg"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon4});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+            }
+            if(optn=="ug"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon5});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+            }
+            point.addTo(mymap)
+            point.data=d[x].fields;
+            
+            points.push(point)
+
+        }
     }
 }
 
@@ -1297,6 +1579,46 @@ function replot(){
 
 var icon1 = L.icon({
     iconUrl:  "{% static 'map/pinmargerblue.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon2 = L.icon({
+    iconUrl:  "{% static 'map/pinmargerred.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon3 = L.icon({
+    iconUrl:  "{% static 'map/pinmargerorange.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon4 = L.icon({
+    iconUrl:  "{% static 'map/pinmargergreen.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon5 = L.icon({
+    iconUrl:  "{% static 'map/pinmargerpink.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon6 = L.icon({
+    iconUrl:  "{% static 'map/police.png' %}",
     iconSize:     [30, 30], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [25,10], // point of the icon which will correspond to marker's location

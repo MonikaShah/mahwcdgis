@@ -2,10 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-259171662-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-259171662-1');
+</script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MAHA WCD GIS</title>
+    <link rel="icon" href="{% static 'WCD Logo_PNG.png' %}" sizes="32x32" />
+<link rel="icon" href="{% static 'WCD Logo_PNG.png' %}" sizes="192x192" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
 	<link rel='stylesheet' id='wp-block-library-css'  href='{% static "wp-includes/css/dist/block-library/style.min.css" %}' type='text/css' media='all' />
 <link rel='stylesheet' id='contact-form-7-css'  href='{% static "wp-content/plugins/contact-form-7/includes/css/styles.css" %}' type='text/css' media='all' />
@@ -458,9 +469,9 @@ https://yellowpencil.waspthemes.com
             <div class="left-sidebar" style="height:100%; position: relative;">
               <h2 style="background-color: #109af1; margin:0; padding: 10px;border-radius: 5px 5px 0 0;">About Us</h2>
                 <ul id="opt" style="list-style: none; background: #109af1; padding: 0;">
-                  <li><a style="color: #000;" onclick="show('intro'); ">Introduction</a></li>
-                  <li><a style="color: #000;" onclick="show('os'); ">Organizational Structure</a></li>
-                  <li><a style="color: #000;" onclick="show('ol'); " >Our Leadership</a></li>
+                  <li><a style="color: #000; cursor: pointer;" onclick="show('intro'); ">Introduction</a></li>
+                  <li><a style="color: #000; cursor: pointer;" onclick="show('os'); ">Organizational Structure</a></li>
+                  <li><a style="color: #000; cursor: pointer;" onclick="show('ol'); " >Our Leadership</a></li>
                 </ul>
             </div>
             <div class="right-container-1" id="intro" style="padding: 0 5%; display: block;">
@@ -542,84 +553,90 @@ https://yellowpencil.waspthemes.com
         </div>
         </div>
     </div>
-    <div class="advertise" style="display: flex; bottom: 0; position: fixed;">
+    <div class="advertise" style="display: flex;">
       <div>
         <marquee onmouseover="this.stop();" onmouseout="this.start();" behavior="" direction="">
           <ul style="list-style-type: none;">
             <li>
               <a href="https://uidai.gov.in/" title="Unique Identification Authority of India" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c1ed1c31duidai.png" alt="Unique Identification Authority of India" title="Unique Identification Authority of India" target="_blank"> 
+                <img src="{% static '5784c1ed1c31duidai.png' %}" alt="Unique Identification Authority of India" title="Unique Identification Authority of India" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="http://mahapolice.gov.in/" title="Maharashtra Police Department" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c1f92aecemaharashtra.png" alt="Maharashtra Police Department" title="Maharashtra Police Department" target="_blank"> 
+                <img src="{% static '5784c1f92aecemaharashtra.png' %}" alt="Maharashtra Police Department" title="Maharashtra Police Department" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="https://healthasha.maharashtra.gov.in/" title="ASHA" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c2117e3eenhm.png" alt="ASHA" title="ASHA" target="_blank"> 
+                <img src="{% static '5784c2117e3eenhm.png' %}" alt="ASHA" title="ASHA" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="https://arogya.maharashtra.gov.in" title="Government of Maharashtra Public Health Department India" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784c21e39f94aarogya.png" alt="Government of Maharashtra Public Health Department India" title="Government of Maharashtra Public Health Department India" target="_blank"> 
+                <img src="{% static '5784c21e39f94aarogya.png' %}" alt="Government of Maharashtra Public Health Department India" title="Government of Maharashtra Public Health Department India" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="http://www.mahanews.gov.in/Home/MahaNewsHome.aspx" title="MahaNews" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d014a9dadmahanewlogo.png" alt="MahaNews" title="MahaNews" target="_blank"> 
+                <img src="{% static '5784d014a9dadmahanewlogo.png' %}" alt="MahaNews" title="MahaNews" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="https://mumbaipolice.maharashtra.gov.in" title="MUMBAI POLICE" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d047d40celogo.gif" alt="MUMBAI POLICE" title="MUMBAI POLICE" target="_blank"> 
+                <img src="{% static '5784d047d40celogo.gif' %}" alt="MUMBAI POLICE" title="MUMBAI POLICE" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="http://www.nvsp.in/index.html" title="National Voters Service Portal" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d0849ac73logovoter.png" alt="National Voters Service Portal" title="National Voters Service Portal" target="_blank"> 
+                <img src="{% static '5784d0849ac73logovoter.png' %}" alt="National Voters Service Portal" title="National Voters Service Portal" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="https://india.gov.in/" title="National Portal of India" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5784d201ee57fimages.png" alt="National Portal of India" title="National Portal of India" target="_blank"> 
+                <img src="{% static '5784d201ee57fimages.png' %}" alt="National Portal of India" title="National Portal of India" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="https://www.youtube.com/channel/UCcF1nwo8o612Xok2_g1ybtg/featured" title="Learning at Home" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/5f7d870a6dcb5unnamed.jpg" alt="Learning at Home" title="Learning at Home" target="_blank"> 
+                <img src="{% static '5f7d870a6dcb5unnamed.jpg' %}" alt="Learning at Home" title="Learning at Home" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="http://shebox.nic.in/" title="SHe-Box" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/60700731192ffbbbplogo.png" alt="SHe-Box" title="SHe-Box" target="_blank"> 
+                <img src="{% static '60700731192ffbbbplogo.png' %}" alt="SHe-Box" title="SHe-Box" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="https://amritmahotsav.nic.in/" title="Azadi Ka Amrit Mahotsav" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/62c413bc89225logoblack.png" alt="Azadi Ka Amrit Mahotsav" title="Azadi Ka Amrit Mahotsav" target="_blank"> 
+                <img src="{% static '62c413bc89225logoblack.png' %}" alt="Azadi Ka Amrit Mahotsav" title="Azadi Ka Amrit Mahotsav" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="http://nipccd.nic.in/" title="National Institute Of Public Cooperation And Child Development" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/572e83db6adb5niclogo.png" alt="National Institute Of Public Cooperation And Child Development" title="National Institute Of Public Cooperation And Child Development" target="_blank"> 
+                <img src="{% static '572e83db6adb5niclogo.png' %}" alt="National Institute Of Public Cooperation And Child Development" title="National Institute Of Public Cooperation And Child Development" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="http://www.nmew.gov.in" title="National Mission for Empowerment of Women" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/572e84b877a59mission.png" alt="National Mission for Empowerment of Women" title="National Mission for Empowerment of Women" target="_blank"> 
+                <img src="{% static '572e84b877a59mission.png' %}" alt="National Mission for Empowerment of Women" title="National Mission for Empowerment of Women" target="_blank"> 
               </a>
             </li>
             <li>
               <a href="http://www.wcd.nic.in/food-nutrition-board" title="Food &amp; Nutrition Board" target="_blank" onclick="return sitevisit();">
-                <img src="https://womenchild.maharashtra.gov.in/upload/photogallery/572e84d30a168fnb.png" alt="Food &amp; Nutrition Board" title="Food &amp; Nutrition Board" target="_blank"> 
+                <img src="{% static '572e84d30a168fnb.png' %}" alt="Food &amp; Nutrition Board" title="Food &amp; Nutrition Board" target="_blank"> 
               </a>
             </li>
           </ul>
         </marquee>
       </div>
       
+    </div>
+    <div>
+    </div>
+    <div>
+      {% include 'partials/footer.html' %}
+      {% block footer %}{% endblock %}
     </div>
     
  

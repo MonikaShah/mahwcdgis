@@ -10,7 +10,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  
+    <title>MAHA WCD GIS</title>
+    <link rel="icon" href="{% static 'WCD Logo_PNG.png' %}" sizes="32x32" />
+<link rel="icon" href="{% static 'WCD Logo_PNG.png' %}" sizes="192x192" />
     <link rel="stylesheet" href="{% static 'footer.css' %}" >
     <link rel="stylesheet" href="{% static 'leaflet.css' %}" >
     <link rel="stylesheet" href="{% static 'plugins/L.Control.Pan.css' %}">
@@ -99,7 +101,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+<link rel='stylesheet' id='stm_default_google_font-css'  href='https://fonts.googleapis.com/css?family=Poppins%3A100%2C200%2C300%2C400%2C400i%2C500%2C600%2C700%2C800%2C900%7CMontserrat%3A100%2C200%2C300%2C400%2C400i%2C500%2C600%2C700%2C800%2C900&#038;ver=3.2.5#038;subset=latin%2Clatin-ext" %}' type='text/css' media='all' />
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -239,10 +242,17 @@ img{
                 <ul style="list-style: none;">
                   <li ><a href="{% url 'homepage' %}">Home</a></li>
                   <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">Map</a>
-                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;  z-index:11111;">
+                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;  z-index:11111; border: 1px black solid;">
                       <ul style="list-style-type: none; padding: 0;">
-                        <li style="padding: 5px;"><a href="{% url 'map' %}">IDCS Maps</a></li><br>
-                        <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >WCD Maps</a>
+                          <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" style="display: none;position: fixed; background: white; border: 1px black solid;">
+                            <ul style="list-style-type: none;padding:10px 0;">
+                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
+                              <li style="padding: 5px;"><a >Child Institutes (Work in progress)</a></li>
+                            </ul>
+                          </div>
+                        </li><br>
+                        <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
                       </ul>
                     </div>
                   </li>
@@ -293,8 +303,15 @@ img{
                 <li ><a onclick="funct()">Map</a>
                   <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
                     <ul style="list-style-type: none; padding: 0;">
-                      <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">IDCS Maps</a></li><br>
-                      <li style="padding: 5px; margin:0;"><a href="{% url 'viewWcdMap' %}">WCD Maps</a></li>
+                      <li style="margin: 0;"><a onclick="opn_sub()">WCD Maps</a>
+                        <div id="mob-sub" style="display: none;">
+                          <ul style="list-style-type: none;">
+                            <li style="padding: 5px; margin: 0;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
+                            <li style="padding: 5px; margin: 0;"><a >Child Institutes (Work in progress)</a></li>
+                          </ul>
+                        </div>
+                      </li><br>
+                      <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">ICDS Maps</a></li>
                     </ul>
                   </div>
                 </li>
@@ -307,7 +324,7 @@ img{
                 </ul>
                 </li> -->
                 <li ><a href="{% url 'contact_us' %}">Contacts</a></li>
-                <li><div class="stm-header__cell stm-header__cell_right" style="width:100%;display: flex; justify-content: flex-end; align-items:center;">
+                <li><div class="stm-header__cell stm-header__cell_right" style="width:100%;display: flex;  align-items:center;">
                   <div style="display: flex; ">
                     <div>
                       <a href=""><span style="color: white; font-size:15px;font-family:Poppins;">English</span></a>
@@ -355,12 +372,12 @@ img{
          <div class="stm-footer" style="background-color: #200751;">
           <div style="margin: 0 4%;padding:67px 15px 0 15px;color:white;">
             
-            <div><h3 style="color: aliceblue; text-align: center; font-family:Poppins;">Designed and Developed at</h3></div>
+            <div><h3 style="color: aliceblue; text-align: center; font-family:Poppins; font-weight: 100;">Designed and Developed at</h3></div>
             <div id="footer-main" style="display: flex;">
               <div>
-                <div class="titlee"><h4 style="color: white;font-family:Poppins;">RAJMATA JIJAU MOTHER-CHILD HEALTH & NUTRITION MISSION</h4></div>
-                <div class="content" style="padding-right: 30px;font-family:Poppins;">Maharashtra was the first state in the country to take a decision to tackle malnutrition in
-                  ‘Mission – mode’ and with this purpose, <b>Rajmata Jijau Mother – Child Health &amp; Nutrition</b>
+                <div class="titlee"><h4 style="color: white;font-family:Poppins;  font-weight: 700;">RAJMATA JIJAU MOTHER-CHILD HEALTH & NUTRITION MISSION</h4></div>
+                <div class="content" style="padding-right: 30px;font-family:Poppins;  font-weight: 400;">Maharashtra was the first state in the country to take a decision to tackle malnutrition in
+                  ‘Mission – mode’ and with this purpose, <b style="font-weight: 700;">Rajmata Jijau Mother – Child Health &amp; Nutrition</b>
                   Mission was established. The first phase of the Mission was set up in 2005, and the
                   second phase started in 2011 and the third phase in 2017. The aim of the Mission is to
                   reduce child malnutrition in Maharashtra by focusing on the child's first 1000 days from
@@ -368,7 +385,7 @@ img{
                   </div>
               </div>
               <div>
-                <div><h4 style="color: #fff;font-family:Poppins;">CONTACT US</h4></div>
+                <div><h4 style="color: #fff;font-family:Poppins; font-weight: 700;">CONTACT US</h4></div>
                 <div style="border: 1px solid ; border-radius: 3px;"><div class="widget_contacts_inner" itemscope="" itemtype="http://schema.org/Organization" style="padding: 24px 38px 5px 38px;" >
 
                   <div class="stm-icontext stm-icontext_style2 stm-icontext__address" data-title="Address">
@@ -454,6 +471,17 @@ img{
     }else{
       document.getElementById('about_list').style.display = 'none'
       open = false
+    }
+  }
+
+  var sub = false
+  function opn_sub(){
+    if(!sub){
+      document.getElementById('mob-sub').style.display = 'block'
+      sub=true
+    }else{
+      document.getElementById('mob-sub').style.display = 'none'
+      sub=false
     }
   }
 </script>

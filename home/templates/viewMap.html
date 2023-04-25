@@ -207,6 +207,9 @@
         margin-right: 8px;
         opacity: 0.7;
     }
+    .leaflet-popup-content-wrapper{
+        background: white;
+    }
 </style>
 
 
@@ -232,10 +235,41 @@
 
             <div class="tooltips" title="Please select the District">
                 <select name="district__in" class='form-control mb-2 mt-2' id = "district">
-                  <option value=""> Select District</option>
-                  {% for i in district %}
-                  <option value="{{ i.district }}">{{ i.district }}</option>
-                  {% endfor %}
+                <option value=""> Select District</option>
+                <option value="Ahmednagar">Ahmednagar</option>
+                <option value="Akola">Akola</option>
+                <option value="Amravati">Amravati</option>
+                <option value="Aurangabad">Aurangabad</option>
+                <option value="Beed">Beed</option>
+                <option value="Bhandara">Bhandara</option>
+                <option value="Buldhana">Buldhana</option>
+                <option value="Chandrapur">Chandrapur</option>
+                <option value="Gadchiroli">Gadchiroli</option>
+                <option value="Gondia">Gondia</option>
+                <option value="Hingoli">Hingoli</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Jalna">Jalna</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Latur">Latur</option>
+                <option value="Mumbai City">Mumbai City</option>
+                <option value="Mumbai Suburban">Mumbai Suburban</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Nanded">Nanded</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Osmanabad">Osmanabad</option>
+                <option value="Palghar">Palghar</option>
+                <option value="Parbhani">Parbhani</option>
+                <option value="Pune">Pune</option>
+                <option value="Raigad">Raigad</option>
+                <option value="Ratnagiri">Ratnagiri</option>
+                <option value="Sangli">Sangli</option>
+                <option value="Satara">Satara</option>
+                <option value="Sindhudurg">Sindhudurg</option>
+                <option value="Solapur North">Solapur North</option>
+                <option value="Thane"> Thane</option>
+                <option value="Wardha">Wardha</option>
+                <option value="Washim">Washim</option>
+                <option value="Yavatmal">Yavatmal</option>
                  </select>
           </div>
 
@@ -249,6 +283,15 @@
                 {% endfor %}
                </select>
         </div>
+
+        <div class="tooltips" title="Please select the Maharashtra's Project" id="block">
+            <select onchange="document.getElementById('cate_submit').click()" name="project__in" class='form-control mb-2 mt-2' id="project">
+              <option value=""> Select Project </option>
+              {% for i in project %}
+              <option value="{{ i.project }}">{{ i.project }}</option>
+              {% endfor %}
+             </select>
+      </div>
         
             <div class="dd-1">
                 <select onchange="this.style.display='none';" class='form-control mb-2 mt-2' name="" id="category_1">
@@ -280,7 +323,6 @@
                     <option value="tv_working">Is the TV in working condition?</option>
                     <option value="agan_back_field">Does your Anganwadi center have a courtyard garden?</option>
                     <option value="space_own_field">If not, does your Anganwadi center have its own space to create a backyard garden?</option>
-                    <option value="">Select from Category 3</option>
                     <option value="vac_agan">Are there vacancies in your Anganwadi Centre?</option>
                     <option value="post_vac">Which of the following posts are vacant?</option>
                     <option value="post_vac_aw_worker">Which of the following posts are vacant?/Anganwadi Sevika</option>
@@ -321,8 +363,8 @@
                 }
                 
             </style>
-            <div class="add_filter" style="width: fit-content; ">
-                <i onclick="a()" class="fas fa-plus"></i>
+            <div class="add_filter" style=" border-radius: 50%; color: blue;">
+                <i onclick="a()" class="fas fa-plus fa-3x"></i>
                 <span class="txt">Add Filter</span>
             </div>
             
@@ -590,7 +632,7 @@ var Beed= ['Select Taluka', 'Beed','Ashti','Patoda','Shirur-Kasar','Georai','Maj
 var Latur = ['Select Taluka', 'Latur','Renapur','Ahmedpur','Jalkot','Chakur','Shirur Anantpal','Ausa','Nilanga','Deoni','	Udgir',]
 var Osmanabad = ['Select Taluka', 'Osmanabad','Tuljapur','Bhum','Paranda','Washi','Kalamb','Lohara','Umarga']
 var Solapur_North = ['Select Taluka', 'Solapur North','Barshi','Solapur South','Akkalkot','Madha','Karmala','Pandharpur','Mohol','Malshiras','Sangole','Mangalvedhe']
-var Ahmadnagar = ['Select Taluka', 'nagar','Shevgaon','Pathardi','Parner','Sangamner','Kopargaon','Akola','Shrirampur','Nevasa','Rahata','Rahuri','Shrigonda ','Karjat','Jamkhed']
+var Ahmednagar = ['Select Taluka', 'nagar','Shevgaon','Pathardi','Parner','Sangamner','Kopargaon','Akola','Shrirampur','Nevasa','Rahata','Rahuri','Shrigonda ','Karjat','Jamkhed']
 var pune = ['Select Taluka', 'Pune City','Haveli','Haveli - PCMC, PCMC','Khed (Rajgurunagar)','Junnar','Ambegaon (Ghodegaon)','Maval (Vadgaon)','Mulshi (Paud)','Shirur','Purandhar (Saswad)','Velhe','Bhor','Baramati','Indapur','Daund']
 var Satara = ['Select Taluka', 'Satara','Jaoli','Koregaon','Wai','Mahabaleshwar','Khandala','Phaltan','Maan (Dahiwadi)','Khatav (Vaduj)','Patan','Karad']
 var Sangli = ['Select Taluka', 'Miraj','Kavathe-Mahankal','Tasgaon','Jat','Walwa (Islampur)','Shirala','Khanapur-Vita ','Atpadi','Palus','Kadegaon']
@@ -642,16 +684,41 @@ var data = fetchJSON("{% static 'data/districts.geojson' %}")
     data.features.forEach(function(feature) {
         //console.log(feature.properties.Block)
         if(DistrictSelected!=""){
-            console.log(feature.properties)
+            //console.log(feature.properties)
             if(feature.properties.district==DistrictSelected){
                 wms_layer = L.geoJson(feature.geometry)
                 wms_layer.addTo(mymap)
+                mymap.fitBounds(wms_layer.getBounds())
             }
         }
         districtLayer = wms_layer;
     });
     
 });   
+
+var input={} 
+
+if(DistrictSelected!=""){
+    input.district = DistrictSelected;
+}
+
+$.ajax({
+    type:"GET",
+    url: "{% url 'dist_proj' %}",
+    dataType: 'json',
+    data: {input},
+    success: function(data){
+        //console.log(data)
+        //d = JSON.parse(data["data"])
+        //console.log(data['c1'])
+        var htm = "<option value=''> Select Project</option>"
+        data.pp.forEach(e=>{
+            htm=htm+`<option value='${e.project}'>${e.project}</option>`
+        })
+        $('#project').html(htm)
+
+    }
+})
 
 
     switch (DistrictSelected) {
@@ -748,8 +815,8 @@ var data = fetchJSON("{% static 'data/districts.geojson' %}")
       case  "Solapur_North":
           optionsList = Solapur_North;
           break;
-      case "Ahmadnagar":
-          optionsList = Ahmadnagar;
+      case "Ahmednagar":
+          optionsList = Ahmednagar;
           break;
       case  "Pune":
           optionsList = pune;
@@ -781,7 +848,32 @@ var data = fetchJSON("{% static 'data/districts.geojson' %}")
 
 $('#block_s').change(function(){
     putWMSLayertaluka();
+    var input={} 
+
+if(taluka!=""){
+    input.taluka = taluka;
+}
+
+$.ajax({
+    type:"GET",
+    url: "{% url 'tal_proj' %}",
+    dataType: 'json',
+    data: {input},
+    success: function(data){
+        //console.log(data)
+        //d = JSON.parse(data["data"])
+        //console.log(data['c1'])
+        var htm = "<option value=''> Select Project</option>"
+        data.pp.forEach(e=>{
+            htm=htm+`<option value='${e.project}'>${e.project}</option>`
+        })
+        $('#project').html(htm)
+
+    }
+})
     document.getElementById('cate_submit').click();
+
+    
     //document.getElementById('fs').click()
     //document.getElementById("post-form").submit();
 })
@@ -949,14 +1041,14 @@ function putWMSLayerdist() {
 
 
 }
-
+var taluka
   function putWMSLayertaluka() {
     // clear_tallayer();
 
     if(talLayer){
         mymap.removeLayer(talLayer)
     }
-    var taluka = document.getElementById('block_s').value;
+    taluka = document.getElementById('block_s').value;
     /*
     var dist = document.getElementById('district').value;
     var taluka = document.getElementById('block_s').value;
@@ -997,6 +1089,7 @@ var data = fetchJSON("{% static 'data/talukas.geojson' %}")
                 console.log(feature.geometry)
                 wms_layer = L.geoJson(feature.geometry)
                 wms_layer.addTo(mymap)
+                mymap.fitBounds(wms_layer.getBounds() )
             }
         }
         talLayer=wms_layer;
@@ -1201,9 +1294,10 @@ $(document).ready(
             dataType: 'json',
             data: serializedData,
             success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
+                console.log(data["data"])
+                // d = JSON.parse(data["data"])
                 //console.log(d)
+                d = data["data"]
                 plotData()
             }
         })
@@ -1360,7 +1454,8 @@ $(document).ready(
             }
         })
         //console.log($('#category_1').val())
-    })
+    }),
+    
 
 )
 
@@ -1374,16 +1469,25 @@ function plotData(){
     //    console.log(d[x].fields.latitude)
     //}
     if(d==undefined || d == ""){
-        alert("No results for this selection")
-        clearAll()
+        //alert("No results for this selection")
+        //clearAll()
     }
     console.log(`pltdata called`)
     replot()
     for(x in d){
-        var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+        var point = L.marker([d[x].latitude,d[x].longitude],{icon:icon1});
         point.addTo(mymap)
-        point.data=d[x].fields;
-        point.bindPopup(`<div><img src="${d[x].fields}"><br>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Anganwadi Type: ${d[x].fields.agan_type}<br>Construction: ${d[x].fields.agancbuil_field}<br>Sitangan: ${d[x].fields.child_sitagan}</div>`)
+        htm=""
+        for (const key in d[x]) {
+            if (d[x].hasOwnProperty(key)) {
+                if(key!='latitude' & key!='longitude'){
+                    htm = htm+`${key}: ${d[x][key]}<br>`
+                }
+            }
+        }
+        point.bindPopup(`<div  style="height:200px; overflow-y: scroll; background: white; color: black;">`+ htm+`</div`)
+        //point.data=d[x].fields;
+        //point.bindPopup(`<div>District: ${d[x].fields.district}<br>Taluka: ${d[x].fields.block_n}<br>Project: ${d[x].fields.project}<br>Beat: ${d[x].fields.beat}<br>AWC name: ${d[x].fields.anganwadi_field}<br></div>`)
         points.push(point)
     }
 }
@@ -1403,6 +1507,7 @@ function clearAll(){
         mymap.removeLayer(talLayer)
     }
     document.getElementById('block_s').value = "";
+    document.getElementById('project').value = "";
 
     var htm = '<option value=""> Select Taluka </option>'
                 '{% for i in taluka %}'
