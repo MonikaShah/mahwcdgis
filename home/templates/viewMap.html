@@ -242,7 +242,7 @@
                 <option value="Aurangabad">Aurangabad</option>
                 <option value="Beed">Beed</option>
                 <option value="Bhandara">Bhandara</option>
-                <option value="Buldhana">Buldhana</option>
+                <option value="Buldana">Buldana</option>
                 <option value="Chandrapur">Chandrapur</option>
                 <option value="Gadchiroli">Gadchiroli</option>
                 <option value="Gondia">Gondia</option>
@@ -611,7 +611,7 @@ var Dhule= ['Select Taluka', 'Dhule','Sakri','Sindkheda','Shirpur']
 var mumbai_suburb = ['Select Taluka','Kurla','Mulund','Andheri','Borivali']
 var Mumbai_City = ['Select Taluka','Mumbai']
 var Jalgaon = ['Select Taluka', 'Jalgaon','Jamner','Erandol','Dharangaon','Bhusawal','Raver','Muktainagar','Yawal','Amalner','Parola','Chopda','Pachora','Bhadgaon','Chalisgaon']
-var Buldhana = ['Select Taluka', 'Buldhana','Chikhli','Deulgaon','Jalgaon Jamod','Sangrampur','Malkapur','Motala','Nandura','Khamgaon','Shegaon','Mehkar','Sindkhed Raja','Lonar']
+var Buldhana = ['Select Taluka', 'Buldana','Chikhli','Deulgaon','Jalgaon Jamod','Sangrampur','Malkapur','Motala','Nandura','Khamgaon','Shegaon','Mehkar','Sindkhed Raja','Lonar']
 var Akola = ['Select Taluka', 'Akola','Akot','Telhara','Patur','Murtajapur','Barshitakli']
 var Washim = ['Select Taluka', 'Wahim','Malegaon','Risod','Mangrulpir','Karanja','Manora']
 var Thane=['Select Taluka','Thane','Kalyan','Murbad','Bhiwandi','shahapur','Ulhasnagar','Ambarnath']
@@ -649,7 +649,7 @@ const download = ()=>{
         rows.push(row);
 
     }
-    console.log(rows[1]);
+    console.log("rows for csv ",rows[1]);
 
 
     const bom = "\uFEFF"
@@ -755,8 +755,8 @@ $.ajax({
       case "Jalgaon":
           optionsList = Jalgaon;
           break;
-      case "Buldhana":
-          optionsList = Buldhana;
+      case "Buldana":
+          optionsList = Buldana;
           break;
       case "Akola":
           optionsList = Akola;
