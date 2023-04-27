@@ -363,7 +363,7 @@
                 }
                 
             </style>
-            <div class="add_filter" style=" border-radius: 50%; color: blue;">
+            <div class="add_filter" style=" border-radius: 50%; color: green;">
                 <i onclick="a()" class="fas fa-plus fa-3x"></i>
                 <span class="txt">Add Filter</span>
             </div>
@@ -1329,7 +1329,7 @@ $(document).ready(
                     */
 
                     var htm = "";
-                    htm+=`<div id='`+document.getElementById('cate1').value+`'>`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('cate1').value+`","`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    htm+=`<div id='`+document.getElementById('cate1').value+`'>`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`<div class="cls" style=" border-radius: 50%; color: red;"><i  onclick='removeOptn("`+document.getElementById('cate1').value+`","`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`")' class='fas fa-times fa-2x' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
                     data.c1.forEach(e=>{
                         for(k in e)
                         htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("category_1").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
