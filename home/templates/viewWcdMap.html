@@ -247,7 +247,7 @@
             <option value="Aurangabad">Aurangabad</option>
             <option value="Beed">Beed</option>
             <option value="Bhandara">Bhandara</option>
-            <option value="Buldhana">Buldhana</option>
+            <option value="Buldana">Buldana</option>
             <option value="Chandrapur">Chandrapur</option>
             <option value="Gadchiroli">Gadchiroli</option>
             <option value="Gondia">Gondia</option>
@@ -257,7 +257,7 @@
             <option value="Kolhapur">Kolhapur</option>
             <option value="Latur">Latur</option>
             <option value="Mumbai City">Mumbai City</option>
-            <option value="Mumbai Suburban">Mumbai Suburban</option>
+            <option value="mumbai_suburb">Mumbai Suburban</option>
             <option value="Nagpur">Nagpur</option>
             <option value="Nanded">Nanded</option>
             <option value="Nashik">Nashik</option>
@@ -280,13 +280,13 @@
 
         
 
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="women_state_home" id=""> Women State Home </label><br>
+        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="women_state_home" id=""> Women State Home </label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="one_stop_center" id=""> One Stop Center</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center" disabled id=""> Counselling Center (Work in progress)</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" disabled id=""> Working Women Hostel (Work in progress)</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Mumbai Police Stations</label><br>
+        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br>
 
 
@@ -300,7 +300,7 @@
         if(!p_plotted){
             var wms_layer;
             ppoints=[]
-            var data = fetchJSON("{% static 'data/Point_polie_Station.geojson' %}")
+            var data = fetchJSON("{% static 'data/Point_polie_Station_v1.geojson' %}")
             .then(function(data) { 
         
             // do what you want to do with `data` here...
@@ -1501,7 +1501,7 @@ function plotData(d, optn){
     //for(x in d){
     //    console.log(d[x].fields.latitude)
     //}
-    console.log(d)
+    console.log("d is ",d)
     if(d==undefined || d == ""){
         alert("No results for this selection")
         clearAll()
