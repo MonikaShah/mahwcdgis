@@ -242,7 +242,7 @@
                 <option value="Aurangabad">Aurangabad</option>
                 <option value="Beed">Beed</option>
                 <option value="Bhandara">Bhandara</option>
-                <option value="Buldana">Buldana</option>
+                <option value="Buldhana">Buldhana</option>
                 <option value="Chandrapur">Chandrapur</option>
                 <option value="Gadchiroli">Gadchiroli</option>
                 <option value="Gondia">Gondia</option>
@@ -575,7 +575,17 @@
     let isClicked = false
 
     var icon1 = L.icon({
-        iconUrl:  "{% static 'map/pinmargerblue.png' %}",
+        // iconUrl:  "{% static 'map/pinmargerblue.png' %}",
+        iconUrl:  "{% static 'map/home_mini.png' %}",
+        iconSize:     [30, 30], // size of the icon
+        //shadowSize:   [50, 64], // size of the shadow
+        iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+        // shadowAnchor: [4, 62],  // the same for the shadow
+        popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+    });
+
+    var icon2 = L.icon({
+        iconUrl:  "{% static 'map/home.png' %}",
         iconSize:     [30, 30], // size of the icon
         //shadowSize:   [50, 64], // size of the shadow
         iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
@@ -611,7 +621,7 @@ var Dhule= ['Select Taluka', 'Dhule','Sakri','Sindkheda','Shirpur']
 var mumbai_suburb = ['Select Taluka','Kurla','Mulund','Andheri','Borivali']
 var Mumbai_City = ['Select Taluka','Mumbai']
 var Jalgaon = ['Select Taluka', 'Jalgaon','Jamner','Erandol','Dharangaon','Bhusawal','Raver','Muktainagar','Yawal','Amalner','Parola','Chopda','Pachora','Bhadgaon','Chalisgaon']
-var Buldhana = ['Select Taluka', 'Buldana','Chikhli','Deulgaon','Jalgaon Jamod','Sangrampur','Malkapur','Motala','Nandura','Khamgaon','Shegaon','Mehkar','Sindkhed Raja','Lonar']
+var Buldhana = ['Select Taluka', 'Buldhana','Chikhli','Deulgaon','Jalgaon Jamod','Sangrampur','Malkapur','Motala','Nandura','Khamgaon','Shegaon','Mehkar','Sindkhed Raja','Lonar']
 var Akola = ['Select Taluka', 'Akola','Akot','Telhara','Patur','Murtajapur','Barshitakli']
 var Washim = ['Select Taluka', 'Wahim','Malegaon','Risod','Mangrulpir','Karanja','Manora']
 var Thane=['Select Taluka','Thane','Kalyan','Murbad','Bhiwandi','shahapur','Ulhasnagar','Ambarnath']
@@ -755,8 +765,8 @@ $.ajax({
       case "Jalgaon":
           optionsList = Jalgaon;
           break;
-      case "Buldana":
-          optionsList = Buldana;
+      case "Buldhana":
+          optionsList = Buldhana;
           break;
       case "Akola":
           optionsList = Akola;
@@ -1279,6 +1289,7 @@ $(document).ready(
         e.preventDefault();
         var serializedData = $(this).serialize();
         //console.log('hjkhjh');
+        // alert(serializedData)
 
         $(document).ajaxStart(function () {
             document.getElementById('load').style.display='flex';
@@ -1294,7 +1305,7 @@ $(document).ready(
             dataType: 'json',
             data: serializedData,
             success: function(data){
-                console.log(data["data"])
+                console.log("data is",data["data"])
                 // d = JSON.parse(data["data"])
                 //console.log(d)
                 d = data["data"]
@@ -1465,21 +1476,28 @@ function formSubmit(){
 
 
 function plotData(){
-    //for(x in d){
+    // for(x in d){
     //    console.log(d[x].fields.latitude)
-    //}
+    //    alert(d[x].fields)
+    // }
     if(d==undefined || d == ""){
         //alert("No results for this selection")
         //clearAll()
     }
     console.log(`pltdata called`)
     replot()
+    // alert(d[1].district)
     for(x in d){
+        if(d[x].agan_type =='मुख्य')
+            var point = L.marker([d[x].latitude,d[x].longitude],{icon:icon2});
+        else
         var point = L.marker([d[x].latitude,d[x].longitude],{icon:icon1});
         point.addTo(mymap)
         htm=""
         for (const key in d[x]) {
+           
             if (d[x].hasOwnProperty(key)) {
+                alert(d[x].hasOwnProperty(key))
                 if(key!='latitude' & key!='longitude'){
                     htm = htm+`${key}: ${d[x][key]}<br>`
                 }

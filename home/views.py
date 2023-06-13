@@ -39,7 +39,7 @@ def viewMap(request):
                 y[k]=v
         #print(y," pppp")
         
-        z=['latitude', 'longitude', 'district', 'block_n', 'project', 'beat', 'anganwadi_field']
+        z=['latitude', 'longitude', 'district', 'block_n', 'project', 'beat', 'anganwadi_field','agan_type']
         for k,v in dict(request.POST).items():
             if(v[0]!=""):
                 if k[:-4] not in ['district', 'block_n', 'project', 'beat', 'anganwadi_field']:
