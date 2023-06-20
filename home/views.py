@@ -1,8 +1,9 @@
 from django.shortcuts import render
-from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCenter, SwadhaarGreh, UjjwalGreh
+from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCenter, SwadhaarGreh, UjjwalGreh, MhPoliceStations
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
+from django.contrib.gis.db import models
 
 
 
@@ -182,12 +183,13 @@ def viewWcdMap(request):
         counselling_center=request.POST.get("counselling_center")
         swadhaar_greh=request.POST.get("swadhaar_greh")
         ujjwal_greh=request.POST.get("ujjwal_greh")
+        mh_police=request.POST.get("mh_police") 
         d1=""
         d2=""
         d3=""
         d4=""
         d5=""
-        
+        d6=""
         if request.POST.get('district')!="":
             if women_state_home!=None:
                 d1 = WomenStateHome.objects.filter(district=request.POST.get('district'))
@@ -204,6 +206,9 @@ def viewWcdMap(request):
             if ujjwal_greh!=None:
                 d5 = UjjwalGreh.objects.filter(district=request.POST.get('district'))
                 print(d5)
+            if mh_police!=None:
+                d6 = MhPoliceStations.objects.filter(district=request.POST.get('district'))
+                print(d6)
         else:
             if women_state_home!=None:
                 d1 = WomenStateHome.objects.all()
@@ -219,7 +224,10 @@ def viewWcdMap(request):
                 #print(d4)
             if ujjwal_greh!=None:
                 d5 = UjjwalGreh.objects.all()
-                print(d5)       
+                print(d5)   
+            if mh_police!=None:
+                d6 = MhPoliceStations.objects.all()
+                print(d6)     
         
             
         d1 = serializers.serialize('json', d1)
@@ -227,9 +235,10 @@ def viewWcdMap(request):
         d3 = serializers.serialize('json', d3)
         d4 = serializers.serialize('json', d4)
         d5 = serializers.serialize('json', d5)
+        d6 = serializers.serialize('json', d6)
 
             
-        context = {"d1":d1,"d2":d2,"d3":d3,"d4":d4,"d5":d5}
+        context = {"d1":d1,"d2":d2,"d3":d3,"d4":d4,"d5":d5, "d6":d6}
         return JsonResponse(context)
         
     else:

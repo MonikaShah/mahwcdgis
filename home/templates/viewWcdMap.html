@@ -286,8 +286,9 @@
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" disabled id=""> Working Women Hostel (Work in progress)</label><br>
-        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br>
+        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">Police Stations</label><br>
+        <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br> -->
+        <!-- <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br> -->
 
 
         <button id="plot" style="display: none;" type="submit">Plot</button>
@@ -718,7 +719,8 @@ legend.onAdd = function (mymap) {
         <i style="background: red; width: 18px; height: 18px; opacity: 0.7;"></i> One Stop Center <br>
         <i style="background: orange; width: 18px; height: 18px; opacity: 0.7;"></i> Counselling Center <br>
         <i style="background: green; width: 18px; height: 18px; opacity: 0.7;"></i> Swadhaar Greh <br>
-        <i style="background: #e83e8c; width: 18px; height: 18px; opacity: 0.7;"></i> Ujjwal Greh <br>`
+        <i style="background: #e83e8c; width: 18px; height: 18px; opacity: 0.7;"></i> Ujjwal Greh <br><hr>
+        <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> Police Stations <br>`
     
 
     return div;
@@ -1114,9 +1116,14 @@ $(document).ready(
                 }
 
                 d5 = JSON.parse(data["d5"])
-                console.log(d5)
                 if(d5!="") {
                     plotData(d5,"ug");
+                }
+                
+                d6 = JSON.parse(data["d6"])
+                // console.log(d6)
+                if(d6!="") {
+                    plotData(d6,"mp");
                 }
                 //plotData()
             }
@@ -1552,6 +1559,16 @@ function plotData(d, optn){
             }
             if(optn=="ug"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon5});
+                htm=""
+                for (const key in d[x].fields) {
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+            }
+            if(optn=="mp"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon6});
                 htm=""
                 for (const key in d[x].fields) {
                     if (d[x].fields.hasOwnProperty(key)) {

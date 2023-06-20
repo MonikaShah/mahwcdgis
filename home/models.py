@@ -117,6 +117,9 @@ class RuralInfraAwcAcEnglishconverted(models.Model):
     class Meta:
         managed = False
         db_table = 'rural_infra_awc_ac_englishConverted_merge_1'
+
+    def __str__(self):        
+        return self.agan_type
         
 class WomenStateHome(models.Model):
     report_date=models.DateField(blank=True, null=True)
@@ -280,3 +283,21 @@ class UjjwalGreh(models.Model):
     class Meta:
         managed = False
         db_table = 'ujjwal_greh'
+
+class MhPoliceStations(models.Model):
+    # id = models.CharField(primary_key=True, max_length=-1)
+    geom = models.CharField(max_length=256,blank=True, null=True)
+    fid = models.IntegerField(blank=True, null=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    ps_name_en = models.CharField(max_length=100, blank=True, null=True)
+    ps_name_ma = models.CharField(max_length=100, blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    unit_name = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    pincode = models.IntegerField(db_column='Pincode', blank=True, null=True)  # Field name made lowercase.
+    address = models.CharField(max_length=256, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'mh_police_stations'
