@@ -270,7 +270,7 @@
             <option value="Sangli">Sangli</option>
             <option value="Satara">Satara</option>
             <option value="Sindhudurg">Sindhudurg</option>
-            <option value="Solapur North">Solapur North</option>
+            <option value="Solapur">Solapur</option>
             <option value="Thane"> Thane</option>
             <option value="Wardha">Wardha</option>
             <option value="Washim">Washim</option>
@@ -773,7 +773,7 @@ legend.addTo(mymap);
         }
     
     var wms_layer;
-    var data = fetchJSON("{% static 'data/districts.geojson' %}")
+    var data = fetchJSON("{% static 'data/districts_rev21june23.geojson' %}")
         .then(function(data) { 
     
         // do what you want to do with `data` here...
@@ -1055,8 +1055,8 @@ function clearAll(){
     if(document.getElementById('mumbai_police_jurisdiction').checked){
         document.getElementById('mumbai_police_jurisdiction').dispatchEvent(new Event('change'))
     }
-    
-    
+    // if(circle)
+        mymap.removeLayer(circle);
     mymap.setView([19.000, 74.999],7);
 }
 
