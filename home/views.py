@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCenter, SwadhaarGreh, UjjwalGreh, MhPoliceStations
+from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
@@ -198,13 +198,13 @@ def viewWcdMap(request):
                 d2 = OneStopCenter.objects.filter(district=request.POST.get('district'))
                 print(d2)
             if counselling_center!=None:
-                d3 = CounsellingCenter.objects.filter(district=request.POST.get('district'))
+                d3 = CounsellingCentresJuly23.objects.filter(district=request.POST.get('district'))
                 #print(d3)
             if swadhaar_greh!=None:
                 d4 = SwadhaarGreh.objects.filter(district=request.POST.get('district'))
                 #print(d4)
             if ujjwal_greh!=None:
-                d5 = UjjwalGreh.objects.filter(district=request.POST.get('district'))
+                d5 = UjjwalGrehJuly23.objects.filter(district=request.POST.get('district'))
                 print(d5)
             if mh_police!=None:
                 d6 = MhPoliceStations.objects.filter(district=request.POST.get('district'))
@@ -217,13 +217,13 @@ def viewWcdMap(request):
                 d2 = OneStopCenter.objects.all()
                 print(d2)
             if counselling_center!=None:
-                d3 = CounsellingCenter.objects.all()
-                #print(d3)
+                d3 = CounsellingCentresJuly23.objects.all()
+                # print(d3)
             if swadhaar_greh!=None:
                 d4 = SwadhaarGreh.objects.all()
                 #print(d4)
             if ujjwal_greh!=None:
-                d5 = UjjwalGreh.objects.all()
+                d5 = UjjwalGrehJuly23.objects.all()
                 print(d5)   
             if mh_police!=None:
                 d6 = MhPoliceStations.objects.all()
@@ -323,26 +323,26 @@ def tal_proj(request):
 #     return JsonResponse({'o1':o1})
 
 # @csrf_exempt
-# def counselling_center(request):
-#     if request.method == 'POST':
-#         y={}
-#         for k,v in dict(request.POST).items():
-#             if(v[0]!=""):
-#                 y[k]=v
-#         print(y," pppp")
-#         data =  CounsellingCenter.objects.filter(**y)
-#         # print(data)
-#         data = serializers.serialize('json', data)
-#         context={"data":data}
-#         return JsonResponse(context)
+def counselling_center(request):
+    if request.method == 'POST':
+        y={}
+        for k,v in dict(request.POST).items():
+            if(v[0]!=""):
+                y[k]=v
+        print(y," pppp")
+        data =  CounsellingCentresJuly23.objects.filter(**y)
+        print(data)
+        data = serializers.serialize('json', data)
+        context={"data":data}
+        return JsonResponse(context)
     
-#     cc = request.GET.get('cc')
-#     #print(cc)
-#     c1=""
-#     if cc!="":
-#         c1 = list(CounsellingCenter.objects.values(cc).order_by(cc).distinct())
-#     #print(c1)
-#     return JsonResponse({'c1':c1})
+    cc = request.GET.get('cc')
+    #print(cc)
+    c1=""
+    if cc!="":
+        c1 = list(CounsellingCentresJuly23.objects.values(cc).order_by(cc).distinct())
+    #print(c1)
+    return JsonResponse({'c1':c1})
 
 # @csrf_exempt
 # def swadhaar_greh(request):
