@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations
+from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations, CCI7July23
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
@@ -175,6 +175,80 @@ def about_us(request):
     return render(request, 'about_us.html')
 
 @csrf_exempt
+def viewCCMap(request):
+    if request.method == "POST":
+        print(request.POST)
+        child_care=request.POST.get("child_care")
+        # one_stop_center=request.POST.get("one_stop_center")
+        # counselling_center=request.POST.get("counselling_center")
+        # swadhaar_greh=request.POST.get("swadhaar_greh")
+        # ujjwal_greh=request.POST.get("ujjwal_greh")
+        # mh_police=request.POST.get("mh_police") 
+        d1=""
+        # d2=""
+        # d3=""
+        # d4=""
+        # d5=""
+        # d6=""
+        if request.POST.get('district')!="":
+            if child_care!=None:
+                d1 = CCI7July23.objects.filter(district=request.POST.get('district'))
+                #print(d1)
+            # if one_stop_center!=None:
+            #     d2 = OneStopCenter.objects.filter(district=request.POST.get('district'))
+            #     print(d2)
+            # if counselling_center!=None:
+            #     d3 = CounsellingCentresJuly23.objects.filter(district=request.POST.get('district'))
+            #     #print(d3)
+            # if swadhaar_greh!=None:
+            #     d4 = SwadhaarGreh.objects.filter(district=request.POST.get('district'))
+            #     #print(d4)
+            # if ujjwal_greh!=None:
+            #     d5 = UjjwalGrehJuly23.objects.filter(district=request.POST.get('district'))
+            #     print(d5)
+            # if mh_police!=None:
+            #     d6 = MhPoliceStations.objects.filter(district=request.POST.get('district'))
+            #     print(d6)
+        else:
+            if child_care!=None:
+                d1 = CCI7July23.objects.all()
+                #print(d1)
+            # if one_stop_center!=None:
+            #     d2 = OneStopCenter.objects.all()
+            #     print(d2)
+            # if counselling_center!=None:
+            #     d3 = CounsellingCentresJuly23.objects.all()
+            #     # print(d3)
+            # if swadhaar_greh!=None:
+            #     d4 = SwadhaarGreh.objects.all()
+            #     #print(d4)
+            # if ujjwal_greh!=None:
+            #     d5 = UjjwalGrehJuly23.objects.all()
+            #     print(d5)   
+            # if mh_police!=None:
+            #     d6 = MhPoliceStations.objects.all()
+            #     print(d6)     
+        
+            
+        d1 = serializers.serialize('json', d1)
+        # d2 = serializers.serialize('json', d2)
+        # d3 = serializers.serialize('json', d3)
+        # d4 = serializers.serialize('json', d4)
+        # d5 = serializers.serialize('json', d5)
+        # d6 = serializers.serialize('json', d6)
+
+            
+        # context = {"d1":d1,"d2":d2,"d3":d3,"d4":d4,"d5":d5, "d6":d6}
+        context = {"d1":d1}
+        return JsonResponse(context)
+        
+    else:
+        awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
+        district = RuralInfraAwcAcEnglishconverted.objects.values('district').order_by('district').distinct()
+        taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
+        context = {'awc': awc, 'district':district,'taluka':taluka}
+        return render(request, 'viewCCMap.html', context)
+
 def viewWcdMap(request):
     if request.method == "POST":
         print(request.POST)
