@@ -288,6 +288,7 @@
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center"  id=""> Counselling Center </label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="adhar_gruh" id=""> Aadhar Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" id=""> Working Women Hostel </label><br>
         <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">Police Stations</label><br>
         <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br> -->
@@ -304,7 +305,7 @@
     <div class="border"><label>Proximity of Facilities</label><br>
         <button type="button" class="btn-sm btn-primary" id='locate'>Your Location</button>
         <button type="button" class="btn-sm btn-primary" id='setlocation'>Set Location</button>
-        <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button>
+        <!-- <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button> -->
         <div id="slider">
             <label>Set Range</label><br>
             <input type="range" min="1" max="50" value="1" class="slider" id="myRange" step="1">
@@ -747,7 +748,8 @@ legend.onAdd = function (mymap) {
         <i style="background: orange; width: 18px; height: 18px; opacity: 0.7;"></i> Counselling Center <br>
         <i style="background: green; width: 18px; height: 18px; opacity: 0.7;"></i> Swadhaar Greh <br>
         
-        <img src="{% static 'map/pinmargerpink.png' %}" style="width:25px;height:25px;">Ujjwal Greh <br>
+        <img src="{% static 'map/pinmargerpink.png' %}" style="width:28px;height:28px;">Ujjwal Greh <br>
+        <img src="{% static 'map/pin_adhar_gruh1.png' %}" style="width:18px;height:18px;">Adhar Greh <br>
         <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> Working Women Hostel <br><hr>
         <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> Police Stations <br>`
     
@@ -1125,6 +1127,12 @@ $(document).ready(
                 // console.log(d6)
                 if(d7!="") {
                     plotData(d7,"wwh");
+                }
+
+                d8 = JSON.parse(data["d8"])
+                // console.log(d6)
+                if(d8!="") {
+                    plotData(d8,"ag");
                 }
                 //plotData()
             }
@@ -1622,6 +1630,79 @@ function plotData(d, optn){
                   }
                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
+            if(optn=="ag"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon8});
+                htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                count=0
+                // img_path=""
+                
+                for (const key in (d[x].fields)) {
+                  count = count + 1;  
+                  if(count<15 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 && count!=12 ){
+                // for(const key in islice(d[x].fields,20)){
+                    if (d[x].fields.hasOwnProperty(key) && d[x].fields.gate_photo1!=''){
+                        // if ("gate_photo1" in d[x].fields){
+                        //     htm=htm
+                        // }
+                        // else
+                            htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.entrydoor_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.entrydoor_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_room_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.room_dormitory_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`<br>`+`Sign Photo`+htm_4+`</div>`)
+
+            }
             if(optn=="mp"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon6});
                 htm=""
@@ -1772,6 +1853,14 @@ var icon6 = L.icon({
 });
 var icon7 = L.icon({
     iconUrl:  "{% static 'map/pimarkerpurple.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon8 = L.icon({
+    iconUrl:  "{% static 'map/pin_adhar_gruh1.png' %}",
     iconSize:     [30, 30], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [25,10], // point of the icon which will correspond to marker's location

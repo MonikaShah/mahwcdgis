@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations, CCI7July23,Wwh
+from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations, CCI7July23,Wwh,AdharGruh22Aug23
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
@@ -258,6 +258,7 @@ def viewWcdMap(request):
         counselling_center=request.POST.get("counselling_center")
         swadhaar_greh=request.POST.get("swadhaar_greh")
         ujjwal_greh=request.POST.get("ujjwal_greh")
+        adhar_gruh=request.POST.get("adhar_gruh")
         working_women_hostel=request.POST.get("working_women_hostel")
         mh_police=request.POST.get("mh_police") 
         d1=""
@@ -267,6 +268,7 @@ def viewWcdMap(request):
         d5=""
         d6=""
         d7=""
+        d8=""
         if request.POST.get('district')!="":
             if women_state_home!=None:
                 d1 = WomenStateHome.objects.filter(district=request.POST.get('district'))
@@ -291,6 +293,9 @@ def viewWcdMap(request):
             if working_women_hostel!=None:
                 d7 = Wwh.objects.filter(district=request.POST.get('district'))
                 print(d7)
+            if adhar_gruh!=None:
+                d8 = AdharGruh22Aug23.objects.filter(district=request.POST.get('district'))
+                print(d8)
         else:
             if women_state_home!=None:
                 d1 = WomenStateHome.objects.all()
@@ -312,7 +317,10 @@ def viewWcdMap(request):
                 print(d6)
             if working_women_hostel!=None:
                 d7 = Wwh.objects.all()
-                print(d7)     
+                print(d7) 
+            if adhar_gruh!=None:
+                d8 = AdharGruh22Aug23.objects.all()
+                print(d8)     
         
             
         d1 = serializers.serialize('json', d1)
@@ -322,9 +330,10 @@ def viewWcdMap(request):
         d5 = serializers.serialize('json', d5)
         d6 = serializers.serialize('json', d6)
         d7 = serializers.serialize('json', d7)
+        d8 = serializers.serialize('json', d8)
 
             
-        context = {"d1":d1,"d2":d2,"d3":d3,"d4":d4,"d5":d5, "d6":d6, "d7":d7}
+        context = {"d1":d1,"d2":d2,"d3":d3,"d4":d4,"d5":d5, "d6":d6, "d7":d7, "d8":d8}
         return JsonResponse(context)
         
     else:

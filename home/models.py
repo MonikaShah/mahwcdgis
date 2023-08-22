@@ -191,7 +191,38 @@ class WomenStateHome(models.Model):
     # class Meta:
     #     managed = False
     #     db_table = 'women_state_home'
-        
+
+class AdharGruh22Aug23(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    division = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    adhar_gruh = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    building_status = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    altitude = models.FloatField(blank=True, null=True)
+    precision = models.FloatField(blank=True, null=True)
+    officer_name = models.CharField(max_length=100, blank=True, null=True)
+    officer_mobile = models.BigIntegerField(blank=True, null=True)
+    entrydoor_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    entrydoor_photo = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_room_id = models.CharField(max_length=100, blank=True, null=True)
+    field_18 = models.CharField(max_length=100, blank=True, null=True)
+    kitchen_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    kitchen_photo = models.CharField(max_length=100, blank=True, null=True)
+    room_dormitory_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    room_dormitory_photo = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'adhar_gruh_22aug23'
+
 class OneStopCenter(models.Model):
     report_date=models.DateField(blank=True, null=True)
     section=models.CharField(max_length=254, blank=True, null=True)
@@ -282,36 +313,65 @@ class CounsellingCentresJuly23(models.Model):
         db_table = 'counselling_centres_july23'
 
 class SwadhaarGreh(models.Model):
-    report_date=models.DateField(blank=True, null=True)
-    section=models.CharField(max_length=254, blank=True, null=True)
-    district=models.CharField(max_length=254, blank=True, null=True)
-    swadhaar_home=models.CharField(max_length=254, blank=True, null=True)
-    address=models.CharField(max_length=254, blank=True, null=True)
-    building_type=models.CharField(max_length=254, blank=True, null=True)
-    contact=models.CharField(max_length=254, blank=True, null=True)
-    mobile_no=models.CharField(max_length=254, blank=True, null=True)
-    gmail=models.CharField(max_length=254, blank=True, null=True)
-    latitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    longitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    approval_date=models.DateField(blank=True, null=True)
-    capacity=models.BigIntegerField(blank=True, null=True)
-    women_admitted=models.BigIntegerField(blank=True, null=True)
-    children_with_women=models.BigIntegerField(blank=True, null=True)
-    superintendent_nam=models.CharField(max_length=254, blank=True, null=True)
-    superintendent_contact=models.CharField(max_length=254, blank=True, null=True)
-    no_posts=models.BigIntegerField(blank=True, null=True)
-    filled_no_posts=models.BigIntegerField(blank=True, null=True)
-    no_vacancies=models.BigIntegerField(blank=True, null=True)
-    nursery_facility=models.CharField(max_length=254, db_column='nursery_facility?',  blank=True,null=True)
-    cooking_utensils=models.CharField(max_length=254, db_column='cooking_utensils?',  blank=True,null=True)
-    net_conn=models.CharField(max_length=254, db_column='net_conn?',null=True)
-    first_aid_kit=models.CharField(max_length=254, db_column='first_aid_kit?',  blank=True,null=True)
-    no_cctv=models.BigIntegerField(blank=True, null=True)
-    no_running_water_filters=models.BigIntegerField(blank=True, null=True)
-    
+    id = models.CharField(primary_key=True, max_length=100)
+    sr_no = models.CharField(max_length=100, blank=True, null=True)
+    division = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    swadhaar_home = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    building_status = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.CharField(max_length=100, blank=True, null=True)
+    longitude = models.CharField(max_length=100, blank=True, null=True)
+    altitude = models.CharField(max_length=100, blank=True, null=True)
+    precision = models.CharField(max_length=100, blank=True, null=True)
+    officer_name = models.CharField(max_length=100, blank=True, null=True)
+    officer_mobile = models.CharField(max_length=100, blank=True, null=True)
+    entrydoor_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    entrydoor_photo = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_room_id = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_room = models.CharField(max_length=100, blank=True, null=True)
+    kitchen_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    kitchen_photo = models.CharField(max_length=100, blank=True, null=True)
+    room_dormitory_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    room_dormitory_photo = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo = models.CharField(max_length=100, blank=True, null=True)
+
     class Meta:
         managed = False
-        db_table = 'swadhaar_greh'
+        db_table = 'swadhar_gruh_22aug23'
+    # report_date=models.DateField(blank=True, null=True)
+    # section=models.CharField(max_length=254, blank=True, null=True)
+    # district=models.CharField(max_length=254, blank=True, null=True)
+    # swadhaar_home=models.CharField(max_length=254, blank=True, null=True)
+    # address=models.CharField(max_length=254, blank=True, null=True)
+    # building_type=models.CharField(max_length=254, blank=True, null=True)
+    # contact=models.CharField(max_length=254, blank=True, null=True)
+    # mobile_no=models.CharField(max_length=254, blank=True, null=True)
+    # gmail=models.CharField(max_length=254, blank=True, null=True)
+    # latitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    # longitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
+    # approval_date=models.DateField(blank=True, null=True)
+    # capacity=models.BigIntegerField(blank=True, null=True)
+    # women_admitted=models.BigIntegerField(blank=True, null=True)
+    # children_with_women=models.BigIntegerField(blank=True, null=True)
+    # superintendent_nam=models.CharField(max_length=254, blank=True, null=True)
+    # superintendent_contact=models.CharField(max_length=254, blank=True, null=True)
+    # no_posts=models.BigIntegerField(blank=True, null=True)
+    # filled_no_posts=models.BigIntegerField(blank=True, null=True)
+    # no_vacancies=models.BigIntegerField(blank=True, null=True)
+    # nursery_facility=models.CharField(max_length=254, db_column='nursery_facility?',  blank=True,null=True)
+    # cooking_utensils=models.CharField(max_length=254, db_column='cooking_utensils?',  blank=True,null=True)
+    # net_conn=models.CharField(max_length=254, db_column='net_conn?',null=True)
+    # first_aid_kit=models.CharField(max_length=254, db_column='first_aid_kit?',  blank=True,null=True)
+    # no_cctv=models.BigIntegerField(blank=True, null=True)
+    # no_running_water_filters=models.BigIntegerField(blank=True, null=True)
+    
+    # class Meta:
+    #     managed = False
+    #     db_table = 'swadhaar_greh'
         
 # class UjjwalGreh(models.Model):
 #     report_date=models.DateField(blank=True, null=True)
