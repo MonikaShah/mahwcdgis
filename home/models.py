@@ -396,3 +396,39 @@ class MhPoliceStations(models.Model):
     class Meta:
         managed = False
         db_table = 'mh_police_stations'
+
+class Wwh(models.Model):
+    # id = models.IntegerField(primary_key=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    division = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    working_women_hostel = models.CharField(max_length=100, blank=True, null=True)
+    wwh_address = models.CharField(max_length=100, blank=True, null=True)
+    wwh_phone = models.CharField(max_length=100, blank=True, null=True)
+    wwh_location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    altitude = models.FloatField(blank=True, null=True)
+    precision = models.FloatField(blank=True, null=True)
+    warden_name = models.CharField(max_length=100, blank=True, null=True)
+    warden_mobile = models.CharField(max_length=100, blank=True, null=True)
+    wwh_type = models.CharField(max_length=100, blank=True, null=True)
+    wwh_status = models.CharField(max_length=100, blank=True, null=True)
+    functional_status = models.CharField(max_length=100, blank=True, null=True)
+    internet = models.CharField(max_length=100, blank=True, null=True)
+    uphargreh = models.CharField(max_length=100, blank=True, null=True)
+    cctv_count = models.IntegerField(blank=True, null=True)
+    gate_photo1_id = models.CharField(max_length=100, blank=True, null=True)
+    gate_photo1 = models.CharField(max_length=100, blank=True, null=True)
+    room_photo2_id = models.CharField(max_length=100, blank=True, null=True)
+    room_photo2 = models.CharField(max_length=100, blank=True, null=True)
+    commomroom3_id = models.CharField(max_length=100, blank=True, null=True)
+    commomroom_photo3 = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo = models.CharField(max_length=100, blank=True, null=True)
+    gate1_photo = models.CharField(max_length=100, blank=True, null=True)
+    gate1_photo_1 = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'wwh'

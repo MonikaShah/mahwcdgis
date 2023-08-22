@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations, CCI7July23
+from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations, CCI7July23,Wwh
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
@@ -248,7 +248,8 @@ def viewCCMap(request):
         taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()
         context = {'awc': awc, 'district':district,'taluka':taluka}
         return render(request, 'viewCCMap.html', context)
-
+    
+@csrf_exempt
 def viewWcdMap(request):
     if request.method == "POST":
         print(request.POST)
@@ -257,6 +258,7 @@ def viewWcdMap(request):
         counselling_center=request.POST.get("counselling_center")
         swadhaar_greh=request.POST.get("swadhaar_greh")
         ujjwal_greh=request.POST.get("ujjwal_greh")
+        working_women_hostel=request.POST.get("working_women_hostel")
         mh_police=request.POST.get("mh_police") 
         d1=""
         d2=""
@@ -264,6 +266,7 @@ def viewWcdMap(request):
         d4=""
         d5=""
         d6=""
+        d7=""
         if request.POST.get('district')!="":
             if women_state_home!=None:
                 d1 = WomenStateHome.objects.filter(district=request.POST.get('district'))
@@ -280,9 +283,14 @@ def viewWcdMap(request):
             if ujjwal_greh!=None:
                 d5 = UjjwalGrehJuly23.objects.filter(district=request.POST.get('district'))
                 print(d5)
+            
             if mh_police!=None:
                 d6 = MhPoliceStations.objects.filter(district=request.POST.get('district'))
                 print(d6)
+
+            if working_women_hostel!=None:
+                d7 = Wwh.objects.filter(district=request.POST.get('district'))
+                print(d7)
         else:
             if women_state_home!=None:
                 d1 = WomenStateHome.objects.all()
@@ -301,7 +309,10 @@ def viewWcdMap(request):
                 print(d5)   
             if mh_police!=None:
                 d6 = MhPoliceStations.objects.all()
-                print(d6)     
+                print(d6)
+            if working_women_hostel!=None:
+                d7 = Wwh.objects.all()
+                print(d7)     
         
             
         d1 = serializers.serialize('json', d1)
@@ -310,12 +321,14 @@ def viewWcdMap(request):
         d4 = serializers.serialize('json', d4)
         d5 = serializers.serialize('json', d5)
         d6 = serializers.serialize('json', d6)
+        d7 = serializers.serialize('json', d7)
 
             
-        context = {"d1":d1,"d2":d2,"d3":d3,"d4":d4,"d5":d5, "d6":d6}
+        context = {"d1":d1,"d2":d2,"d3":d3,"d4":d4,"d5":d5, "d6":d6, "d7":d7}
         return JsonResponse(context)
         
     else:
+        print("In else part")
         awc = RuralInfraAwcAcEnglishconverted.objects.filter(agan_type='मुख्य',project='Yavatmal')
         district = RuralInfraAwcAcEnglishconverted.objects.values('district').order_by('district').distinct()
         taluka = RuralInfraAwcAcEnglishconverted.objects.values('block_n').order_by('block_n').distinct()

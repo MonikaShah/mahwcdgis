@@ -1,5 +1,6 @@
 {% extends 'base_map_1.html' %}
 {% load static%} {% block content %}
+
 <style>
     table,
     th,
@@ -287,7 +288,7 @@
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center"  id=""> Counselling Center </label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
         <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" disabled id=""> Working Women Hostel (Work in progress)</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" id=""> Working Women Hostel </label><br>
         <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">Police Stations</label><br>
         <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br> -->
         <!-- <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br> -->
@@ -745,7 +746,9 @@ legend.onAdd = function (mymap) {
         <i style="background: red; width: 18px; height: 18px; opacity: 0.7;"></i> One Stop Center <br>
         <i style="background: orange; width: 18px; height: 18px; opacity: 0.7;"></i> Counselling Center <br>
         <i style="background: green; width: 18px; height: 18px; opacity: 0.7;"></i> Swadhaar Greh <br>
-        <i style="background: #e83e8c; width: 18px; height: 18px; opacity: 0.7;"></i> Ujjwal Greh <br><hr>
+        
+        <img src="{% static 'map/pinmargerpink.png' %}" style="width:25px;height:25px;">Ujjwal Greh <br>
+        <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> Working Women Hostel <br><hr>
         <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> Police Stations <br>`
     
 
@@ -1080,7 +1083,7 @@ $(document).ready(
             dataType: 'json',
             data: serializedData,
             success: function(data){
-                //console.log(data["data"])
+                // console.log(data["data"])
                 //d = JSON.parse(data["data"])
                 //data["d1"].forEach(e=>{
                 //    console.log(e)
@@ -1116,6 +1119,12 @@ $(document).ready(
                 // console.log(d6)
                 if(d6!="") {
                     plotData(d6,"mp");
+                }
+
+                d7 = JSON.parse(data["d7"])
+                // console.log(d6)
+                if(d7!="") {
+                    plotData(d7,"wwh");
                 }
                 //plotData()
             }
@@ -1569,6 +1578,79 @@ function plotData(d, optn){
                   }
                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
+            if(optn=="wwh"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon7});
+                htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                count=0
+                // img_path=""
+                
+                for (const key in (d[x].fields)) {
+                  count = count + 1;  
+                  if(count<20 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 ){
+                // for(const key in islice(d[x].fields,20)){
+                    if (d[x].fields.hasOwnProperty(key) && d[x].fields.gate_photo1!=''){
+                        // if ("gate_photo1" in d[x].fields){
+                        //     htm=htm
+                        // }
+                        // else
+                            htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.gate_photo1!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.gate_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_photo2!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.room_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.commomroom3_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.commomroom3_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                  } 
+                 
+                }
+                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`<br>`+`Sign Photo`+htm_4+`</div>`)
+                // point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+img_path+`</div>`)
+            }
             point.addTo(mymap)
             point.data=d[x].fields;
             
@@ -1628,6 +1710,14 @@ var icon5 = L.icon({
 });
 var icon6 = L.icon({
     iconUrl:  "{% static 'map/mh_police.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon7 = L.icon({
+    iconUrl:  "{% static 'map/pimarkerpurple.png' %}",
     iconSize:     [30, 30], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow
     iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
