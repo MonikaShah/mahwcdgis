@@ -1534,6 +1534,7 @@ function plotData(d, optn){
                 htm_2=""
                 htm_3=""
                 htm_4=""
+                
                 count=0
                 for (const key in d[x].fields) {
                   count = count + 1;  
@@ -1541,54 +1542,68 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    // if(d[x].fields.entrydoor_photo_id!=''){
-                    //     // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
-                    //     // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
-                    //     var str4 = htm_1.concat("' alt='image not found'></br>");
-                    //     filename=d[x].fields.entrydoor_photo_id
-                    //     // .split(".")[0] + ".jpg";
-                    //     console.log("filename is : "+filename)
-                    //     // alert(filename)
-                    //     htm_1=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
-                    //     // var str4 = htm_1.concat("' alt='image not found'></br>");
-                    // }
-                    // if(d[x].fields.room_photo2!=''){
-                    //     // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
-                    //     // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
-                    //     var str5 = htm_2.concat("' alt='image not found'></br>");
-                    //     filename=d[x].fields.room_photo2_id
-                    //     // .split(".")[0] + ".jpg";
-                    //     console.log("filename is : "+filename)
-                    //     // alert(filename)
-                    //     htm_2=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
-                    //     // var str4 = htm_1.concat("' alt='image not found'></br>");
-                    // }
-                    // if(d[x].fields.commomroom3_id!=''){
-                    //     // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
-                    //     // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
-                    //     var str6 = htm_3.concat("' alt='image not found'></br>");
-                    //     filename=d[x].fields.commomroom3_id
-                    //     // .split(".")[0] + ".jpg";
-                    //     console.log("filename is : "+filename)
-                    //     // alert(filename)
-                    //     htm_3=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
-                    //     // var str4 = htm_1.concat("' alt='image not found'></br>");
-                    // }
-                    // if(d[x].fields.sign_photo_id!=''){
-                    //     // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
-                    //     // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                    if(d[x].fields.entrydoor_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.entrydoor_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_room_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.kitchen_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.kitchen_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                    //     filename=d[x].fields.sign_photo_id
-                    //     // .split(".")[0] + ".jpg";
-                    //     console.log("filename is : "+filename)
-                    //     // alert(filename)
-                    //     htm_4=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
-                    //     var str7 = htm_4.concat("' alt='image not found'></br>");
-                    //     // var str4 = htm_1.concat("' alt='image not found'></br>");
-                    // }
+                        filename=d[x].fields.room_dormitory_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
                   } 
-                  }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
             if(optn=="osc"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon2});
@@ -1613,16 +1628,91 @@ function plotData(d, optn){
             if(optn=="sg"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon4});
                 htm=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                htm_5=""
+                count=0
+
                 for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<15 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 && count!=12 ){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                  }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    if(d[x].fields.entrydoor_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.entrydoor_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_room_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.kitchen_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.kitchen_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.room_dormitory_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
             if(optn=="ug"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon5});
                 htm=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                htm_5=""
+
                 count=0
                 for (const key in d[x].fields) {
                   count = count + 1;  
@@ -1630,9 +1720,68 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                 }
+                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.kitchen_photo3_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.kitchen_photo3_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo4_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.room_dormitory_photo4_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.signature_photo5_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.signature_photo5_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
             if(optn=="ag"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon8});
