@@ -1616,14 +1616,72 @@ function plotData(d, optn){
                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
             }
             if(optn=="cc"){
+                // alert("In CC")
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon3});
                 htm=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                htm_5=""
+                count=0
                 for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<14 && count!=4 && count!=5 && count!=6 && count!=7 && count!=8 ){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                  }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    if(d[x].fields.frontgate_photo1_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.frontgate_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/ALL\ CCIs/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.livingroom_dormitory_photo2_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.livingroom_dormitory_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/ALL CCIs/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.open_campus_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.open_campus_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/ALL\ CCIs/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    
+                    if(d[x].fields.signature_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.signature_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/ALL\ CCIs/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Counselling Centers</h5>`+htm+`<br>`+ `EntryDoor Photo`+htm_1+`<br>`+`Living Room and Dormitory Photo`+htm_2+`<br>`+`Open Campus Photo`+htm_3+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
             if(optn=="sg"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon4});
