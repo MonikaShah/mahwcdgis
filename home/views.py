@@ -278,7 +278,7 @@ def viewWcdMap(request):
                 print(d2)
             if counselling_center!=None:
                 d3 = CounsellingCentresJuly23.objects.filter(district=request.POST.get('district'))
-                #print(d3)
+                print(d3)
             if swadhaar_greh!=None:
                 d4 = SwadhaarGreh.objects.filter(district=request.POST.get('district'))
                 #print(d4)
@@ -305,7 +305,7 @@ def viewWcdMap(request):
                 print(d2)
             if counselling_center!=None:
                 d3 = CounsellingCentresJuly23.objects.all()
-                # print(d3)
+                print(d3)
             if swadhaar_greh!=None:
                 d4 = SwadhaarGreh.objects.all()
                 #print(d4)
