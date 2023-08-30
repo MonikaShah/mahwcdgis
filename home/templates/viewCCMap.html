@@ -270,12 +270,14 @@
 
         <hr>
         <label>Facilities</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="child_care" id="">Child Care Institutes </label><br>
-        <!-- <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="one_stop_center" id=""> One Stop Center</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center"  id=""> Counselling Center </label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" disabled id=""> Working Women Hostel (Work in progress)</label><br> -->
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="child_care" id=""> Child Care Institutes </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="jjb" id=""> Justice Juvenile Board</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="cwc"  id=""> Child Welfare Center </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ak" id=""> Abhay Kendra</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="dcpo" id=""> DCPO </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="saa" id=""> Special Adoption Agency</label><br>
+
+        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id=""> Police Stations</label><br>
         <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">Police Stations</label><br> -->
         
         <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br> -->
@@ -292,7 +294,7 @@
     <div class="border"><label>Proximity of Facilities</label><br>
         <button type="button" class="btn-sm btn-primary" id='locate'>Your Location</button>
         <button type="button" class="btn-sm btn-primary" id='setlocation'>Set Location</button>
-        <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button>
+        <!-- <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button> -->
         <div id="slider">
             <label>Set Range</label><br>
             <input type="range" min="1" max="50" value="1" class="slider" id="myRange" step="1">
@@ -323,7 +325,7 @@
         
             // do what you want to do with `data` here...
                 data.features.forEach(e => {
-                    wms_layer = L.marker([e.geometry.coordinates[1],e.geometry.coordinates[0]],{icon: icon6})
+                    wms_layer = L.marker([e.geometry.coordinates[1],e.geometry.coordinates[0]],{icon: icon7})
                     wms_layer.addTo(mymap)
                     htm=""
                     for (const key in e.properties) {
@@ -390,8 +392,16 @@ legend.onAdd = function (mymap) {
 
     // loop through our density intervals and generate a label with a colored square for each interval
     
-        div.innerHTML +=`<i style="background: blue; width: 18px; height: 18px; opacity: 0.7;"></i> Child Care <br>
-        `
+        div.innerHTML +=`<img src="{% static 'map/pinmargerblue.png' %}" style="width:28px;height:28px;"> Child Care <br>
+        <img src="{% static 'map/pinmargerred.png' %}" style="width:28px;height:28px;"> Justice Juvenile Board <br>
+        <img src="{% static 'map/pinmargerorange.png' %}" style="width:28px;height:28px;"> Child Welfare Centres <br>
+        <img src="{% static 'map/pinmargergreen.png' %}" style="width:28px;height:28px;"> Abhay Kendra <br>
+        
+        <img src="{% static 'map/pinmargerpink.png' %}" style="width:28px;height:28px;"> DCPO <br>
+        <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> Special Adoption Agency <br>
+        <hr>
+        <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> Police Stations <br>`
+        
 
     return div;
 };
@@ -611,393 +621,44 @@ $(document).ready(
                     console.log("d1")
                 }
 
-                // d2 = JSON.parse(data["d2"])
-                // console.log(d2)
-                // if(d2!="") {
-                //     plotData(d2,"osc");
-                // }
+                d2 = JSON.parse(data["d2"])
+                console.log(d2)
+                if(d2!="") {
+                    plotData(d2,"jjb");
+                }
 
-                // d3 = JSON.parse(data["d3"])
-                // if(d3!="") {
-                //     plotData(d3,"cc");
-                // }
+                d3 = JSON.parse(data["d3"])
+                if(d3!="") {
+                    plotData(d3,"cwc");
+                }
 
-                // d4 = JSON.parse(data["d4"])
-                // if(d4!="") {
-                //     plotData(d4,"sg");
-                // }
+                d4 = JSON.parse(data["d4"])
+                if(d4!="") {
+                    plotData(d4,"ak");
+                }
 
-                // d5 = JSON.parse(data["d5"])
-                // if(d5!="") {
-                //     plotData(d5,"ug");
-                // }
+                d5 = JSON.parse(data["d5"])
+                if(d5!="") {
+                    plotData(d5,"saa");
+                }
                 
-                // d6 = JSON.parse(data["d6"])
-                // // console.log(d6)
-                // if(d6!="") {
-                //     plotData(d6,"mp");
-                // }
-                //plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-    {% comment %}
-    /*
-    $('#cc_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'women_state_home' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-    */
-
-    /*
-    $('#osc_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'one_stop_center' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#cc_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'counselling_center' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#sg_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'swadhaar_greh' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#ug_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'ujjwal_greh' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#wsh').on('change',function(){
-        var wsh = $('#wsh').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'women_state_home' %}",
-            dataType: 'json',
-            data: {wsh},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                console.log(data)
-                if(data['w1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                   
-
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("wsh").value+`'>`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('wsh').value+`","`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.w1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("wsh").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn1').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('wsh_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                    
+                d7 = JSON.parse(data["d7"])
+                // console.log(d6)
+                if(d7!="") {
+                    plotData(d7,"dcpo");
                 }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    $('#osc').on('change',function(){
-        var osc = $('#osc').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'one_stop_center' %}",
-            dataType: 'json',
-            data: {osc},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['o1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                    
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("osc").value+`'>`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('osc').value+`","`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.o1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("osc").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn2').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('osc_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                    
+                d6 = JSON.parse(data["d6"])
+                // console.log(d6)
+                if(d6!="") {
+                    plotData(d6,"mh_police");
                 }
-
+                
             }
         })
-        //console.log($('#category_1').val())
+        console.log(' belowhjkhjh');
     }),
-    $('#cc').on('change',function(){
-        var cc = $('#cc').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'counselling_center' %}",
-            dataType: 'json',
-            data: {cc},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['c1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                    
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("cc").value+`'>`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('cc').value+`","`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.c1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("cc").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn3').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('cc_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                    
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    $('#sg').on('change',function(){
-        var sg = $('#sg').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'swadhaar_greh' %}",
-            dataType: 'json',
-            data: {sg},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['s1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                    
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("sg").value+`'>`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('sg').value+`","`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.s1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("sg").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn4').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('sg_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                   
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    $('#ug').on('change',function(){
-        var ug = $('#ug').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'ujjwal_greh' %}",
-            dataType: 'json',
-            data: {ug},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['u1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                   
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("ug").value+`'>`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('ug').value+`","`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.u1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("ug").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn5').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('ug_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                   
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    */{% endcomment %}
+   
+   
 )
 
 function removeOptn(a,b){
@@ -1025,6 +686,8 @@ function plotData(d, optn){
         alert("No results for this selection")
         clearAll()
     }
+    // else
+    //     alert("show for this selection")
     console.log(`pltdata called`)
     //replot()
     for(x in d){
@@ -1108,56 +771,294 @@ function plotData(d, optn){
                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Living Room/Dormitory Photo`+htm_2+`<br>`+`Open Campus Photo`+htm_3+`Sign Photo`+htm_5+`</div>`)
 
             }
-            //     htm=""
-            //     for (const key in d[x].fields) {
-            //         if (d[x].fields.hasOwnProperty(key)) {
-            //           htm = htm+`${key}: ${d[x].fields[key]}<br>`
-            //         }
-            //       }
-            //     point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
-            // }
-            if(optn=="osc"){
-                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon2});
+            
+            if(optn=="jjb"){
+              var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon2});
                 htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                
+                count=0
                 for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<14 && count!=0 && count!=1 && count!=4 && count!=5 && count!=6  && count!=7 && count!=8 ){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                  }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/JJB_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/JJB_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    
+                    if(d[x].fields.signature_photo5_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.signature_photo5_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/JJB_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
-            if(optn=="cc"){
+            
+            if(optn=="cwc"){
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon3});
                 htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                
+                count=0
                 for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<15 && count!=1 && count!=4 && count!=5 && count!=6 && count!=7 && count!=8 && count!=9 ){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                  }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/CWC_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/CWC_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.signature_photo5_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.signature_photo5_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/CWC_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
-            if(optn=="sg"){
-                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon4});
+            if(optn=="ak"){
+              var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon4});
                 htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                
+                count=0
                 for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<11 && count!=0 && count!=1 && count!=6  && count!=7 && count!=8 && count!=9 && count!=10 ){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                  }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    if(d[x].fields.name_plate_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.name_plate_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Abhay_Kendra_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Abhay_Kendra_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/Abhay_Kendra_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Abhay Kendra Information</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
-            if(optn=="ug"){
-                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon5});
+            if(optn=="saa"){
+              var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon6});
                 htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                
+                count=0
                 for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<11 && count!=0  && count!=4 && count!=5 && count!=6  && count!=7 && count!=8 ){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                  }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/SAA_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/SAA_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    
+                    if(d[x].fields.signature_photo5_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.signature_photo5_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/SAA_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
             }
-            if(optn=="mp"){
-                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon6});
+            if(optn=="dcpo"){
+              var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon5});
+                htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                
+                count=0
+                for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<10 && count!=0 && count!=1 && count!=4 && count!=5 && count!=6  && count!=7 && count!=8 && count!=9 ){
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.name_plate_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.name_plate_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/DCPO_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/DCPO_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/DCPO_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Sign Photo`+htm_5+`</div>`)
+
+            }
+            if(optn=="mh_police"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon7});
                 htm=""
                 for (const key in d[x].fields) {
                     if (d[x].fields.hasOwnProperty(key)) {
@@ -1224,6 +1125,14 @@ var icon5 = L.icon({
     popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 var icon6 = L.icon({
+    iconUrl:  "{% static 'map/pimarkerpurple.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon7 = L.icon({
     iconUrl:  "{% static 'map/mh_police.png' %}",
     iconSize:     [30, 30], // size of the icon
     //shadowSize:   [50, 64], // size of the shadow

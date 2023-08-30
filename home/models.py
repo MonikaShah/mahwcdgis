@@ -309,6 +309,155 @@ class CounsellingCentresJuly23(models.Model):
         managed = False
         db_table = 'cci_7august23'
 
+class Osc(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    division = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    one_stop_centre = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    altitude = models.FloatField(blank=True, null=True)
+    precision = models.FloatField(blank=True, null=True)
+    officer_name = models.CharField(max_length=100, blank=True, null=True)
+    officer_mobile = models.BigIntegerField(blank=True, null=True)
+    building_type = models.CharField(max_length=100, blank=True, null=True)
+    name_plate_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    name_plate_photo = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo = models.CharField(max_length=100, blank=True, null=True)
+    kitchen_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    kitchen_photo = models.CharField(max_length=100, blank=True, null=True)
+    room_dormitory_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    room_dormitory_photo = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'osc'
+
+class Saa(models.Model):
+    id = models.CharField(primary_key=True, max_length=100)
+    agency_name = models.CharField(max_length=100, blank=True, null=True)
+    officer_name = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.CharField(max_length=100, blank=True, null=True)
+    longitude = models.CharField(max_length=100, blank=True, null=True)
+    altitude = models.CharField(max_length=100, blank=True, null=True)
+    precision = models.CharField(max_length=100, blank=True, null=True)
+    name_plate_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    name_plate_photo = models.CharField(max_length=100, blank=True, null=True)
+    office_sitting_arrangement_id = models.CharField(max_length=100, blank=True, null=True)
+    office_sitting_arrangement = models.CharField(max_length=100, blank=True, null=True)
+    children_room_id = models.CharField(max_length=100, blank=True, null=True)
+    children_room = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'saa'
+class Dcpo(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    dcpo_office = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    altitude = models.FloatField(blank=True, null=True)
+    precision = models.FloatField(blank=True, null=True)
+    name_plate_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    name_plate_photo = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'dcpo'
+
+class AbhayKendra(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    block = models.CharField(max_length=100, blank=True, null=True)
+    officer_abhay_kendra = models.CharField(max_length=100, blank=True, null=True)
+    phone = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    altitude = models.FloatField(blank=True, null=True)
+    precision = models.FloatField(blank=True, null=True)
+    name_plate_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    name_plate_photo = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo_id = models.CharField(max_length=100, blank=True, null=True)
+    sign_photo = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'abhay_kendra'
+
+class Cwc(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    division = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    cwc_number = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    altitude = models.FloatField(blank=True, null=True)
+    precision = models.FloatField(blank=True, null=True)
+    num_of_cwc = models.IntegerField(blank=True, null=True)
+    num_members_including_chairman = models.IntegerField(blank=True, null=True)
+    vacant_postition = models.IntegerField(blank=True, null=True)
+    apointed_chairperson = models.CharField(max_length=100, blank=True, null=True)
+    trained_person = models.IntegerField(blank=True, null=True)
+    nameplate_entrydoor_photo1_id = models.CharField(max_length=100, blank=True, null=True)
+    nameplate_entrydoor_photo1 = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo2_id = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo2 = models.CharField(max_length=100, blank=True, null=True)
+    signature_photo5_id = models.CharField(max_length=100, blank=True, null=True)
+    signature_photo5 = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'cwc'
+
+class Jjb(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sr_no = models.IntegerField(blank=True, null=True)
+    division = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
+    location = models.CharField(max_length=100, blank=True, null=True)
+    latitude = models.FloatField(blank=True, null=True)
+    longitude = models.FloatField(blank=True, null=True)
+    altitude = models.FloatField(blank=True, null=True)
+    precision = models.FloatField(blank=True, null=True)
+    num_jjb_constituted = models.IntegerField(blank=True, null=True)
+    appointed_members = models.IntegerField(blank=True, null=True)
+    vacant_position = models.IntegerField(blank=True, null=True)
+    exclusive_appointed_magistrate = models.CharField(max_length=100, blank=True, null=True)
+    trained_members = models.IntegerField(blank=True, null=True)
+    nameplate_entrydoor_photo1_id = models.CharField(max_length=100, blank=True, null=True)
+    nameplate_entrydoor_photo1 = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo2_id = models.CharField(max_length=100, blank=True, null=True)
+    sitting_arrangement_photo2 = models.CharField(max_length=100, blank=True, null=True)
+    signature_photo5_id = models.CharField(max_length=100, blank=True, null=True)
+    signature_photo5 = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'jjb'
+
 class SwadhaarGreh(models.Model):
     id = models.CharField(primary_key=True, max_length=100)
     sr_no = models.CharField(max_length=100, blank=True, null=True)
