@@ -1,0 +1,2283 @@
+{% extends 'base_map_1.html' %}
+{% load static%} {% block content %}
+
+
+<style>
+    table,
+    th,
+    td {
+        border-bottom: 1px solid #ddd;
+        border-collapse: collapse;
+        padding: 2px 3px;
+        text-align: center;
+    }
+
+    th {
+        font-weight: bold;
+    }
+
+    tr:hover {
+        background-color: #c9dbe6;
+    }
+
+    #checkboxes {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+
+    .slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 25px;
+        background: #D3D3D3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        background: #FF0000;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        background: #FF0000;
+        cursor: pointer;
+    }
+
+    .sliderticks {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+
+    .sliderticks p {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        width: 1px;
+        background: #D3D3D3;
+        height: 10px;
+        line-height: 40px;
+        margin: 0 0 20px 0;
+    }
+
+    input[type="range"]::-moz-range-track {
+        padding: 0 10px;
+        background: repeating-linear-gradient(to right, #ccc, #ccc 10%, #000 10%, #000 11%, #ccc 11%, #ccc 20%);
+    }
+
+    #checkboxes3 label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+
+    #checkboxes3 {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+
+    #checkboxes label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+    /* #checkboxes label:hover {
+  background-color: #1e90ff;
+} */
+
+    #checkboxes2 label {
+        display: block;
+        text-align: left;
+        margin: 10px;
+    }
+
+    #checkboxes2 {
+        display: none;
+        /* border: 1px #dadada solid; */
+    }
+
+    .btn {
+        margin: 10px;
+    }
+
+    .border {
+        padding: 6px 8px;
+        border-style: groove;
+        border-radius: 5px;
+        margin: 20px;
+    }
+
+    .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+
+    .table {
+        border-collapse: collapse;
+        padding: 50px;
+        font-weight: bold;
+        /* background:rgba(191, 149, 233, 0.473); */
+    }
+    /* css to customize Leaflet default styles  */
+
+    .leaflet-popup-content-wrapper {
+        background: rgba(0, 0, 0, 0.9);
+        color: #ffffff;
+    }
+
+    .leaflet-popup-content {
+        font-weight: bold;
+    }
+
+    h6 {
+        color: blue;
+    }
+
+    .select {
+        background-color: rgb(116, 109, 109);
+        width: 40%;
+        margin-left: 100px;
+        ;
+        color: white;
+    }
+
+    .select.highlight {
+        background: rgb(0, 0, 0);
+        color: white;
+    }
+
+    .circle {
+        background-color: red;
+        border-radius: 50%;
+    }
+
+    .table-legend {
+        border-collapse: collapse;
+        padding: 2px 3px;
+        width: 100%;
+        font-size: small;
+        /* font-weight: bold; */
+        background: #fff;
+    }
+
+    .info {
+        padding: 6px 8px;
+        font: 14px/16px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+
+    .info h4 {
+        margin: 0 0 5px;
+        color: #777;
+    }
+
+    .legend {
+        line-height: 18px;
+        color: #555;
+    }
+
+    .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin-right: 8px;
+        opacity: 0.7;
+    }
+    .leaflet-popup-content-wrapper{
+        background: white;
+    }
+</style>
+
+<div id="side-bar" style="background-color: rgba(255, 255, 255);">
+
+    <div class="mobileShow">
+
+        <div style="text-align: center">
+            <button style="display: inline-block ;position: relative; background: #000; opacity: 0.60;" id="closebutton" name="closebutton" class="btn btn-secondary"><span class="fa fa-bars"></span></button>
+        </div>
+
+    </div>
+    {% csrf_token %}
+    <form id="wsh_form" action="wcdmap" method="POST">
+
+    <div class="border">
+
+        <!-- <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
+            <select name="section" class='form-control mb-2 mt-2' id="section">
+            <option value=""> Select Section </option>
+            <option value="Amravati">Amravati</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Pune">Pune</option>
+            <option value="Nashik">Nashik</option>
+            </select>
+        </div> -->
+
+        <div class="tooltips" title="Please select the District">
+            <select onchange="replot(); document.getElementById('plot').click()" name="district" class='form-control mb-2 mt-2' id = "district">
+            <option value=""> Select District</option>
+            <option value="Ahmednagar">Ahmednagar</option>
+            <option value="Akola">Akola</option>
+            <option value="Amravati">Amravati</option>
+            <option value="Aurangabad">Aurangabad</option>
+            <option value="Beed">Beed</option>
+            <option value="Bhandara">Bhandara</option>
+            <option value="Buldhana">Buldhana</option>
+            <option value="Chandrapur">Chandrapur</option>
+            <option value="Gadchiroli">Gadchiroli</option>
+            <option value="Gondia">Gondia</option>
+            <option value="Hingoli">Hingoli</option>
+            <option value="Jalgaon">Jalgaon</option>
+            <option value="Jalna">Jalna</option>
+            <option value="Kolhapur">Kolhapur</option>
+            <option value="Latur">Latur</option>
+            <option value="Mumbai City">Mumbai City</option>
+            <option value="mumbai_suburb">Mumbai Suburban</option>
+            <option value="Nagpur">Nagpur</option>
+            <option value="Nanded">Nanded</option>
+            <option value="Nashik">Nashik</option>
+            <option value="Osmanabad">Osmanabad</option>
+            <option value="Palghar">Palghar</option>
+            <option value="Parbhani">Parbhani</option>
+            <option value="Pune">Pune</option>
+            <option value="Raigad">Raigad</option>
+            <option value="Ratnagiri">Ratnagiri</option>
+            <option value="Sangli">Sangli</option>
+            <option value="Satara">Satara</option>
+            <option value="Sindhudurg">Sindhudurg</option>
+            <option value="Solapur">Solapur</option>
+            <option value="Thane"> Thane</option>
+            <option value="Wardha">Wardha</option>
+            <option value="Washim">Washim</option>
+            <option value="Yavatmal">Yavatmal</option>
+             </select>
+        </div>
+
+        
+
+        <hr>
+        <label>Facilities</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="women_state_home" id=""> Women State Home </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="one_stop_center" id=""> One Stop Center</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center"  id=""> Counselling Center </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="adhar_gruh" id=""> Aadhar Greh</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" id=""> Working Women Hostel </label><br>
+        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">Police Stations</label><br>
+        <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br> -->
+        <!-- <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br> -->
+
+
+        <button id="plot" style="display: none;" type="submit">Plot</button>
+    </div>
+    <div class="border"><label>Clear Selection </label><br>
+    
+        <button onclick="clearAll()" id="clear-data"class="btn btn-primary" style="align-items: center;">Clear All</button>
+    </div>  
+
+    <div class="border"><label>Proximity of Facilities</label><br>
+        <button type="button" class="btn-sm btn-primary" id='locate'>Your Location</button>
+        <button type="button" class="btn-sm btn-primary" id='setlocation'>Set Location</button>
+        <!-- <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button> -->
+        <div id="slider">
+            <label>Set Range</label><br>
+            <input type="range" min="1" max="50" value="1" class="slider" id="myRange" step="1">
+            <div class="sliderticks">
+                <p>1</p>
+                <p>5</p>
+                <p>10</p>
+                <p>15</p>
+                <p>20</p>
+                <p>25</p>
+                <p>30</p>
+                <p>35</p>
+                <p>40</p>
+                <p>50</p>
+            </div>
+                <button type="button" class="btn btn-primary" id='setbuffer'>Facilities within <span id="demo"></span> Km </button>
+    
+</form>
+<script>
+
+    var p_plotted=false
+    function plot_police_stations(){
+        if(!p_plotted){
+            var wms_layer;
+            ppoints=[]
+            var data = fetchJSON("{% static 'data/Point_polie_Station_v1.geojson' %}")
+            .then(function(data) { 
+        
+            // do what you want to do with `data` here...
+                data.features.forEach(e => {
+                    wms_layer = L.marker([e.geometry.coordinates[1],e.geometry.coordinates[0]],{icon: icon6})
+                    wms_layer.addTo(mymap)
+                    htm=""
+                    for (const key in e.properties) {
+                        if (e.properties.hasOwnProperty(key)) {
+                        htm = htm+`${key}: ${e.properties[key]}<br>`
+                        }
+                    }
+                    wms_layer.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`</div>`)
+                    ppoints.push(wms_layer)
+                });
+            
+            }); 
+            p_plotted=true;
+        }else{
+            ppoints.forEach(e=>{
+                mymap.removeLayer(e)
+            })
+            p_plotted=false
+        }
+          
+    }
+
+    var pj_plotted=false;
+    var wms_layer;
+    function plot_police_jurisdiction(){
+        if(!pj_plotted){
+        var data = fetchJSON("{% static 'data/police_jurisdiction.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+        wms_layer = L.geoJson(data)
+        wms_layer.addTo(mymap)
+        mymap.fitBounds(wms_layer.getBounds())
+
+        });   
+        pj_plotted=true;
+        }else{
+            wms_layer.remove()
+            pj_plotted=false
+        }
+    }
+
+</script>
+
+     <!-- <div class="border">
+        <div>
+            <div class="tooltips" title="Please select the District">
+                <select  name="district__in" class='form-control mb-2 mt-2' id = "district">
+                  <option value=""> Select District</option>
+                  {% for i in district %}
+                  <option value="{{ i.district }}">{{ i.district }}</option>
+                  {% endfor %}
+                 </select>
+            </div>
+
+            <div class="tooltips" title="Please select the Maharashtra's Blocks" id="block">
+                <select name="block_n__in" class='form-control mb-2 mt-2' id="block_s">
+                <option value=""> Select Taluka </option>
+                {% for i in taluka %}
+                <option value="{{ i.block_n }}">{{ i.block_n }}</option>
+                {% endfor %}
+                </select>
+            </div>
+
+            {% csrf_token %}
+            <form id="wsh_form" action="viewWcdMap" method="POST">
+                
+                <input type="hidden" name="district" value="" id="">
+
+                <h6>Women State Home</h6>
+                <select name="" class='form-control mb-2 mt-2' id="wsh">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='women_state_home'>Women State Home</option>
+                    <option value='address'>Address</option>
+                    <option value='contact'>Contact</option>
+                    <option value='gmail'>Gmail</option>
+                    <option value='capacity'>Capacity</option>
+                    <option value='no_reported_women'>Number of women admitted during the reporting month</option>
+                    <option value='no_reported_childn'>Number of children with admissions admitted during the reporting month</option>
+                    <option value='superintendent_nam'>Name of Superintendent</option>
+                    <option value='superintendent_contact'>Superintendent's mobile number</option>
+                    <option value='date_appoint_or_charge'>Regular Appointment /Additional Charge of Superintendent Dated</option>
+                    <option value='scantioned_posts_no'>Number of posts sanctioned</option>
+                    <option value='filled_posts_no'>Number of posts filled</option>
+                    <option value='empty_posts'>Number of Vacancies</option>
+                    <option value='constr_type'>Construction type of State House building</option>
+                    <option value='area'>Total Construction Area of ​​State House (Sq. Ft.)</option>
+                    <option value='no_printer/scanner'>Total Number of Printers/Scanners</option>
+                    <option value='net_conn?'>Availability of internet connection</option>
+                    <option value='cooking_utensils?'>Are there enough utensils and cooking utensils?</option>
+                    <option value='reported_no_females'>Number of **Females** on the first day of the reporting month</option>
+                    <option value='reported_no_childrn'>Number of **children with women** on the first day of the reporting month</option>
+                    <option value='no_upto_12th'>Number of beneficiaries studying upto 12th</option>
+                    <option value='no_benefi_degree/grad'>Number of Beneficiaries pursuing Degree / Post Graduation</option>
+                    <option value='no_other_edu_benefi'>Number of beneficiaries receiving other education</option>
+                    <option value='training/industry_nam1'>Vocational Training / Name of Industry 1</option>
+                    <option value='training/industry_nam2'>Vocational Training / Name of Industry 2</option>
+                    <option value='training/industry_nam3'>Vocational Training / Name of Industry 3</option>
+                    <option value='training/industry_nam4'>Vocational Training / Name of Industry 4</option>
+                    <option value='no_elegble_females_benefit_maher'>Number of eligible female enrollees benefited under Maher scheme during the reporting month</option>
+                    <option value='no_1stchildrn_benefit_Maher'>Number of first children benefited under Maher scheme during the reporting month</option>
+                    <option value='no_2ndchildrn_benefit_Maher'>Number of second children benefited under Maher Yojana during the reporting month</option>
+                </select>
+                <style>
+                    .txt{
+                        visibility: hidden;
+                        position: absolute;
+                        z-index: 1;
+                        margin-left: 5px;
+                        background-color:#c9dbe6 ;
+                        color: #000;
+                        border:#000 1px solid;
+                    }
+                    .add_filter:hover .txt{
+                        visibility: visible;
+                    }
+                    .cls_txt{
+                        visibility: hidden;
+                    }
+                    .cls:hover .cls_txt{
+                        visibility: visible;
+                    }
+                    
+                </style> -->
+                <!-- <div class="add_filter" style="width: fit-content; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div> -->
+                <!-- <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div>
+                <script>
+                    function a(id){
+                        var x=document.getElementById(id);
+                        if(!opn){
+                            
+                            x.style.display='block';
+                            // x.click()
+                            // x.size = x.options.length;
+                            opn = true
+                        }else{
+                            x.style.display='none';
+                            opn = false
+                        }
+                    }
+                </script>
+                <p id="selected_optn1" >
+
+                </p>
+                <button id="wsh_submit" style="display: none;" type="submit"></button>
+                </form>
+                <form id="osc_form" action="viewWcdMap" method="POST">
+
+                <input type="hidden" name="district" value="" id="">
+
+                <h6>One Stop Center</h6>
+                <select class='form-control mb-2 mt-2' name="" id="osc">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='one_stop_center'>One Stop Center</option>
+                    <option value='one_stop_center_name'>Name of One Stop Center</option>
+                    <option value='osc_address'>Address</option>
+                    <option value='osc_landline'>Landline</option>
+                    <option value='osc_mobile'>Mobile No</option>
+                    <option value='osc_gmail'>Gmail</option>
+                    <option value='accomodated_women'>How many women are accommodated?</option>
+                    <option value='women_reg_resid'>Total number of women admitted for residence during the reporting month:</option>
+                    <option value='childn_wom_reg'>Number of children with women admitted for residence during the reporting month</option>
+                    <option value='center_admin_nam'>Name of Center Administrator</option>
+                    <option value='admin_contact'>Admin Mobile Number</option>
+                    <option value='no_posts_sanc'>Number of posts sanctioned</option>
+                    <option value='filled_posts'>Number of posts filled</option>
+                    <option value='empty_posts'>Number of Vacancies</option>
+                    <option value='osc_const_type'>Location of building of One Stop Center</option>
+                    <option value='osc_in_hospt?'>Is the one stop center building in the hospital premises?</option>
+                    <option value='bed_count'>Number of beds</option>
+                    <option value='refrigerator'>Is a refrigerator available?</option>
+                    <option value='comp_peripherals'>Are computer peripherals (desktop, printer, scanner) available?</option>
+                    <option value='telephone_available'>Is telephone (name of center) available?</option>
+                    <option value='net_conn'>Is there an internet connection available?</option>
+                    <option value='welcome_kit'>Is a welcome kit available?</option>
+                    <option value='pantry_items'>Are pantry items (mini kitchen) available?</option>
+                    <option value='cctv'>Is CCTV installed and working?</option>
+                </select>
+                <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div>
+                <p id="selected_optn2" >
+
+                </p>
+                <button id="osc_submit" style="display: none;" type="submit">sda</button>
+                </form>
+                <form id="cc_form" action="viewWcdMap" method="POST">
+
+                <h6>Counselling Center</h6>
+
+                <input type="hidden" name="district" value="" id="">
+
+                <select class='form-control mb-2 mt-2' name="" id="cc">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='counselling_center'>Counselling Center</option>
+                    <option value='cc_address'>Address</option>
+                    <option value='cc_contact'>Contact</option>
+                    <option value='org_to_run_cc'>Name of the organization appointed to run the Counseling Centre</option>
+                    <option value='addres_to_run_cc'>Complete address of the organization appointed to run the Counseling Centre</option>
+                    <option value='nam_of_officers'>Name of the Officers of the Institute</option>
+                    <option value='contact_of_officers'>Phone numbers of office bearers of the organization</option>
+                    <option value='gmail_of_cc'>Gmail ID of Counseling Center</option>
+                    <option value='counselor_nam1'>Counselor Name 1</option>
+                    <option value='counselor_contact1'>Counselor Mobile Number 1</option>
+                    <option value='counselor_nam2'>Counselor Name 2</option>
+                    <option value='counselor_contact2'>Counselor Mobile Number 2</option>
+                    <option value='seprt_tele_avail?'>Is separate telephone connection available in the Counseling Centre</option>
+                </select>
+                <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div>
+                <p id="selected_optn3" >
+
+                </p>
+                <button style="display: none;" id="cc_submit" type="submit">sdfds</button>
+                </form>
+                <form id="sg_form" action="viewWcdMap" method="POST">
+
+                <input type="hidden" name="district" value="" id="">
+
+                <h6>Swadhaar Greh</h6>
+                <select class='form-control mb-2 mt-2' name="" id="sg">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='swadhaar_home'>Swadhaar Greh</option>
+                    <option value='address'>Address</option>
+                    <option value='building_type'>Building Type</option>
+                    <option value='contact'>Contact</option>
+                    <option value='mobile_no'>Mobile No</option>
+                    <option value='gmail'>Gmail</option>
+                    <option value='approval_date'>Approval Date</option>
+                    <option value='capacity'>The admitted sanctioned capacity of the institution</option>
+                    <option value='women_admitted'>Total number of women admitted during the reporting month</option>
+                    <option value='children_with_women'>Total number of children with women admitted during the reporting month</option>
+                    <option value='superintendent_nam'>Name of Superintendent</option>
+                    <option value='superintendent_contact'>Superintendent's mobile number</option>
+                    <option value='no_posts'>Number of posts sanctioned</option>
+                    <option value='filled_no_posts'>Number of posts filled</option>
+                    <option value='no_vacancies'>Number of Vacancies</option>
+                    <option value='nursery_facility?'>Is there a nursery facility in Swadhar Sanstha?</option>
+                    <option value='cooking_utensils?'>Are there enough cooking utensils and utensils?</option>
+                    <option value='net_conn?'>Is the internet facility up to date?</option>
+                    <option value='first_aid_kit?'>Is the first aid kit updated?</option>
+                    <option value='no_cctv'>Number of CCTV Cameras in Swadhar Institution</option>
+                    <option value='no_running_water_filters'>Number of running water filters</option>
+                </select>
+                <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div>
+                <p id="selected_optn4" >
+
+                </p>
+                <button style="display: none;" id="sg_submit" type="submit">dfsd</button>
+                </form>
+                <form id="ug_form" action="viewWcdMap" method="POSt">
+
+                <input type="hidden" name="district" value="" id="">
+                
+                <h6>Ujjwal Greh</h6>
+                <select class='form-control mb-2 mt-2' name="" id="ug">
+                    <option value="">Select</option>
+                    <option value='report_date'>Report Date</option>
+                    <option value='section'>Section</option>
+                    <option value='ujjwal_greh'>Ujjwal Greh</option>
+                    <option value='address'>Address</option>
+                    <option value='constr_type'>Construction Type</option>
+                    <option value='contact'>Contact</option>
+                    <option value='mobile_no'>Mobile No</option>
+                    <option value="gmail">Gmail</option>
+                    <option value='approval_date'>Approval Date</option>
+                    <option value='admitted_approved_no'>Institution's admitted approved number</option>
+                    <option value='admitted_sanctioned_capacity'>The admitted sanctioned capacity of the institution</option>
+                    <option value='no_women_admitted'>Total number of women admitted during the reporting month</option>
+                    <option value='no_childn_with_women'>Total number of children with women admitted during the reporting month</option>
+                    <option value='project_director_nam'>Name of the Project Director</option>
+                    <option value='project_director_contact'>Project Director's mobile number</option>
+                    <option value='no_posts_sanctioned'>Number of posts sanctioned</option>
+                    <option value='no_posts_filled'>Number of posts filled</option>
+                    <option value='no_empty_posts'>Number of vacancies</option>
+                    <option value='nursery_facility?'>Is there a nursery facility in Ujwala Institute?</option>
+                    <option value='cooking_utensils?'>Are there enough cooking utensils and utensils?</option>
+                    <option value='net_conn?'>Is the internet facility up to date?</option>
+                    <option value='first_aid_kit?'>Is the first aid kit updated?</option>
+                    <option value='no_cctv'>Number of CCTV Cameras in Ujwala Institute</option>
+                    <option value='no_working_water_filter'>Number of working water filters</option>
+                </select>
+                <div class="add_filter" style="width: 20px; height: 20px; text-align: center; border-radius: 50%; color: white; background: #007bff; ">
+                    <i onclick="a()" class="fas fa-plus"></i>
+                    <span class="txt">Add Filter</span>
+                </div>
+                <p id="selected_optn5" >
+
+                </p>
+                <button style="display: none;" id="ug_submit" type="submit">dfsd</button>
+                
+            </form>
+        </div>
+    </div> -->
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+
+    var points=[];
+    var districtLayer;
+    var talLayer;
+
+    /*
+    var Amravati =['','Akola' ,'Amravati','Buldhana','Yavatmal','Washim']
+    var Aurangabad=['','Aurangabad','Beed','Jalna','Osmanabad' , 'Nanded', 'Latur','Parbhani' ,'Hingoli']
+    var Mumbai=['','Mumbai City','mumbai_suburb','Thane','Palghar','Raigad', 'Ratnagiri','Sindhudurg']
+    var Nagpur=['','Bhandara','Chandrapur','Gadchiroli','Gondia','Nagpur',' Wardha']
+    var Pune=['','Sangli','Satara','Solapur_North', 'Kolhapur' ,'Pune']
+    var Nashik=['','Dhule','Jalgaon','Nandurbar', 'Nashik','Ahmednagar']
+    */
+    /*
+    var Raigad = [ 'Select Taluka', 'Pen','Alibag','Murud','Panvel','Uran','Karjat','Khalapur','Mangaon']
+    var Ratnagiri = ['Select Taluka','Ratnagiri','Sangameshwar','Lanja','Rajapur ','Chiplun','Guhagar','Dapoli','Mandangad','Khed']
+    var Sindhudurg = ['Select Taluka','Kankavli','Vaibhavwadi','Devgad','Malwan','Sawantwadi','Kudal','Vengurla','Dodamarg (Kasal)']
+    var Palghar = ['Select Taluka','Palghar','Vasai','Dahanu','Talasari','Jawhar','Mokhada','Vada','Vikramgad']
+    var nashik  = ['Select Taluka', 'Nashik','Igatpuri','Dindori','Peth','Trimbakeshwar','Kalwan','Deola','Surgana','Baglan(Satana)','Malegaon','Nandagaon','Chandwad','Niphad','Sinnar','Yeola']
+    var Nandurbar = ['Select Taluka', 'Nandurbar','Navapur','Shahada','Talode','Akkalkuwa','Akrani(Dhadgaon)']
+    var Dhule= ['Select Taluka', 'Dhule','Sakri','Sindkheda','Shirpur']
+    var mumbai_suburb = ['Select Taluka','Kurla','Mulund','Andheri','Borivali']
+    var Mumbai_City = ['Select Taluka','Mumbai']
+    var Jalgaon = ['Select Taluka', 'Jalgaon','Jamner','Erandol','Dharangaon','Bhusawal','Raver','Muktainagar','Yawal','Amalner','Parola','Chopda','Pachora','Bhadgaon','Chalisgaon']
+    var Buldhana = ['Select Taluka', 'Buldhana','Chikhli','Deulgaon','Jalgaon Jamod','Sangrampur','Malkapur','Motala','Nandura','Khamgaon','Shegaon','Mehkar','Sindkhed Raja','Lonar']
+    var Akola = ['Select Taluka', 'Akola','Akot','Telhara','Patur','Murtajapur','Barshitakli']
+    var Washim = ['Select Taluka', 'Wahim','Malegaon','Risod','Mangrulpir','Karanja','Manora']
+    var Thane=['Select Taluka','Thane','Kalyan','Murbad','Bhiwandi','shahapur','Ulhasnagar','Ambarnath']
+    var amravati = ['Select Taluka', 'Amravati','Bhatukali','Nandgaon Khandeshwar','Dharni (Amravati)','Chikhaldara','Achalpur','Chandurbazar','Morshi','Warud','Daryapur','Anjangaon-Surji','Chandur','Dhamangaon','Tiosa']
+    var Wardha = ['Select Taluka', '	Wardha','Deoli','Seloo','Arvi','Ashti','Karanja','Hinganghat','Samudrapur']
+    var nagpur = ['Select Taluka', 'Nagpur','Kamptee','Hingna','Katol','Narkhed','Savner','Kalameshwar','Ramtek','Mouda','Parseoni','Umred','Kuhi','Bhiwapur']
+    var Bhandara = ['Select Taluka', 'Bhandara','Tumsar','Pauni','Mohadi','Sakoli','Lakhni','Lakhandur']
+    var Gondia = ['Select Taluka', 'Gondia','Tiroda','Goregaon','Arjuni Morgaon','Amgaon','Salekasa','Sadak Arjuni ','Deori']
+    var gadchiroli = ['Select Taluka', 'Gadchiroli','Dhanora','Chamorshi','Mulchera','Desaiganj (Vadasa)','Armori','Kurkheda','Korchi','Korchi','Bhamragad','Sironcha']
+    var Chandrapur = ['Select Taluka', 'Chandrapur','Saoli','Mul','Ballarpur','Pombhurna','Gondpimpri','Warora','Chimur','Bhadravati','Bramhapuri','Nagbhid ','Sindewahi','Rajura','Korpana','Jivati']
+    var Yavatmal = ['Select Taluka', 'Yavatmal','Arni','Babhulgaon','Kalamb','Darwha','Digras','Ner','Pusad','Umarkhed','Mahagaon','Kelapur (Pandharkawada)','Ralegaon','Ghatanji','Wani','Maregaon','Zari Jamani']
+    var Nanded = ['Select Taluka', 'Nanded','Ardhapur','Mudkhed','Bhokar','Umri','Loha','Kandhar','Kinwat','Himayatnagar','Hadgaon','Mahur','Deglur','Mukhed','Dharmabad','Biloli','Naigaon (Khairgaon)']
+    var Hingoli = ['Select Taluka', 'Hingoli','Sengaon','Kalamnuri','Basmath','Aundha Nagnath']
+    var Parbhani = ['Select Taluka', 'Parbhani','Sonpeth','Gangakhed','Palam','Purna','Sailu','Jintur','Manwath','Pathri']
+    var Jalna = ['Select Taluka', 'Jalna','Bhokardan','Jafrabad','Badnapur','Ambad','Ghansawangi','Partur','Mantha']
+    var aurangabad = ['Select Taluka', 'Aurangabad','Kannad','Soegaon','Sillod','Phulambri','Khuldabad','Vaijapur','Gangapur','Paithan']
+    var Beed= ['Select Taluka', 'Beed','Ashti','Patoda','Shirur-Kasar','Georai','Majalgaon','Wadwani','Kaij','Dharur','Parli','Ambejogai']
+    var Latur = ['Select Taluka', 'Latur','Renapur','Ahmedpur','Jalkot','Chakur','Shirur Anantpal','Ausa','Nilanga','Deoni','	Udgir',]
+    var Osmanabad = ['Select Taluka', 'Osmanabad','Tuljapur','Bhum','Paranda','Washi','Kalamb','Lohara','Umarga']
+    var Solapur_North = ['Select Taluka', 'Solapur North','Barshi','Solapur South','Akkalkot','Madha','Karmala','Pandharpur','Mohol','Malshiras','Sangole','Mangalvedhe']
+    var Ahmednagar = ['Select Taluka', 'Nagar','Shevgaon','Pathardi','Parner','Sangamner','Kopargaon','Akola','Shrirampur','Nevasa','Rahata','Rahuri','Shrigonda ','Karjat','Jamkhed']
+    var pune = ['Select Taluka', 'Pune City','Haveli','Haveli - PCMC, PCMC','Khed (Rajgurunagar)','Junnar','Ambegaon (Ghodegaon)','Maval (Vadgaon)','Mulshi (Paud)','Shirur','Purandhar (Saswad)','Velhe','Bhor','Baramati','Indapur','Daund']
+    var Satara = ['Select Taluka', 'Satara','Jaoli','Koregaon','Wai','Mahabaleshwar','Khandala','Phaltan','Maan (Dahiwadi)','Khatav (Vaduj)','Patan','Karad']
+    var Sangli = ['Select Taluka', 'Miraj','Kavathe-Mahankal','Tasgaon','Jat','Walwa (Islampur)','Shirala','Khanapur-Vita ','Atpadi','Palus','Kadegaon']
+    var Kolhapur = ['Select Taluka', 'Karvir','Panhala','Shahuwadi','Kagal','Hatkanangale','Shirol','Radhanagari','Gaganbawada','Bhudargad','Gadhinglaj','Chandgad','Ajra']
+    */
+    /*
+    const download = ()=>{
+        const rows = [['awc_code','district','project','beat','latitude','longitude','altitude','accuracy','objectid','st_code','st_name','dist_code','dist_name','ac_no','ac_name','start','end','division','district_1','project_2','Beat_3','Anganwadi_4','agan_type','agancbuil_const','aganc_forrent','yes_moveagan_govpre','no_owner_agancbuil','child_sitagan','child_weigh_material','child_weigh_mat_working','adult_wtequip','adult_wteq_working','infant_meter','infant_meter_working','stadiometer','stadm_working','maint_repair_need','agan_drinkwat_avail','agan_tap','plumb_workcond','toil_fac','toil_working','electricity_connection','solar_powersupply','agan_tv','tv_working','agan_fenc','agan_back_gard','space_own_garden','vac_agan','post_vac','post_vac_aw_worker','post_vac_help','pro_fill_agan_post','child0_6monage','child6mon_3yr','child3 _6yrs','tot_no_child','preg_moth_agan','brestfeed_moth_agan','preg_lact_moth','aadh_notlinknuttrack','preg_lact_mothaadh_notlinked_nuttrack','child_weigh_meas_agan_mar22','child_heigh_meas_agan_mar22','no_suv_child_agan_Jan_mar22','no_suv_child_recthr_jan_mar22','child_sam_agan_jan_mar22','child_rec_vcdc_fac','sam_child_agan_vcdc_jan_mar22','sam_agan_nrc_jan_mar22','no_adol_girl_dropsch_agan','child_agan_sch_engl_priv_nurs','ifyes_childenrol_agan_sch_priv_nurs_engl','agan_rec_migr_bene','bene_agan_migr_indist','agan_bene_migr_outdist','benetot_migr_out','migrbenetot_agancentarea','agan_serv_migr_outaganarea','ifyes_aganspen10pergdp_endmar22','ifyes_gp_spent_10pergdp_endmarch22','aay','totno_child_serv_aay_6mon_6yrs','preg_lact_mother_serv_aay_ecd','parvisit_inibalasch','parent_visit_past_year','balasch','agan_und_balasch','work_comund_balasch_mar22','ifcom_ongo_task_comp_undbalasch','ifcom_ongo_task_comp_undbalasch1','ifcom_ongo_task_comp_undbalasch_sandpit','ifcom_ongo_task_comp_undbalasch_lawn','ifcom_ongo_task_comp_undbalasch_display','ifcom_ongo_task_comp_undbalasch_writboar','sign_sup_chserv','sign_sup_headmisurl','_id','_uuid','_submission_time','_validation_status','_notes','_status','_submitted_by','_tags','_index']]
+        for(point of points){
+            const row=[]
+            for(attr in point.data){
+                row.push(point.data[attr])
+            }
+            rows.push(row);
+    
+        }
+        console.log(rows[1]);
+    
+    
+        const bom = "\uFEFF"
+        let csvContent = "data:text/csv;charset=utf-8," +bom+ rows.map(e => e.join(",")).join("\n");
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href",encodedUri);
+        link.setAttribute("download", "my_data.csv");
+        document.body.appendChild(link); // Required for FF
+    
+        link.click();
+    }*/
+
+    var legend = L.control({position: 'topright'});
+
+legend.onAdd = function (mymap) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [0, 10, 20, 50, 100, 200, 500, 1000],
+        labels = [];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    
+        div.innerHTML +=`<img src="{% static 'map/pinmargerblue.png' %}" style="width:28px;height:28px;"> Women State Home <br>
+        <img src="{% static 'map/pinmargerred.png' %}" style="width:28px;height:28px;"> One Stop Center <br>
+        <img src="{% static 'map/pinmargerorange.png' %}" style="width:28px;height:28px;"> Counselling Center <br>
+        <img src="{% static 'map/pinmargergreen.png' %}" style="width:28px;height:28px;"> Swadhaar Greh <br>
+        
+        <img src="{% static 'map/pinmargerpink.png' %}" style="width:28px;height:28px;">Ujjwal Greh <br>
+        <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> Working Women Hostel <br>
+        <img src="{% static 'map/pin_adhar_gruh1.png' %}" style="width:15px;height:15px;">  Adhar Greh <br><hr>
+        <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> Police Stations <br>`
+    
+
+    return div;
+};
+
+legend.addTo(mymap);
+    
+    var DistrictSelected="";
+    $("#district").change(function(){
+        //document.getElementById('post-form').submit()
+        //document.getElementById('cate').click()
+        // document.getElementById('cate_submit').click();
+
+        document.getElementsByName('district').forEach(e=>{
+            e.value=$(this).val();
+            console.log(e)
+        })
+        DistrictSelected = $(this).val();
+        var optionsList;
+        var htmlString = "";
+    
+        if(districtLayer){
+            mymap.removeLayer(districtLayer)
+        }
+    
+    var wms_layer;
+    var data = fetchJSON("{% static 'data/districts_rev21june23.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+        data.features.forEach(function(feature) {
+            //console.log(feature.properties.Block)
+            if(DistrictSelected!=""){
+                //console.log(feature.properties)
+                if(feature.properties.district==DistrictSelected){
+                    wms_layer = L.geoJson(feature.geometry)
+                    wms_layer.addTo(mymap)
+                    mymap.fitBounds(wms_layer.getBounds())
+                }
+            }
+            districtLayer = wms_layer;
+        });
+        
+    });   
+    /*
+    
+        switch (DistrictSelected) {
+          case "Raigad":
+              optionsList = Raigad;
+              break;
+          case "Ratnagiri":
+              optionsList = Ratnagiri;
+              break;
+          case "Sindhudurg":
+              optionsList = Sindhudurg;
+              break;
+          case "mumbai_suburb":
+              optionsList = mumbai_suburb;
+              break;
+          case "Mumbai City":
+              optionsList = Mumbai_City;
+              break;
+          case "Thane":
+              optionsList = Thane;
+              break;
+          case "Palghar":
+              optionsList = Palghar;
+              break;
+          case "Nashik":
+              optionsList = nashik;
+              break;
+          case "Nandurbar":
+              optionsList = Nandurbar;
+              break;
+          case  "Dhule":
+              optionsList = Dhule;
+              break;
+          case "Jalgaon":
+              optionsList = Jalgaon;
+              break;
+          case "Buldhana":
+              optionsList = Buldhana;
+              break;
+          case "Akola":
+              optionsList = Akola;
+              break;
+          case "Washim":
+              optionsList = Washim;
+              break;
+          case  "Amravati":
+              optionsList = amravati;
+              break;
+          case "Wardha":
+              optionsList = Wardha;
+              break;
+          case  "Nagpur":
+              optionsList = nagpur;
+              break;
+          case "Bhandara":
+              optionsList = Bhandara;
+              break;
+          case  "Gondia":
+              optionsList = Gondia;
+              break;
+          case "Gadchiroli":
+              optionsList = gadchiroli;
+              break;
+          case  "Chandrapur":
+              optionsList = Chandrapur;
+              break;
+          case "Yavatmal":
+              optionsList = Yavatmal;
+              break;
+          case  "Nanded":
+              optionsList = Nanded;
+              break;
+          case "Hingoli":
+              optionsList = Hingoli;
+              break;
+          case  "Parbhani":
+              optionsList = Parbhani;
+              break;
+          case "Jalna":
+              optionsList = Jalna;
+              break;
+          case  "Aurangabad":
+              optionsList = aurangabad;
+              break;
+          case  "Beed":
+              optionsList = Beed;
+              break;
+          case "Latur":
+              optionsList = Latur ;
+              break;
+          case  "Osmanabad":
+              optionsList = Osmanabad;
+              break;
+          case  "Solapur_North":
+              optionsList = Solapur_North;
+              break;
+          case "Ahmednagar":
+              optionsList = Ahmednagar;
+              break;
+          case  "Pune":
+              optionsList = pune;
+              break;
+          case "Satara":
+              optionsList = Satara;
+              break;
+          case  "Sangli":
+              optionsList = Sangli;
+              break;
+          case "Kolhapur":
+              optionsList = Kolhapur;
+              break;
+    
+      }
+    
+      // console.log(optionsList)
+        if(optionsList!=undefined){
+            htmlString = htmlString+"<option value=''> Select Taluka </option>";
+            for(var i = 1; i < optionsList.length; i++){
+            htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
+            }
+        }
+        $("#block_s").html(htmlString);
+    
+      console.log('not')
+    */
+      });
+      var sectionLayer;
+
+      $('#section').change(function(){
+        selectedSection = $(this).val()
+        var wms_layer="";
+        var htmlString="";
+        var data = fetchJSON("{% static 'data/section.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+            data.features.forEach(function(feature) {
+                console.log(feature.properties)
+                if(selectedSection!=""){
+                    //console.log(feature.properties)
+                    if(feature.properties.Region==selectedSection){
+                        wms_layer = L.geoJson(feature.geometry)
+                        wms_layer.addTo(mymap)
+                    }
+                }
+                sectionLayer = wms_layer;
+            });               
+        });   
+
+        switch(selectedSection){
+            case "Amravati":
+                optionsList = Amravati;
+                break;
+            case "Aurangabad":
+                optionsList = Aurangabad
+                break;
+            case "Mumbai":
+                optionsList = Mumbai
+                break;
+            case "Nagpur":
+                optionsList = Nagpur
+                break;
+            case "Pune":
+                optionsList = Pune
+                break;
+            case "Nashik":
+                optionsList = Nashik
+                break;
+        }
+
+        if(optionsList!=undefined){
+            htmlString = htmlString+"<option value=''> Select District </option>";
+            for(var i = 1; i < optionsList.length; i++){
+            htmlString = htmlString+"<option value='"+ optionsList[i] +"'>"+ optionsList[i] +"</option>";
+            }
+        }
+        $("#district").html(htmlString);
+
+    })
+
+
+    /*
+    $('#block_s').change(function(){
+        putWMSLayertaluka();
+        //document.getElementById('cate_submit').click();
+        //document.getElementById('fs').click()
+        //document.getElementById("post-form").submit();
+    })
+    */
+
+    function fetchJSON(url) {
+        return fetch(url)
+          .then(function(response) {
+            return response.json();
+          });
+      }
+
+
+    function putWMSLayertaluka() {
+    // clear_tallayer();
+
+    if(talLayer){
+        mymap.removeLayer(talLayer)
+    }
+    // var taluka = document.getElementById('block_s').value;
+
+    var wms_layer;
+    var data = fetchJSON("{% static 'data/talukas.geojson' %}")
+        .then(function(data) { 
+    
+        // do what you want to do with `data` here...
+        data.features.forEach(function(feature) {
+            //console.log(feature.properties.Block)
+            if(DistrictSelected!=""){
+                if(feature.properties.Block==taluka && feature.properties.District==DistrictSelected){
+                    //console.log(feature.geometry)
+                    wms_layer = L.geoJson(feature.geometry)
+                    wms_layer.addTo(mymap)
+                }
+            }else{
+                if(feature.properties.Block==taluka){
+                    //console.log(feature.geometry)
+                    wms_layer = L.geoJson(feature.geometry)
+                    wms_layer.addTo(mymap)
+                }
+            }
+            talLayer=wms_layer;
+        });
+        
+    });   
+    
+    }
+
+    
+function clearAll(){
+    // alert("clicked clear all")
+    DistrictSelected="";
+    var opts = document.getElementsByClassName("optn")
+    
+    // alert(opts.length)
+    for(var i=0;i<opts.length;i++){
+        // alert(opts[i].checked)
+        if(opts[i].checked)
+            opts[i].checked=false
+    }
+
+    points.forEach(p=>{
+        mymap.removeLayer(p)
+    })
+    points=[]
+    if(districtLayer){
+        mymap.removeLayer(districtLayer)
+    }
+    document.getElementById('district').value = "";
+    if(talLayer){
+        mymap.removeLayer(talLayer)
+    }
+
+    if(document.getElementById('mumbai_police_station').checked){
+        document.getElementById('mumbai_police_station').dispatchEvent(new Event('change'))
+    }
+    if(document.getElementById('mumbai_police_jurisdiction').checked){
+        document.getElementById('mumbai_police_jurisdiction').dispatchEvent(new Event('change'))
+    }
+    // if(circle)
+        mymap.removeLayer(circle);
+    mymap.setView([19.000, 74.999],7);
+}
+
+$(document).ready(
+    $('#wsh_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'viewWcdMap' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                // console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                //data["d1"].forEach(e=>{
+                //    console.log(e)
+                //})
+                d1 = JSON.parse(data["d1"])
+                if(d1!="") {
+                    plotData(d1,"wsh");
+                    console.log("d1")
+                }
+
+                d2 = JSON.parse(data["d2"])
+                console.log(d2)
+                if(d2!="") {
+                    plotData(d2,"osc");
+                }
+
+                d3 = JSON.parse(data["d3"])
+                if(d3!="") {
+                    plotData(d3,"cc");
+                }
+
+                d4 = JSON.parse(data["d4"])
+                if(d4!="") {
+                    plotData(d4,"sg");
+                }
+
+                d5 = JSON.parse(data["d5"])
+                if(d5!="") {
+                    plotData(d5,"ug");
+                }
+                
+                d6 = JSON.parse(data["d6"])
+                // console.log(d6)
+                if(d6!="") {
+                    plotData(d6,"mp");
+                }
+
+                d7 = JSON.parse(data["d7"])
+                // console.log(d6)
+                if(d7!="") {
+                    plotData(d7,"wwh");
+                }
+
+                d8 = JSON.parse(data["d8"])
+                // console.log(d6)
+                if(d8!="") {
+                    plotData(d8,"ag");
+                }
+                //plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+    {% comment %}
+    /*
+    $('#wsh_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'women_state_home' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                //console.log(data["data"])
+                d = JSON.parse(data["data"])
+                console.log(d)
+                plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+    */
+
+    /*
+    $('#osc_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'one_stop_center' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                //console.log(data["data"])
+                d = JSON.parse(data["data"])
+                console.log(d)
+                plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+
+    $('#cc_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'counselling_center' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                //console.log(data["data"])
+                d = JSON.parse(data["data"])
+                console.log(d)
+                plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+
+    $('#sg_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'swadhaar_greh' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                //console.log(data["data"])
+                d = JSON.parse(data["data"])
+                console.log(d)
+                plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+
+    $('#ug_form').submit(async function(e){
+        e.preventDefault();
+        var serializedData = $(this).serialize();
+        //console.log('hjkhjh');
+
+        $(document).ajaxStart(function () {
+            document.getElementById('load').style.display='flex';
+            //$("#load").show();
+        }).ajaxStop(function () {
+            document.getElementById('load').style.display='none';
+            //$("#load").hide();
+        });
+
+        $.ajax({
+            type:"POST",
+            url: "{% url 'ujjwal_greh' %}",
+            dataType: 'json',
+            data: serializedData,
+            success: function(data){
+                //console.log(data["data"])
+                d = JSON.parse(data["data"])
+                console.log(d)
+                plotData()
+            }
+        })
+        console.log(' belowhjkhjh');
+    }),
+
+    $('#wsh').on('change',function(){
+        var wsh = $('#wsh').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'women_state_home' %}",
+            dataType: 'json',
+            data: {wsh},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                console.log(data)
+                if(data['w1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                   
+
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("wsh").value+`'>`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('wsh').value+`","`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.w1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("wsh").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn1').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    $('.chkc-1').click(function(){
+                        document.getElementById('wsh_submit').click();
+                    })
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#osc').on('change',function(){
+        var osc = $('#osc').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'one_stop_center' %}",
+            dataType: 'json',
+            data: {osc},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['o1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("osc").value+`'>`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('osc').value+`","`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.o1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("osc").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn2').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    $('.chkc-1').click(function(){
+                        document.getElementById('osc_submit').click();
+                    })
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#cc').on('change',function(){
+        var cc = $('#cc').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'counselling_center' %}",
+            dataType: 'json',
+            data: {cc},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['c1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("cc").value+`'>`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('cc').value+`","`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("cc").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn3').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    $('.chkc-1').click(function(){
+                        document.getElementById('cc_submit').click();
+                    })
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                    
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#sg').on('change',function(){
+        var sg = $('#sg').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'swadhaar_greh' %}",
+            dataType: 'json',
+            data: {sg},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['s1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                    
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("sg").value+`'>`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('sg').value+`","`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.s1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("sg").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn4').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    $('.chkc-1').click(function(){
+                        document.getElementById('sg_submit').click();
+                    })
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                   
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    $('#ug').on('change',function(){
+        var ug = $('#ug').val()
+        $.ajax({
+            type:"GET",
+            url: "{% url 'ujjwal_greh' %}",
+            dataType: 'json',
+            data: {ug},
+            success: function(data){
+                //console.log(data["data"])
+                //d = JSON.parse(data["data"])
+                console.log("sadas")
+                //console.log(data)
+                if(data['u1']!=""){
+                    //document.getElementById('cate1').value = document.getElementById("category_1").value
+                    // console.log(document.getElementById('cate1').value)
+                    // document.getElementById('cate_val1').style.display = 'block';
+                   
+
+                    var htm = "";
+                    htm+=`<div id='`+document.getElementById("ug").value+`'>`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('ug').value+`","`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
+                    data.u1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("ug").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    htm+='</div>'
+
+                    document.getElementById('selected_optn5').innerHTML+=htm;
+
+                    // document.getElementById('chk-1').innerHTML=htm
+                    $('.chkc-1').click(function(){
+                        document.getElementById('ug_submit').click();
+                    })
+                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
+                }else{
+                    //document.getElementById('chk-1').innerHTML=""
+                   
+                }
+
+            }
+        })
+        //console.log($('#category_1').val())
+    }),
+    */{% endcomment %}
+)
+
+function removeOptn(a,b){
+    // console.log(document.getElementById(a).getElementsByTagName('input'))
+    for(var i=0;i<document.getElementById(a).getElementsByTagName('input').length;i++){
+        if(document.getElementById(a).getElementsByTagName('input')[i].checked){
+            document.getElementById(a).getElementsByTagName('input')[i].checked=false;
+            // document.getElementById('cate_submit').click();
+            break;
+        }
+    }
+    document.getElementById('wsh').innerHTML+='<option value="'+a+'">'+b+'</option>';
+    document.getElementById(a).remove()
+    console.log(`${a} ${b}`)
+    // document.getElementById('cate_submit').click();
+    // sortSelect(document.getElementById('category_1'))
+}
+
+function plotData(d, optn){
+    //for(x in d){
+    //    console.log(d[x].fields.latitude)
+    //}
+    console.log("d is ",d)
+    if(d==undefined || d == ""){
+        alert("No results for this selection")
+        clearAll()
+    }
+    console.log(`pltdata called`)
+    //replot()
+    for(x in d){
+        if(d[x].fields.latitude!=null && d[x].fields.longitude!=null){
+            if(optn=="wsh"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+                htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                
+                count=0
+                for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<15 && count!=1 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 ){
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.entrydoor_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.entrydoor_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_room_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.kitchen_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.kitchen_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.room_dormitory_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Women State Home</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+
+            }
+            if(optn=="osc"){
+                // alert("right [place]")
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon2});
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+                htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                
+                count=0
+                for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<15 && count!=1 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 ){
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.name_plate_photo_id!=''){
+                        // alert("2 rigt")
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.name_plate_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.kitchen_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.kitchen_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.room_dormitory_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>One Stop Centers</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+
+            }
+            if(optn=="cc"){
+                // alert("In CC")
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon3});
+                htm=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                htm_5=""
+                count=0
+                for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<21 && count!=1 && count!=2 && count!=3 && count!=4 && count!=8 && count!=9 && count!=10 && count!=11 && count!=12){
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Counselling_centers/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Counciling_Centers_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    // if(d[x].fields.open_campus_photo_id!=''){
+                    //     // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                    //     // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                    //     var str6 = htm_3.concat("' alt='image not found'></br>");
+                    //     filename=d[x].fields.open_campus_photo_id
+                    //     // .split(".")[0] + ".jpg";
+                    //     console.log("filename is : "+filename)
+                    //     // alert(filename)
+                    //     htm_3=" <img class = 'popupimage1' src='/static/map/Counciling_Centers_All_Data/".concat(filename).concat("'></br>");
+                    //     // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    // }
+                    
+                    // if(d[x].fields.signature_photo_id!=''){
+                    //     // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                    //     // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                    //     filename=d[x].fields.signature_photo_id
+                    //     // .split(".")[0] + ".jpg";
+                    //     console.log("filename is : "+filename)
+                    //     // alert(filename)
+                    //     htm_5=" <img class = 'popupimage1' src='/static/map/Counciling_Centers_All_Data/".concat(filename).concat("'></br>");
+                    //     var str8 = htm_5.concat("' alt='image not found'></br>");
+                    //     // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    // }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Counselling Centers</h5>`+htm+`<br>`+ `EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
+
+            }
+            if(optn=="sg"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon4});
+                htm=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                htm_5=""
+                count=0
+
+                for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<15 && count!=1 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 && count!=12 ){
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.entrydoor_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.entrydoor_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_room_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.kitchen_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.kitchen_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.room_dormitory_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Swadhaar Greh</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+
+            }
+            if(optn=="ug"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon5});
+                htm=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                htm_5=""
+
+                count=0
+                for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<15 && count!=1 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 && count!=12 ){
+                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.kitchen_photo3_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.kitchen_photo3_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo4_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.room_dormitory_photo4_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.signature_photo5_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.signature_photo5_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_5=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        var str8 = htm_5.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");signature_photo5_id
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Ujjwal Greh</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+
+            }
+            if(optn=="ag"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon8});
+                htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                count=0
+                // img_path=""
+                
+                for (const key in (d[x].fields)) {
+                  count = count + 1;  
+                  if(count<15 && count!=1 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 && count!=12 ){
+                // for(const key in islice(d[x].fields,20)){
+                    if (d[x].fields.hasOwnProperty(key) && d[x].fields.gate_photo1!=''){
+                        // if ("gate_photo1" in d[x].fields){
+                        //     htm=htm
+                        // }
+                        // else
+                            htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.entrydoor_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.entrydoor_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.sitting_arrangement_room_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_dormitory_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.room_dormitory_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                  } 
+                 
+                }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Aadhar Greh</h5>`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`</div>`)
+
+            }
+            if(optn=="mp"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon6});
+                htm=""
+                count=0
+                for (const key in d[x].fields) {
+                  count = count + 1;  
+                  if(count<12 && count!=0 && count!=1 && count!=2 && count!=3 && count!=6  && count!=7  ){                    if (d[x].fields.hasOwnProperty(key)) {
+                      htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                  }
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Maharashtra Police</h5>`+htm+`</div>`)
+                }
+            }
+            if(optn=="wwh"){
+                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon7});
+                htm=""
+                filename=""
+                htm_1=""
+                htm_2=""
+                htm_3=""
+                htm_4=""
+                count=0
+                // img_path=""
+                
+                for (const key in (d[x].fields)) {
+                  count = count + 1;  
+                  if(count<20 && count!=1 && count!=7 && count!=8 && count!=9 && count!=10 && count!=11 ){
+                // for(const key in islice(d[x].fields,20)){
+                    if (d[x].fields.hasOwnProperty(key) && d[x].fields.gate_photo1!=''){
+                        // if ("gate_photo1" in d[x].fields){
+                        //     htm=htm
+                        // }
+                        // else
+                            htm = htm+`${key}: ${d[x].fields[key]}<br>`
+                    }
+                    if(d[x].fields.gate_photo1!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str4 = htm_1.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.gate_photo1_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_1=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.room_photo2!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str5 = htm_2.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.room_photo2_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_2=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.commomroom3_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str6 = htm_3.concat("' alt='image not found'></br>");
+                        filename=d[x].fields.commomroom3_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_3=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                    if(d[x].fields.sign_photo_id!=''){
+                        // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
+                        // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
+                        filename=d[x].fields.sign_photo_id
+                        // .split(".")[0] + ".jpg";
+                        console.log("filename is : "+filename)
+                        // alert(filename)
+                        htm_4=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
+                        var str7 = htm_4.concat("' alt='image not found'></br>");
+                        // var str4 = htm_1.concat("' alt='image not found'></br>");
+                    }
+                  } 
+                 
+                }
+                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Working Women Hostel</h5>`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`<br>`+`</div>`)
+                // point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+img_path+`</div>`)
+            }
+            point.addTo(mymap)
+            point.data=d[x].fields;
+            
+            points.push(point)
+
+        }
+    }
+}
+
+function replot(){
+    points.forEach(p=>{
+        mymap.removeLayer(p)
+    })
+    points=[]
+
+}
+
+var icon1 = L.icon({
+    iconUrl:  "{% static 'map/pinmargerblue.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon2 = L.icon({
+    iconUrl:  "{% static 'map/pinmargerred.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon3 = L.icon({
+    iconUrl:  "{% static 'map/pinmargerorange.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon4 = L.icon({
+    iconUrl:  "{% static 'map/pinmargergreen.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon5 = L.icon({
+    iconUrl:  "{% static 'map/pinmargerpink.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon6 = L.icon({
+    iconUrl:  "{% static 'map/mh_police.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon7 = L.icon({
+    iconUrl:  "{% static 'map/pimarkerpurple.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+var icon8 = L.icon({
+    iconUrl:  "{% static 'map/pin_adhar_gruh1.png' %}",
+    iconSize:     [30, 30], // size of the icon
+    //shadowSize:   [50, 64], // size of the shadow
+    iconAnchor:   [25,10], // point of the icon which will correspond to marker's location
+    // shadowAnchor: [4, 62],  // the same for the shadow
+    popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+$locate = $('#locate'),
+$body = $('body'),
+$findNearest = $('#find-nearest'),
+$setlocation = $('#setlocation'),
+$setbuffer = $('#setbuffer')
+
+let currentPos = null;
+let marker = null;
+let oldMarker = null;
+let facilityLayer = new L.featureGroup();
+let oldLayer = null;
+
+$locate.on('click', function(e) {
+    if (oldMarker) {
+        mymap.removeLayer(oldMarker);
+        oldMarker = null;
+    }
+    if (oldLayer) {
+        mymap.removeLayer(oldLayer);
+        oldLayer = null;
+        facilityLayer = new L.featureGroup();
+    }
+    // $status.html('finding your location');
+    if (!navigator.geolocation) {
+        alert("<p>Sorry, your browser does not support Geolocation</p>");
+        return;
+    }
+    $body.removeClass('loaded');
+    navigator.geolocation.getCurrentPosition(success, error);
+});                              
+
+function success(position) {
+    $body.addClass('loaded');
+    currentPos = [position.coords.latitude, position.coords.longitude];
+    mymap.setView(currentPos, 13);
+    marker = L.marker(currentPos)
+        .addTo(mymap)
+        .bindTooltip("Your Location")
+        .openTooltip();
+    oldMarker = marker;
+
+};
+    // IF error IN FETCHING LOCATION
+function error() {
+    alert("Unable to retrieve your location");
+    };
+                                // SET LOCATION BUTTON
+$setlocation.on('click', function(e) {
+        mymap.on('dblclick', function(e) {
+            currentPos = [e.latlng.lat, e.latlng.lng];
+            if (oldMarker) {
+                mymap.removeLayer(oldMarker);
+                oldMarker = null;
+            }
+            if (oldLayer) {
+                mymap.removeLayer(oldLayer);
+                oldLayer = null;
+                facilityLayer = new L.featureGroup();
+            }
+
+            
+            marker = new L.marker(currentPos).addTo(mymap);
+            oldMarker = marker;
+        });
+    })
+    // SET BUFFER
+var slider = document.getElementById("myRange");
+var output = document.getElementById("demo");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+        output.innerHTML = this.value;
+
+        //<!-- mymap.removeLayer(circle); -->
+    }
+    //////// BUFFER
+var circle = new L.circle();
+$setbuffer.on('click', function(e) {
+    // if (oldhfbb) {
+    //     mymap.removeLayer(circle);
+    //     oldhfbb.forEach(layer => mymap.removeLayer(layer));
+    //     // oldhfbb = null;
+    //     healthFacilityInBB = null;
+    //     healthFacility2 = null;
+    //     healthFacility1 = null;
+    // }
+    mymap.removeLayer(circle);
+
+    var radius = (output.innerHTML) * 1000;
+    var circleCenter = currentPos;
+    var circleOptions = {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.1
+    }
+    circle = new L.circle(circleCenter, radius, circleOptions);
+    circle.addTo(mymap);
+    // let keys = Object.keys(activatedHealthFacility);
+    // let k = '';
+    // keys.forEach((v, i) => {
+    //         k = v;
+    //         if (k === "Allo")
+    //             querybufAllo(currentPos,k);
+    //         if (k === 'Alt')
+    //             querybufALt(currentPos,k);
+    //         if (k === 'CHC')
+    //             querybufCHC(currentPos,k);
+    //         if (k === 'PHC')
+    //             querybufPHC(currentPos,k);
+    //         if (k === 'DCH' || k === 'DCHC' || k === 'DCCC')
+    //             queryArog(currentPos,k);
+    //         if (k === 'hospital' || k === 'subcenter' || k === 'mhu' || k === 'phc' || k === 'clinic' || k === 'phu' || k === 'ashu' || k === 'mobmedu' || k === 'hfwi' || k === 'mhi' || k === 'dc' || k === 'phrmcy' || k === 'optical' || k === 'delvry' || k === 'dropin' || k === 'dspnsry' || k === 'dropin' || k === 'othr')
+    //             querybuf(currentPos,k);
+
+    //     })
+    //     //querybuf(currentPos);
+
+
+});
+var highlight = L.circleMarker()
+    // let indstate = document.getElementById('indstate').value;
+
+
+
+</script>
+{% endblock %}

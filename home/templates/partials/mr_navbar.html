@@ -14,18 +14,18 @@
               <div class="stm-navigation__default-1">
                 <ul style="list-style: none;">
                   <li ><a href="{% url 'mr' %}">मुख्यपृष्ठ</a></li>
-                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">Map</a>
+                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">नकाशा</a>
                     <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px; border: 1px black solid;">
                       <ul style="list-style-type: none; padding: 0;">
-                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >WCD Maps</a>
+                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >WCD नकाशे</a>
                           <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" style="display: none; position: fixed; background: white; border: 1px black solid;">
                             <ul style="list-style-type: none;padding:10px 0;">
-                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
-                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">Child Institutes</a></li>
+                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">महिला संस्था</a></li><br>
+                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">बाल संस्था</a></li>
                             </ul>
                           </div>
                         </li><br>
-                        <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
+                        <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS नकाशे</a></li><br>
                       </ul>
                     </div>
                   </li>
