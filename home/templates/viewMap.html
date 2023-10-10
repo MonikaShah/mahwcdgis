@@ -649,28 +649,29 @@ var Sangli = ['Select Taluka', 'Miraj','Kavathe-Mahankal','Tasgaon','Jat','Walwa
 var Kolhapur = ['Select Taluka', 'Karvir','Panhala','Shahuwadi','Kagal','Hatkanangale','Shirol','Radhanagari','Gaganbawada','Bhudargad','Gadhinglaj','Chandgad','Ajra']
 
 
+var selectedData = [];
 const download = ()=>{
-    const rows = [['awc_code','district','project','beat','latitude','longitude','altitude','accuracy','objectid','st_code','st_name','dist_code','dist_name','ac_no','ac_name','start','end','division','district_1','project_2','Beat_3','Anganwadi_4','agan_type','agancbuil_const','aganc_forrent','yes_moveagan_govpre','no_owner_agancbuil','child_sitagan','child_weigh_material','child_weigh_mat_working','adult_wtequip','adult_wteq_working','infant_meter','infant_meter_working','stadiometer','stadm_working','maint_repair_need','agan_drinkwat_avail','agan_tap','plumb_workcond','toil_fac','toil_working','electricity_connection','solar_powersupply','agan_tv','tv_working','agan_fenc','agan_back_gard','space_own_garden','vac_agan','post_vac','post_vac_aw_worker','post_vac_help','pro_fill_agan_post','child0_6monage','child6mon_3yr','child3 _6yrs','tot_no_child','preg_moth_agan','brestfeed_moth_agan','preg_lact_moth','aadh_notlinknuttrack','preg_lact_mothaadh_notlinked_nuttrack','child_weigh_meas_agan_mar22','child_heigh_meas_agan_mar22','no_suv_child_agan_Jan_mar22','no_suv_child_recthr_jan_mar22','child_sam_agan_jan_mar22','child_rec_vcdc_fac','sam_child_agan_vcdc_jan_mar22','sam_agan_nrc_jan_mar22','no_adol_girl_dropsch_agan','child_agan_sch_engl_priv_nurs','ifyes_childenrol_agan_sch_priv_nurs_engl','agan_rec_migr_bene','bene_agan_migr_indist','agan_bene_migr_outdist','benetot_migr_out','migrbenetot_agancentarea','agan_serv_migr_outaganarea','ifyes_aganspen10pergdp_endmar22','ifyes_gp_spent_10pergdp_endmarch22','aay','totno_child_serv_aay_6mon_6yrs','preg_lact_mother_serv_aay_ecd','parvisit_inibalasch','parent_visit_past_year','balasch','agan_und_balasch','work_comund_balasch_mar22','ifcom_ongo_task_comp_undbalasch','ifcom_ongo_task_comp_undbalasch1','ifcom_ongo_task_comp_undbalasch_sandpit','ifcom_ongo_task_comp_undbalasch_lawn','ifcom_ongo_task_comp_undbalasch_display','ifcom_ongo_task_comp_undbalasch_writboar','sign_sup_chserv','sign_sup_headmisurl','_id','_uuid','_submission_time','_validation_status','_notes','_status','_submitted_by','_tags','_index']]
-    for(point of points){
+    //const rows = [['awc_code','district','project','beat','latitude','longitude','altitude','accuracy','objectid','st_code','st_name','dist_code','dist_name','ac_no','ac_name','start','end','division','district_1','project_2','Beat_3','Anganwadi_4','agan_type','agancbuil_const','aganc_forrent','yes_moveagan_govpre','no_owner_agancbuil','child_sitagan','child_weigh_material','child_weigh_mat_working','adult_wtequip','adult_wteq_working','infant_meter','infant_meter_working','stadiometer','stadm_working','maint_repair_need','agan_drinkwat_avail','agan_tap','plumb_workcond','toil_fac','toil_working','electricity_connection','solar_powersupply','agan_tv','tv_working','agan_fenc','agan_back_gard','space_own_garden','vac_agan','post_vac','post_vac_aw_worker','post_vac_help','pro_fill_agan_post','child0_6monage','child6mon_3yr','child3 _6yrs','tot_no_child','preg_moth_agan','brestfeed_moth_agan','preg_lact_moth','aadh_notlinknuttrack','preg_lact_mothaadh_notlinked_nuttrack','child_weigh_meas_agan_mar22','child_heigh_meas_agan_mar22','no_suv_child_agan_Jan_mar22','no_suv_child_recthr_jan_mar22','child_sam_agan_jan_mar22','child_rec_vcdc_fac','sam_child_agan_vcdc_jan_mar22','sam_agan_nrc_jan_mar22','no_adol_girl_dropsch_agan','child_agan_sch_engl_priv_nurs','ifyes_childenrol_agan_sch_priv_nurs_engl','agan_rec_migr_bene','bene_agan_migr_indist','agan_bene_migr_outdist','benetot_migr_out','migrbenetot_agancentarea','agan_serv_migr_outaganarea','ifyes_aganspen10pergdp_endmar22','ifyes_gp_spent_10pergdp_endmarch22','aay','totno_child_serv_aay_6mon_6yrs','preg_lact_mother_serv_aay_ecd','parvisit_inibalasch','parent_visit_past_year','balasch','agan_und_balasch','work_comund_balasch_mar22','ifcom_ongo_task_comp_undbalasch','ifcom_ongo_task_comp_undbalasch1','ifcom_ongo_task_comp_undbalasch_sandpit','ifcom_ongo_task_comp_undbalasch_lawn','ifcom_ongo_task_comp_undbalasch_display','ifcom_ongo_task_comp_undbalasch_writboar','sign_sup_chserv','sign_sup_headmisurl','_id','_uuid','_submission_time','_validation_status','_notes','_status','_submitted_by','_tags','_index']]
+    const rows = [Object.keys(selectedData[0])];
+    //console.log(rows);
+    
+    for(point of selectedData){
         const row=[]
-        for(attr in point.data){
-            row.push(point.data[attr])
-        }
-        rows.push(row);
-
+        rows.push(Object.values(point));
     }
-    console.log("rows for csv ",rows[1]);
-
-
+    console.log(rows);
+    
     const bom = "\uFEFF"
     let csvContent = "data:text/csv;charset=utf-8," +bom+ rows.map(e => e.join(",")).join("\n");
     var encodedUri = encodeURI(csvContent);
     var link = document.createElement("a");
+    
     link.setAttribute("href",encodedUri);
     link.setAttribute("download", "my_data.csv");
     document.body.appendChild(link); // Required for FF
 
     link.click();
+    selectedData=[];
 }
 
 var DistrictSelected="";
@@ -1309,6 +1310,7 @@ $(document).ready(
                 // d = JSON.parse(data["data"])
                 //console.log(d)
                 d = data["data"]
+                selectedData = d;
                 plotData()
             }
         })
@@ -1338,7 +1340,7 @@ $(document).ready(
                     })
                     $("#cate_val1").html(htmlString);
                     */
-
+                    /*
                     var htm = "";
                     htm+=`<div id='`+document.getElementById('cate1').value+`'>`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`<div class="cls" style=" border-radius: 50%; color: red;"><i  onclick='removeOptn("`+document.getElementById('cate1').value+`","`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`")' class='fas fa-times fa-2x' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
                     console.log("category1 value",document.getElementById('cate1').value)
@@ -1359,6 +1361,22 @@ $(document).ready(
                     htm+='</div>'
 
                     document.getElementById('selected_optn').innerHTML+=htm;
+                    */
+
+                    var div = document.createElement("DIV");
+                    div.id = document.getElementById('cate1').value;
+                    div.innerHTML += document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text;
+                    div.innerHTML += `<div class="cls"><i  onclick='removeOptn("`+document.getElementById('cate1').value+`","`+document.getElementById("category_1").options[document.getElementById("category_1").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`;
+                    var htm = "";
+                    data.c1.forEach(e=>{
+                        for(k in e)
+                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("category_1").value+"__in' value="+e[k]+" id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
+                    })
+                    div.innerHTML+=htm;
+
+
+                    //document.getElementById('selected_optn').innerHTML+=htm;
+                    document.getElementById('selected_optn').appendChild(div);
 
                     // document.getElementById('chk-1').innerHTML=htm
                     $('.chkc-1').click(function(){
