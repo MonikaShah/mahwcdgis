@@ -1,4 +1,6 @@
 {% extends 'base_map_1.html' %}
+{% load i18n %}
+
 {% load static%} {% block content %}
 
 
@@ -283,15 +285,15 @@
         
 
         <hr>
-        <label>Facilities</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="women_state_home" id=""> Women State Home </label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="one_stop_center" id=""> One Stop Center</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center"  id=""> Counselling Center </label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id=""> Swadhaar Greh</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id=""> Ujjwal Greh</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="adhar_gruh" id=""> Aadhar Greh</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" id=""> Working Women Hostel </label><br>
-        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">Police Stations</label><br>
+        <label>{% trans "Facilities" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="women_state_home" id="">{% trans "Women State Home" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="one_stop_center" id=""> {% trans "One Stop Center" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="counselling_center"  id=""> {% trans "Counselling Center" %} </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="swadhaar_greh" id="">{% trans "Swadhaar Greh" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ujjwal_greh" id="">{% trans "Ujjwal Greh" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="adhar_gruh" id=""> {% trans "Aadhar Greh" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="working_women_hostel" id="">{% trans "Working Women Hostel" %}</label><br>
+        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">{% trans "Police Stations" %}</label><br>
         <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br> -->
         <!-- <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br> -->
 
@@ -300,11 +302,11 @@
     </div>
     <div class="border"><label>Clear Selection </label><br>
     
-        <button onclick="clearAll()" id="clear-data"class="btn btn-primary" style="align-items: center;">Clear All</button>
+        <button onclick="clearAll()" id="clear-data"class="btn btn-primary" style="align-items: center;">{% trans "Clear All" %}</button>
     </div>  
         <div class="border"><label>Download </label><br>
     
-        <button onclick="download()" id="clear-data"class="btn btn-primary" style="align-items: center;">Download</button>
+        <button onclick="download()" id="clear-data"class="btn btn-primary" style="align-items: center;">{% trans "Download" %}</button>
     </div>  
 
     <div class="border"><label>Proximity of Facilities</label><br>
@@ -312,7 +314,7 @@
         <button type="button" class="btn-sm btn-primary" id='setlocation'>Set Location</button>
         <!-- <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button> -->
         <div id="slider">
-            <label>Set Range</label><br>
+            <label>{% trans "Set Range(Kms)" %}</label><br>
             <input type="range" min="1" max="50" value="1" class="slider" id="myRange" step="1">
             <div class="sliderticks">
                 <p>1</p>
@@ -748,15 +750,15 @@ legend.onAdd = function (mymap) {
 
     // loop through our density intervals and generate a label with a colored square for each interval
     
-        div.innerHTML +=`<img src="{% static 'map/pinmargerblue.png' %}" style="width:28px;height:28px;"> Women State Home <br>
-        <img src="{% static 'map/pinmargerred.png' %}" style="width:28px;height:28px;"> One Stop Center <br>
-        <img src="{% static 'map/pinmargerorange.png' %}" style="width:28px;height:28px;"> Counselling Center <br>
-        <img src="{% static 'map/pinmargergreen.png' %}" style="width:28px;height:28px;"> Swadhaar Greh <br>
+        div.innerHTML +=`<img src="{% static 'map/pinmargerblue.png' %}" style="width:28px;height:28px;">{% trans "Women State Home" %} <br>
+        <img src="{% static 'map/pinmargerred.png' %}" style="width:28px;height:28px;"> {% trans "One Stop Center" %} <br>
+        <img src="{% static 'map/pinmargerorange.png' %}" style="width:28px;height:28px;"> {% trans "Counselling Center" %}<br>
+        <img src="{% static 'map/pinmargergreen.png' %}" style="width:28px;height:28px;"> {% trans "Swadhaar Greh" %}<br>
         
-        <img src="{% static 'map/pinmargerpink.png' %}" style="width:28px;height:28px;">Ujjwal Greh <br>
-        <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> Working Women Hostel <br>
-        <img src="{% static 'map/pin_adhar_gruh1.png' %}" style="width:15px;height:15px;">  Adhar Greh <br><hr>
-        <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> Police Stations <br>`
+        <img src="{% static 'map/pinmargerpink.png' %}" style="width:28px;height:28px;">{% trans "Ujjwal Greh" %} <br>
+        <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> {% trans "Working Women Hostel" %}<br>
+        <img src="{% static 'map/pin_adhar_gruh1.png' %}" style="width:15px;height:15px;">{% trans "Aadhar Greh" %}<br><hr>
+        <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;">{% trans "Police Stations" %}<br>`
     
 
     return div;
@@ -1090,14 +1092,19 @@ const download = ()=>{
         console.log(rows);
         
         const bom = "\uFEFF"
-        let csvContent = "data:text/tsv;charset=utf-8," +bom+ rows.map(e => e.join("\t")).join("\n");
+        let csv = rows.map(row => row.map(
+        col => typeof col !== "string" ? col : `"${col.replace(/"/g, '""')}"`
+    ).join(",")
+).join("\n");
+
+        let csvContent = "data:text/tsv;charset=utf-8," +bom+ csv;
         // console.log(rows.map(e => e.join("\t")).join("\n"), "ppp");
     
         var encodedUri = encodeURI(csvContent);
         var link = document.createElement("a");
         
         link.setAttribute("href",encodedUri);
-        link.setAttribute("download", "my_data_"+i+".tsv");
+        link.setAttribute("download", "women_institues_data_"+i+".csv");
         document.body.appendChild(link); // Required for FF
     
         link.click();
@@ -1181,362 +1188,8 @@ $(document).ready(
         })
         console.log(' belowhjkhjh');
     }),
-    {% comment %}
-    /*
-    $('#wsh_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'women_state_home' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-    */
-
-    /*
-    $('#osc_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'one_stop_center' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#cc_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'counselling_center' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#sg_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'swadhaar_greh' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#ug_form').submit(async function(e){
-        e.preventDefault();
-        var serializedData = $(this).serialize();
-        //console.log('hjkhjh');
-
-        $(document).ajaxStart(function () {
-            document.getElementById('load').style.display='flex';
-            //$("#load").show();
-        }).ajaxStop(function () {
-            document.getElementById('load').style.display='none';
-            //$("#load").hide();
-        });
-
-        $.ajax({
-            type:"POST",
-            url: "{% url 'ujjwal_greh' %}",
-            dataType: 'json',
-            data: serializedData,
-            success: function(data){
-                //console.log(data["data"])
-                d = JSON.parse(data["data"])
-                console.log(d)
-                plotData()
-            }
-        })
-        console.log(' belowhjkhjh');
-    }),
-
-    $('#wsh').on('change',function(){
-        var wsh = $('#wsh').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'women_state_home' %}",
-            dataType: 'json',
-            data: {wsh},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                console.log(data)
-                if(data['w1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                   
-
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("wsh").value+`'>`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('wsh').value+`","`+document.getElementById("wsh").options[document.getElementById("wsh").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.w1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("wsh").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn1').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('wsh_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                    
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    $('#osc').on('change',function(){
-        var osc = $('#osc').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'one_stop_center' %}",
-            dataType: 'json',
-            data: {osc},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['o1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                    
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("osc").value+`'>`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('osc').value+`","`+document.getElementById("osc").options[document.getElementById("osc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.o1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("osc").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn2').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('osc_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                    
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    $('#cc').on('change',function(){
-        var cc = $('#cc').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'counselling_center' %}",
-            dataType: 'json',
-            data: {cc},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['c1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                    
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("cc").value+`'>`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('cc').value+`","`+document.getElementById("cc").options[document.getElementById("cc").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.c1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("cc").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn3').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('cc_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                    
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    $('#sg').on('change',function(){
-        var sg = $('#sg').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'swadhaar_greh' %}",
-            dataType: 'json',
-            data: {sg},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['s1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                    
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("sg").value+`'>`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('sg').value+`","`+document.getElementById("sg").options[document.getElementById("sg").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.s1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("sg").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn4').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('sg_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                   
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    $('#ug').on('change',function(){
-        var ug = $('#ug').val()
-        $.ajax({
-            type:"GET",
-            url: "{% url 'ujjwal_greh' %}",
-            dataType: 'json',
-            data: {ug},
-            success: function(data){
-                //console.log(data["data"])
-                //d = JSON.parse(data["data"])
-                console.log("sadas")
-                //console.log(data)
-                if(data['u1']!=""){
-                    //document.getElementById('cate1').value = document.getElementById("category_1").value
-                    // console.log(document.getElementById('cate1').value)
-                    // document.getElementById('cate_val1').style.display = 'block';
-                   
-
-                    var htm = "";
-                    htm+=`<div id='`+document.getElementById("ug").value+`'>`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`<div class="cls"><i  onclick='removeOptn("`+document.getElementById('ug').value+`","`+document.getElementById("ug").options[document.getElementById("ug").selectedIndex].text+`")' class='fas fa-times' style='float:right;'></i><span style="float: right; background-color: #c9dbe6; margin-right: 5px; color: black; border: #000 1px solid;" class="cls_txt">Close</span></div><br><br>`
-                    data.u1.forEach(e=>{
-                        for(k in e)
-                        htm = htm+"<input type='checkbox' class='chkc-1' onchange='' name='"+document.getElementById("ug").value+"__in' value='"+e[k]+"' id=''><label class='mx-2' for=''>"+e[k]+"</label><br>";
-                    })
-                    htm+='</div>'
-
-                    document.getElementById('selected_optn5').innerHTML+=htm;
-
-                    // document.getElementById('chk-1').innerHTML=htm
-                    $('.chkc-1').click(function(){
-                        document.getElementById('ug_submit').click();
-                    })
-                    //document.getElementById('category_1').remove(document.getElementById('category_1').selectedIndex)
-                }else{
-                    //document.getElementById('chk-1').innerHTML=""
-                   
-                }
-
-            }
-        })
-        //console.log($('#category_1').val())
-    }),
-    */{% endcomment %}
+    
+   
 )
 
 function removeOptn(a,b){
@@ -1590,7 +1243,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.entrydoor_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1601,7 +1254,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_room_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1612,7 +1265,7 @@ function plotData(d, optn){
                         var str6 = htm_3.concat("' alt='image not found'></br>");
                         filename=d[x].fields.kitchen_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1623,7 +1276,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.room_dormitory_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_4=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         var str7 = htm_4.concat("' alt='image not found'></br>");
@@ -1635,7 +1288,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.sign_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -1644,7 +1297,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Women State Home</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Women State Home"%} </h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
 
             }
             if(optn=="osc"){
@@ -1672,7 +1325,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.name_plate_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        ////console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1683,7 +1336,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1694,7 +1347,7 @@ function plotData(d, optn){
                         var str6 = htm_3.concat("' alt='image not found'></br>");
                         filename=d[x].fields.kitchen_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1705,7 +1358,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.room_dormitory_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_4=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         var str7 = htm_4.concat("' alt='image not found'></br>");
@@ -1717,7 +1370,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.sign_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -1726,7 +1379,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>One Stop Centers</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "One Stop Centers" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
 
             }
             if(optn=="cc"){
@@ -1751,7 +1404,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.nameplate_entrydoor_photo1_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Counselling_centers/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1762,7 +1415,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_photo2_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Counciling_Centers_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1773,7 +1426,7 @@ function plotData(d, optn){
                     //     var str6 = htm_3.concat("' alt='image not found'></br>");
                     //     filename=d[x].fields.open_campus_photo_id
                     //     // .split(".")[0] + ".jpg";
-                    //     console.log("filename is : "+filename)
+                    //     //console.log("filename is : "+filename)
                     //     // alert(filename)
                     //     htm_3=" <img class = 'popupimage1' src='/static/map/Counciling_Centers_All_Data/".concat(filename).concat("'></br>");
                     //     // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1785,7 +1438,7 @@ function plotData(d, optn){
                         
                     //     filename=d[x].fields.signature_photo_id
                     //     // .split(".")[0] + ".jpg";
-                    //     console.log("filename is : "+filename)
+                    //     //console.log("filename is : "+filename)
                     //     // alert(filename)
                     //     htm_5=" <img class = 'popupimage1' src='/static/map/Counciling_Centers_All_Data/".concat(filename).concat("'></br>");
                     //     var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -1794,7 +1447,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Counselling Centers</h5>`+htm+`<br>`+ `EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Counselling Centers" %}</h5>`+htm+`<br>`+ `EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
 
             }
             if(optn=="sg"){
@@ -1819,7 +1472,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.entrydoor_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1830,7 +1483,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_room_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1841,7 +1494,7 @@ function plotData(d, optn){
                         var str6 = htm_3.concat("' alt='image not found'></br>");
                         filename=d[x].fields.kitchen_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1852,7 +1505,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.room_dormitory_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_4=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         var str7 = htm_4.concat("' alt='image not found'></br>");
@@ -1864,7 +1517,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.sign_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -1873,7 +1526,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Swadhaar Greh</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Swadhaar Greh" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
 
             }
             if(optn=="ug"){
@@ -1898,7 +1551,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.nameplate_entrydoor_photo1_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1909,7 +1562,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_photo2_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1920,7 +1573,7 @@ function plotData(d, optn){
                         var str6 = htm_3.concat("' alt='image not found'></br>");
                         filename=d[x].fields.kitchen_photo3_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1931,7 +1584,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.room_dormitory_photo4_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_4=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         var str7 = htm_4.concat("' alt='image not found'></br>");
@@ -1943,7 +1596,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.signature_photo5_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -1952,7 +1605,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Ujjwal Greh</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Ujjwal Greh" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting ArrangementPhoto`+htm_2+`<br>`+`Kitchen Photo`+htm_3+`Room/Dormitory Photo`+htm_4+`<br>`+`</div>`)
 
             }
             if(optn=="ag"){
@@ -1983,7 +1636,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.entrydoor_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1994,7 +1647,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_room_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -2005,7 +1658,7 @@ function plotData(d, optn){
                         var str6 = htm_3.concat("' alt='image not found'></br>");
                         filename=d[x].fields.room_dormitory_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -2016,7 +1669,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.sign_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_4=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
                         var str7 = htm_4.concat("' alt='image not found'></br>");
@@ -2025,7 +1678,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Aadhar Greh</h5>`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Aadhar Greh" %}</h5>`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`</div>`)
 
             }
             if(optn=="mp"){
@@ -2069,7 +1722,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.gate_photo1_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -2080,7 +1733,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.room_photo2_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -2091,7 +1744,7 @@ function plotData(d, optn){
                         var str6 = htm_3.concat("' alt='image not found'></br>");
                         filename=d[x].fields.commomroom3_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -2102,7 +1755,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.sign_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_4=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
                         var str7 = htm_4.concat("' alt='image not found'></br>");
@@ -2111,7 +1764,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Working Women Hostel</h5>`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`<br>`+`</div>`)
+                 point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Working Women Hostel" %}</h5>`+htm+`<br>`+ `Gate Photo`+htm_1+`<br>`+`Room Photo`+htm_2+`<br>`+` Common Room Photo`+htm_3+`<br>`+`</div>`)
                 // point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;">`+htm+`<br>`+img_path+`</div>`)
             }
             point.addTo(mymap)

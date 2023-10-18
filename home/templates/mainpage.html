@@ -185,9 +185,9 @@ gtag('config', 'UA-197940159-2');
                 </li>
                 
                 <li class="nav-item">
-                    <a href="{% url 'contact' %}" class="nav-link text-white">{% trans "Contact Us" %}</a>
+                    <a href="{% url 'contact' %}" class="nav-link text-white">{% trans "Contact" %}</a>
                 </li>
-<!--        -->
+
 
             
             <!-- hitwebcounter Code START -->
@@ -195,7 +195,21 @@ gtag('config', 'UA-197940159-2');
     <img src="https://hitwebcounter.com/counter/counter.php?page=7818435&style=0001&nbdigits=5&type=ip&initCount=0" title="Free Counter" Alt="web counter"   border="0" /></a>    -->
     <!-- <h5 class="nav-item text-white" style ="float: right;line-height: 2.0;"> &nbsp;&nbsp; {% trans "Visitors Count" %} : {{ Visitor_count }} </h5> -->
         </ul>
-        
+        <!--     Language change    -->
+<form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="{{ redirect_to }}" />            
+    <select name="language" style="width: auto;" id="">
+      {% get_current_language as LANGUAGE_CODE %}
+      {% get_available_languages as LANGUAGES %}
+      {% get_language_info_list for LANGUAGES as languages %}
+      {% for language in languages %} 
+          <option value="{{ language.code }}"
+            {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                {{ language.name_local }} ({{ language.code }})
+          </option>    {% endfor %}
+    </select>  <input type = "submit" value ="Go">
+</form>
         </nav>
     </nav>
     <!--  -->

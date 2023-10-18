@@ -1,4 +1,5 @@
 {% extends 'base_map_1.html' %}
+{% load i18n %}
 {% load static%} {% block content %}
 <style>
     table,
@@ -226,77 +227,81 @@
 
     <div class="border">
 
-        <div class="tooltips" title="Please select the District">
+        <div class="tooltips" title='{% trans "Please select the District" %}'>
             <select onchange="replot(); document.getElementById('plot').click()" name="district" class='form-control mb-2 mt-2' id = "district">
-            <option value=""> Select District</option>
-            <option value="Ahmednagar">Ahmednagar</option>
-            <option value="Akola">Akola</option>
-            <option value="Amravati">Amravati</option>
-            <option value="Aurangabad">Aurangabad</option>
-            <option value="Beed">Beed</option>
-            <option value="Bhandara">Bhandara</option>
-            <option value="Buldhana">Buldhana</option>
-            <option value="Chandrapur">Chandrapur</option>
-            <option value="Gadchiroli">Gadchiroli</option>
-            <option value="Gondia">Gondia</option>
-            <option value="Hingoli">Hingoli</option>
-            <option value="Jalgaon">Jalgaon</option>
-            <option value="Jalna">Jalna</option>
-            <option value="Kolhapur">Kolhapur</option>
-            <option value="Latur">Latur</option>
-            <option value="Mumbai City">Mumbai City</option>
-            <option value="mumbai_suburb">Mumbai Suburban</option>
-            <option value="Nagpur">Nagpur</option>
-            <option value="Nanded">Nanded</option>
-            <option value="Nashik">Nashik</option>
-            <option value="Osmanabad">Osmanabad</option>
-            <option value="Palghar">Palghar</option>
-            <option value="Parbhani">Parbhani</option>
-            <option value="Pune">Pune</option>
-            <option value="Raigad">Raigad</option>
-            <option value="Ratnagiri">Ratnagiri</option>
-            <option value="Sangli">Sangli</option>
-            <option value="Satara">Satara</option>
-            <option value="Sindhudurg">Sindhudurg</option>
-            <option value="Solapur">Solapur</option>
-            <option value="Thane"> Thane</option>
-            <option value="Wardha">Wardha</option>
-            <option value="Washim">Washim</option>
-            <option value="Yavatmal">Yavatmal</option>
+            <option value="">{% trans "Select District" %}</option>
+            <option value="Ahmednagar">{% trans "Ahmednagar" %}</option>
+            <option value="Akola">{% trans "Akola" %}</option>
+            <option value="Amravati">{% trans "Amravati" %}</option>
+            <option value="Aurangabad">{% trans "Aurangabad" %}</option>
+            <option value="Beed">{% trans "Beed" %}</option>
+            <option value="Bhandara">{% trans "Bhandara" %}</option>
+            <option value="Buldhana">{% trans "Buldhana" %}</option>
+            <option value="Chandrapur">{% trans "Chandrapur" %}</option>
+            <option value="Gadchiroli">{% trans "Gadchiroli" %}</option>
+            <option value="Gondia">{% trans "Gondia" %}</option>
+            <option value="Hingoli">{% trans "Hingoli" %}</option>
+            <option value="Jalgaon">{% trans "Jalgaon" %}</option>
+            <option value="Jalna">{% trans "Jalna" %}</option>
+            <option value="Kolhapur">{% trans "Kolhapur" %}</option>
+            <option value="Latur">{% trans "Latur" %}</option>
+            <option value="Mumbai City">{% trans "Mumbai City" %}</option>
+            <option value="mumbai_suburb">{% trans "Mumbai Suburban" %}</option>
+            <option value="Nagpur">{% trans "Nagpur" %}</option>
+            <option value="Nanded">{% trans "Nanded" %}</option>
+            <option value="Nashik">{% trans "Nashik" %}</option>
+            <option value="Osmanabad">{% trans "Osmanabad" %}</option>
+            <option value="Palghar">{% trans "Palghar" %}</option>
+            <option value="Parbhani">{% trans "Parbhani" %}</option>
+            <option value="Pune">{% trans "Pune" %}</option>
+            <option value="Raigad">{% trans "Raigad" %}</option>
+            <option value="Ratnagiri">{% trans "Ratnagiri" %}</option>
+            <option value="Sangli">{% trans "Sangli" %}</option>
+            <option value="Satara">{% trans "Satara" %}</option>
+            <option value="Sindhudurg">{% trans "Sindhudurg" %}</option>
+            <option value="Solapur">{% trans "Solapur" %}</option>
+            <option value="Thane">{% trans "Thane" %}</option>
+            <option value="Wardha">{% trans "Wardha" %}</option>
+            <option value="Washim">{% trans "Washim" %}</option>
+            <option value="Yavatmal">{% trans "Yavatmal" %}</option>
              </select>
         </div>
 
         
 
         <hr>
-        <label>Facilities</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="child_care" id=""> Child Care Institutes </label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="jjb" id=""> Justice Juvenile Board</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="cwc"  id=""> Child Welfare Center </label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ak" id=""> Abhay Kendra</label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="dcpo" id=""> DCPO </label><br>
-        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="saa" id=""> Special Adoption Agency</label><br>
+        <label>{% trans "Facilities" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="child_care" id=""> {% trans "Child Care Institutes" %} </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="jjb" id=""> {% trans "Justice Juvenile Board" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="cwc"  id=""> {% trans "Child Welfare Center" %} </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="ak" id=""> {% trans "Abhay Kendra" %}</label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="dcpo" id=""> {% trans "DCPO" %} </label><br>
+        <label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="saa" id=""> {% trans "Special Adoption Agency" %}</label><br>
 
-        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id=""> Police Stations</label><br>
+        <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id=""> {% trans "Police Stations" %}</label><br>
         <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="replot(); document.getElementById('plot').click()" type="checkbox" name="mh_police" id="">Police Stations</label><br> -->
         
         <!-- <hr><label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_stations()" type="checkbox" name="mumbai_police_station" id="mumbai_police_station"> Police Stations</label><br> -->
         <!-- <label style="margin: 10px;" for=""><input class="optn" onchange="plot_police_jurisdiction()" type="checkbox" name="mumbai_police_jurisdiction" id="mumbai_police_jurisdiction"> Mumbai Police Stations Jurisdiction</label><br> -->
 
 
-        <button id="plot" style="display: none;" type="submit">Plot</button>
+        <button id="plot" style="display: none;" type="submit">{% trans "Plot" %}</button>
     </div>
-    <div class="border"><label>Clear Selection </label><br>
+    <div class="border"><label>{% trans "Clear Selection" %} </label><br>
     
-        <button onclick="clearAll()" id="clear-data"class="btn btn-primary" style="align-items: center;">Clear All</button>
+        <button onclick="clearAll()" id="clear-data"class="btn btn-primary" style="align-items: center;">{% trans "Clear All" %}</button>
+    </div>  
+    <div class="border"><label>Download </label><br>
+    
+        <button onclick="download()" id="clear-data"class="btn btn-primary" style="align-items: center;">{% trans "Download" %}</button>
     </div>  
 
-    <div class="border"><label>Proximity of Facilities</label><br>
-        <button type="button" class="btn-sm btn-primary" id='locate'>Your Location</button>
-        <button type="button" class="btn-sm btn-primary" id='setlocation'>Set Location</button>
+    <div class="border"><label>{% trans "Proximity of Facilities" %}</label><br>
+        <button type="button" class="btn-sm btn-primary" id='locate'>{% trans "Your Location" %}</button>
+        <button type="button" class="btn-sm btn-primary" id='setlocation'>{% trans "Set Location" %}</button>
         <!-- <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button> -->
         <div id="slider">
-            <label>Set Range</label><br>
+            <label>{% trans "Set Range" %}</label><br>
             <input type="range" min="1" max="50" value="1" class="slider" id="myRange" step="1">
             <div class="sliderticks">
                 <p>1</p>
@@ -310,7 +315,7 @@
                 <p>40</p>
                 <p>50</p>
             </div>
-                <button type="button" class="btn btn-primary" id='setbuffer'>Facilities within <span id="demo"></span> Km </button>
+                <button type="button" class="btn btn-primary" id='setbuffer'>{% trans "Facilities within" %} <span id="demo"></span> {% trans "Km" %} </button>
     
 </form>
 <script>
@@ -392,15 +397,15 @@ legend.onAdd = function (mymap) {
 
     // loop through our density intervals and generate a label with a colored square for each interval
     
-        div.innerHTML +=`<img src="{% static 'map/pinmargerblue.png' %}" style="width:28px;height:28px;"> Child Care <br>
-        <img src="{% static 'map/pinmargerred.png' %}" style="width:28px;height:28px;"> Justice Juvenile Board <br>
-        <img src="{% static 'map/pinmargerorange.png' %}" style="width:28px;height:28px;"> Child Welfare Centres <br>
-        <img src="{% static 'map/pinmargergreen.png' %}" style="width:28px;height:28px;"> Abhay Kendra <br>
+        div.innerHTML +=`<img src="{% static 'map/pinmargerblue.png' %}" style="width:28px;height:28px;"> {% trans "Child Care" %} <br>
+        <img src="{% static 'map/pinmargerred.png' %}" style="width:28px;height:28px;"> {% trans "Justice Juvenile Board" %} <br>
+        <img src="{% static 'map/pinmargerorange.png' %}" style="width:28px;height:28px;">{% trans "Child Welfare Centres" %} <br>
+        <img src="{% static 'map/pinmargergreen.png' %}" style="width:28px;height:28px;">{% trans "Abhay Kendra" %} <br>
         
-        <img src="{% static 'map/pinmargerpink.png' %}" style="width:28px;height:28px;"> DCPO <br>
-        <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> Special Adoption Agency <br>
+        <img src="{% static 'map/pinmargerpink.png' %}" style="width:28px;height:28px;"> {% trans "DCPO" %} <br>
+        <img src="{% static 'map/pimarkerpurple.png' %}" style="width:18px;height:18px;"> {% trans "Special Adoption Agency" %} <br>
         <hr>
-        <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> Police Stations <br>`
+        <img src="{% static 'map/mh_police.png' %}" style="width:18px;height:18px;"> {% trans "Police Stations" %} <br>`
         
 
     return div;
@@ -554,6 +559,47 @@ legend.addTo(mymap);
     
     }
 
+var d1="", d2="", d3="", d4="", d5="", d6="", d7="", d8="";
+// var selectedData = [];
+const download = ()=>{
+    
+    [d1, d2, d3, d4, d5, d6, d7, d8].forEach((d,i) => {
+        let selectedData;
+        if(d != ""){
+            selectedData = d.map((e)=>e.fields);    
+        }
+        //const rows = [['awc_code','district','project','beat','latitude','longitude','altitude','accuracy','objectid','st_code','st_name','dist_code','dist_name','ac_no','ac_name','start','end','division','district_1','project_2','Beat_3','Anganwadi_4','agan_type','agancbuil_const','aganc_forrent','yes_moveagan_govpre','no_owner_agancbuil','child_sitagan','child_weigh_material','child_weigh_mat_working','adult_wtequip','adult_wteq_working','infant_meter','infant_meter_working','stadiometer','stadm_working','maint_repair_need','agan_drinkwat_avail','agan_tap','plumb_workcond','toil_fac','toil_working','electricity_connection','solar_powersupply','agan_tv','tv_working','agan_fenc','agan_back_gard','space_own_garden','vac_agan','post_vac','post_vac_aw_worker','post_vac_help','pro_fill_agan_post','child0_6monage','child6mon_3yr','child3 _6yrs','tot_no_child','preg_moth_agan','brestfeed_moth_agan','preg_lact_moth','aadh_notlinknuttrack','preg_lact_mothaadh_notlinked_nuttrack','child_weigh_meas_agan_mar22','child_heigh_meas_agan_mar22','no_suv_child_agan_Jan_mar22','no_suv_child_recthr_jan_mar22','child_sam_agan_jan_mar22','child_rec_vcdc_fac','sam_child_agan_vcdc_jan_mar22','sam_agan_nrc_jan_mar22','no_adol_girl_dropsch_agan','child_agan_sch_engl_priv_nurs','ifyes_childenrol_agan_sch_priv_nurs_engl','agan_rec_migr_bene','bene_agan_migr_indist','agan_bene_migr_outdist','benetot_migr_out','migrbenetot_agancentarea','agan_serv_migr_outaganarea','ifyes_aganspen10pergdp_endmar22','ifyes_gp_spent_10pergdp_endmarch22','aay','totno_child_serv_aay_6mon_6yrs','preg_lact_mother_serv_aay_ecd','parvisit_inibalasch','parent_visit_past_year','balasch','agan_und_balasch','work_comund_balasch_mar22','ifcom_ongo_task_comp_undbalasch','ifcom_ongo_task_comp_undbalasch1','ifcom_ongo_task_comp_undbalasch_sandpit','ifcom_ongo_task_comp_undbalasch_lawn','ifcom_ongo_task_comp_undbalasch_display','ifcom_ongo_task_comp_undbalasch_writboar','sign_sup_chserv','sign_sup_headmisurl','_id','_uuid','_submission_time','_validation_status','_notes','_status','_submitted_by','_tags','_index']]
+        const rows = [Object.keys(selectedData[0])];
+        console.log("header is ",rows);
+        
+        for(point of selectedData){
+            const row=[]
+            rows.push(Object.values(point));
+        }
+        console.log(rows);
+        
+        const bom = "\uFEFF"
+        let csv = rows.map(row => row.map(
+        col => typeof col !== "string" ? col : `"${col.replace(/"/g, '""')}"`
+    ).join(",")
+).join("\n");
+
+        let csvContent = "data:text/tsv;charset=utf-8," +bom+ csv;
+        // console.log(rows.map(e => e.join("\t")).join("\n"), "ppp");
+    
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        
+        link.setAttribute("href",encodedUri);
+        link.setAttribute("download", "child_institutes_data_"+i+".csv");
+        document.body.appendChild(link); // Required for FF
+    
+        link.click();
+        selectedData=[];
+        
+    })
+
+}
     
 function clearAll(){
     // alert("clicked clear all")
@@ -611,7 +657,8 @@ $(document).ready(
             data: serializedData,
             success: function(data){
                 //console.log(data["data"])
-                //d = JSON.parse(data["data"])
+                // d = JSON.parse(data["data"])
+                // console.log("d is ",d)
                 //data["d1"].forEach(e=>{
                 //    console.log(e)
                 //})
@@ -714,7 +761,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.frontgate_photo1_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/CCI/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -725,7 +772,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.livingroom_dormitory_photo2_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/CCI/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -736,7 +783,7 @@ function plotData(d, optn){
                         var str6 = htm_3.concat("' alt='image not found'></br>");
                         filename=d[x].fields.open_campus_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/CCI/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -747,7 +794,7 @@ function plotData(d, optn){
                         
                     //     filename=d[x].fields.room_dormitory_photo_id
                     //     // .split(".")[0] + ".jpg";
-                    //     console.log("filename is : "+filename)
+                    //     //console.log("filename is : "+filename)
                     //     // alert(filename)
                     //     htm_4=" <img class = 'popupimage1' src='/static/map/CCI/".concat(filename).concat("'></br>");
                     //     var str7 = htm_4.concat("' alt='image not found'></br>");
@@ -759,7 +806,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.signature_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        ////console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/CCI/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -768,7 +815,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Child Care Institutes </h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Living Room/Dormitory Photo`+htm_2+`<br>`+`Open Campus Photo`+htm_3+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Child Care Institutes" %} </h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Living Room/Dormitory Photo`+htm_2+`<br>`+`Open Campus Photo`+htm_3+`</div>`)
 
             }
             
@@ -794,7 +841,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.nameplate_entrydoor_photo1_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        ////console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/JJB_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -805,7 +852,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_photo2_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/JJB_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -817,7 +864,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.signature_photo5_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/JJB_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -826,7 +873,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Justice Juvenile Board</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Justice Juvenile Board" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
 
             }
             
@@ -852,7 +899,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.nameplate_entrydoor_photo1_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/CWC_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -863,7 +910,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_photo2_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/CWC_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -874,7 +921,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.signature_photo5_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/CWC_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -883,7 +930,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Child Welfare Center</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Child Welfare Center" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
 
             }
             if(optn=="ak"){
@@ -908,7 +955,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.name_plate_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Abhay_Kendra_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -919,7 +966,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Abhay_Kendra_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -931,7 +978,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.sign_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/Abhay_Kendra_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -940,7 +987,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Abhay Kendra </h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Abhay Kendra" %} </h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
 
             }
             if(optn=="saa"){
@@ -965,7 +1012,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.name_plate_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/SAA_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -976,7 +1023,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.office_sitting_arrangement_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/SAA_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -988,7 +1035,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.children_room_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/SAA_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -997,7 +1044,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>Special Adoption Agency</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Children Room Photo`+htm_5+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Special Adoption Agency" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Children Room Photo`+htm_5+`</div>`)
 
             }
             if(optn=="dcpo"){
@@ -1022,7 +1069,7 @@ function plotData(d, optn){
                         var str4 = htm_1.concat("' alt='image not found'></br>");
                         filename=d[x].fields.name_plate_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/DCPO_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1033,7 +1080,7 @@ function plotData(d, optn){
                         var str5 = htm_2.concat("' alt='image not found'></br>");
                         filename=d[x].fields.sitting_arrangement_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/DCPO_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
@@ -1045,7 +1092,7 @@ function plotData(d, optn){
                         
                         filename=d[x].fields.sign_photo_id
                         // .split(".")[0] + ".jpg";
-                        console.log("filename is : "+filename)
+                        //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_5=" <img class = 'popupimage1' src='/static/map/DCPO_All_Data/".concat(filename).concat("'></br>");
                         var str8 = htm_5.concat("' alt='image not found'></br>");
@@ -1054,7 +1101,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>DCPO</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "DCPO" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`</div>`)
 
             }
             if(optn=="mh_police"){

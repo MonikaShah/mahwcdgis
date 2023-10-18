@@ -240,23 +240,23 @@ img{
             <div style="display: flex;">
               <div class="stm-navigation__default">
                 <ul style="list-style: none;">
-                  <li ><a href="{% url 'homepage' %}">Home</a></li>
-                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">Map</a>
+                  <li ><a href="{% url 'homepage' %}">{% trans "Home" %}</a></li>
+                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">{% trans "Maps" %}</a>
                     <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;  z-index:11111; border: 1px black solid;">
                       <ul style="list-style-type: none; padding: 0;">
-                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >WCD Maps</a>
+                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >{% trans "WCD Maps" %}</a>
                           <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" style="display: none;position: fixed; background: white; border: 1px black solid;">
                             <ul style="list-style-type: none;padding:10px 0;">
-                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
-                              <li style="padding: 5px;"><a href="{% url 'viewCCMap' %}">Child Institutes </a></li>
+                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">{% trans "Women Institutes" %}</a></li><br>
+                              <li style="padding: 5px;"><a href="{% url 'viewCCMap' %}">{% trans "Child Institutes" %}</a></li>
                             </ul>
                           </div>
                         </li><br>
-                        <li style="padding: 5px;"><a href="{% url 'map' %}">ICDS Maps</a></li><br>
+                        <li style="padding: 5px;"><a href="{% url 'map' %}">{% trans "ICDS Maps" %} </a></li><br>
                       </ul>
                     </div>
                   </li>
-                  <li ><a href="{% url 'about_us' %}">About Us</a>
+                  <li ><a href="{% url 'about_us' %}">{% trans "About Us" %}</a>
                   <!-- <li onmouseover="document.getElementById('about').style.display='block'" onmouseleave="document.getElementById('about').style.display='none'"><a href="">About Us</a>
                     <div id="about" style="position: absolute;z-index:1111;background-color:white; display:none;">
                       <ul style="list-style: none;">
@@ -266,21 +266,38 @@ img{
                       </ul>
                     </div>
                   </li> -->
-                  <li ><a href="{% url 'contact_us' %}">Contacts</a></li>
+                  <li ><a href="{% url 'contact_us' %}">{% trans "Our Contacts" %}</a></li>
                 </ul>
+
               </div>
             </div>
           </div>
+
           <div class="stm-header__cell stm-header__cell_right" style="width:100%;display: flex; justify-content: flex-end; align-items:center;">
+
+            <form action="{% url 'set_language' %}" method="post">
+              {% csrf_token %}
+              <input name="next" type="hidden" value="{{ redirect_to }}" />            
+              <select name="language" style="width: auto;" id="">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %} 
+                    <option value="{{ language.code }}"
+                      {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                          {{ language.name_local }} ({{ language.code }})
+                    </option>    {% endfor %}
+              </select>  <input type = "submit" value ="Go">
+          </form>
             <div style="display: flex; margin-left:30px;">
-              <div>
+              <!-- <div>
                 <a href=""><span style="color: #000000; font-size:15px;font-family:Poppins;">English</span></a>
-              </div>
+              </div> -->
             </div>
             <div style="display: flex; margin-left:30px;">
-              <div>
+              <!-- <div>
                 <a href=""><span style="color: #000000; font-size:15px;font-family:Poppins;">मराठी</span></a>
-              </div>
+              </div> -->
             </div>
             <div style="display: flex;"></div>
           </div>
