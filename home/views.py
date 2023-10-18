@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations, CCI7July23,Wwh,AdharGruh22Aug23, Jjb,Cwc,Saa,Dcpo,AbhayKendra,Osc
+from .models import RuralInfraAwcAcEnglishconverted, WomenStateHome, OneStopCenter, CounsellingCentresJuly23, SwadhaarGreh, UjjwalGrehJuly23, MhPoliceStations, Cci7August23,Wwh,AdharGruh22Aug23, Jjb,Cwc,Saa,Dcpo,AbhayKendra,Osc
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.core import serializers
@@ -196,7 +196,7 @@ def viewCCMap(request):
         # print("ak is".ak)
         if request.POST.get('district')!="":
             if child_care!=None:
-                d1 = CCI7July23.objects.filter(district=request.POST.get('district'))
+                d1 = Cci7August23.objects.filter(district=request.POST.get('district'))
                 #print(d1)
             if jjb!=None:
                 d2 = Jjb.objects.filter(district=request.POST.get('district'))
@@ -218,7 +218,7 @@ def viewCCMap(request):
             #     print(d6)
         else:
             if child_care!=None:
-                d1 = CCI7July23.objects.all()
+                d1 = Cci7August23.objects.all()
                 #print(d1)
             if jjb!=None:
                 d2 = Jjb.objects.all()

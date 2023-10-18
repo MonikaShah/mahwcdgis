@@ -1097,7 +1097,7 @@ const download = ()=>{
     ).join(",")
 ).join("\n");
 
-        let csvContent = "data:text/tsv;charset=utf-8," +bom+ csv;
+        let csvContent = "data:text/csv;charset=utf-8," +bom+ csv;
         // console.log(rows.map(e => e.join("\t")).join("\n"), "ppp");
     
         var encodedUri = encodeURI(csvContent);

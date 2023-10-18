@@ -307,7 +307,7 @@ class CounsellingCentresJuly23(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'cci_7august23'
+        db_table = 'counselling_centres_july23'
 
 class Osc(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -551,22 +551,51 @@ class SwadhaarGreh(models.Model):
     
 #     class Meta:
 #         managed = False
-#         db_table = 'ujjwal_greh'
-class CCI7July23(models.Model):
+# #         db_table = 'ujjwal_greh'
+# class CCI7July23(models.Model):
     
+#     id = models.IntegerField(primary_key=True)
+#     geom = models.CharField(max_length=100, blank=True, null=True)
+#     sr_no = models.IntegerField(blank=True, null=True)
+#     division = models.CharField(max_length=100, blank=True, null=True)
+#     district = models.CharField(max_length=100, blank=True, null=True)
+#     cci = models.CharField(max_length=100, blank=True, null=True)
+#     location = models.CharField(max_length=100, blank=True, null=True)
+#     latitude = models.FloatField(blank=True, null=True)
+#     longitude = models.FloatField(blank=True, null=True)
+#     altitude = models.FloatField(blank=True, null=True)
+#     precision = models.FloatField(blank=True, null=True)
+#     cci_officer = models.CharField(max_length=100, blank=True, null=True)
+#     cci_officer_contact = models.CharField(max_length=100, blank=True, null=True)
+#     num_cctv = models.IntegerField(blank=True, null=True)
+#     vacant_post = models.IntegerField(blank=True, null=True)
+#     kich_garden_place = models.CharField(max_length=100, blank=True, null=True)
+#     frontgate_photo1_id = models.CharField(max_length=100, blank=True, null=True)
+#     frontgate_photo1 = models.CharField(max_length=100, blank=True, null=True)
+#     livingroom_dormitory_photo2_id = models.CharField(max_length=100, blank=True, null=True)
+#     livingroom_dormitory_photo2 = models.CharField(max_length=100, blank=True, null=True)
+#     open_campus_photo_id = models.CharField(max_length=100, blank=True, null=True)
+#     open_campus_photo = models.CharField(max_length=100, blank=True, null=True)
+#     signature_photo_id = models.CharField(max_length=100, blank=True, null=True)
+#     signature_photo = models.CharField(max_length=100, blank=True, null=True)
+
+#     class Meta:
+#         managed = False
+#         db_table = 'cci_7august23'
+class Cci7August23(models.Model):
     id = models.IntegerField(primary_key=True)
     geom = models.CharField(max_length=100, blank=True, null=True)
     sr_no = models.IntegerField(blank=True, null=True)
     division = models.CharField(max_length=100, blank=True, null=True)
     district = models.CharField(max_length=100, blank=True, null=True)
-    cci = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
     location = models.CharField(max_length=100, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
     altitude = models.FloatField(blank=True, null=True)
     precision = models.FloatField(blank=True, null=True)
-    cci_officer = models.CharField(max_length=100, blank=True, null=True)
-    cci_officer_contact = models.CharField(max_length=100, blank=True, null=True)
+    counselling_officer = models.CharField(max_length=100, blank=True, null=True)
+    officer_contact = models.CharField(max_length=100, blank=True, null=True)
     num_cctv = models.IntegerField(blank=True, null=True)
     vacant_post = models.IntegerField(blank=True, null=True)
     kich_garden_place = models.CharField(max_length=100, blank=True, null=True)
@@ -582,35 +611,6 @@ class CCI7July23(models.Model):
     class Meta:
         managed = False
         db_table = 'cci_7august23'
-    # id = models.IntegerField(primary_key=True)
-    # # geom = models.GeometryField(blank=True, null=True)
-    # sr_no = models.IntegerField(blank=True, null=True)
-    # division = models.CharField(max_length=254, blank=True, null=True)
-    # district = models.CharField(max_length=254, blank=True, null=True)
-    # cci = models.CharField(max_length=254, blank=True, null=True)
-    # location = models.CharField(max_length=254, blank=True, null=True)
-    # latitude = models.FloatField(blank=True, null=True)
-    # longitude = models.FloatField(blank=True, null=True)
-    # altitude = models.FloatField(blank=True, null=True)
-    # precision = models.FloatField(blank=True, null=True)
-    # cci_officer = models.CharField(max_length=254, blank=True, null=True)
-    # cci_officer_contact = models.CharField(max_length=254, blank=True, null=True)
-    # num_cctv = models.IntegerField(blank=True, null=True)
-    # vacant_post = models.IntegerField(blank=True, null=True)
-    # kich_garden_place = models.CharField(max_length=254, blank=True, null=True)
-    # frontgate_photo1_id = models.CharField(max_length=254, blank=True, null=True)
-    # frontgate_photo1 = models.CharField(max_length=254, blank=True, null=True)
-    # livingroom_dormitory_photo2_id = models.CharField(max_length=254, blank=True, null=True)
-    # livingroom_dormitory_photo2 = models.CharField(max_length=254, blank=True, null=True)
-    # open_campus_photo_id = models.CharField(max_length=254, blank=True, null=True)
-    # open_campus_photo = models.CharField(max_length=254, blank=True, null=True)
-    # signature_photo_id = models.CharField(max_length=254, blank=True, null=True)
-    # signature_photo = models.CharField(max_length=254, blank=True, null=True)
-
-    # class Meta:
-    #     managed = False
-    #     db_table = 'cci_7july23'
-
 class UjjwalGrehJuly23(models.Model):
     id = models.IntegerField(primary_key=True)
     # geom = models.GeometryField(blank=True, null=True)
