@@ -1,4 +1,5 @@
 {% extends 'base_map_1.html' %}
+{% load i18n %}
 {% load static%} {% block content %}
 <style>
     table,
@@ -233,45 +234,46 @@
 
         <form action="map" method="POST" id="cate">
 
-            <div class="tooltips" title="Please select the District">
-                <select name="district__in" class='form-control mb-2 mt-2' id = "district">
-                <option value=""> Select District</option>
-                <option value="Ahmednagar">Ahmednagar</option>
-                <option value="Akola">Akola</option>
-                <option value="Amravati">Amravati</option>
-                <option value="Aurangabad">Aurangabad</option>
-                <option value="Beed">Beed</option>
-                <option value="Bhandara">Bhandara</option>
-                <option value="Buldhana">Buldhana</option>
-                <option value="Chandrapur">Chandrapur</option>
-                <option value="Gadchiroli">Gadchiroli</option>
-                <option value="Gondia">Gondia</option>
-                <option value="Hingoli">Hingoli</option>
-                <option value="Jalgaon">Jalgaon</option>
-                <option value="Jalna">Jalna</option>
-                <option value="Kolhapur">Kolhapur</option>
-                <option value="Latur">Latur</option>
-                <option value="Mumbai City">Mumbai City</option>
-                <option value="mumbai_suburb">Mumbai Suburban</option>
-                <option value="Nagpur">Nagpur</option>
-                <option value="Nanded">Nanded</option>
-                <option value="Nashik">Nashik</option>
-                <option value="Osmanabad">Osmanabad</option>
-                <option value="Palghar">Palghar</option>
-                <option value="Parbhani">Parbhani</option>
-                <option value="Pune">Pune</option>
-                <option value="Raigad">Raigad</option>
-                <option value="Ratnagiri">Ratnagiri</option>
-                <option value="Sangli">Sangli</option>
-                <option value="Satara">Satara</option>
-                <option value="Sindhudurg">Sindhudurg</option>
-                <option value="Solapur">Solapur</option>
-                <option value="Thane"> Thane</option>
-                <option value="Wardha">Wardha</option>
-                <option value="Washim">Washim</option>
-                <option value="Yavatmal">Yavatmal</option>
+            <div class="tooltips" title='{% trans "Please select the District" %}'>
+                <select onchange="replot(); document.getElementById('plot').click()" name="district" class='form-control mb-2 mt-2' id = "district">
+                <option value="">{% trans "Select District" %}</option>
+                <option value="Ahmednagar">{% trans "Ahmednagar" %}</option>
+                <option value="Akola">{% trans "Akola" %}</option>
+                <option value="Amravati">{% trans "Amravati" %}</option>
+                <option value="Aurangabad">{% trans "Aurangabad" %}</option>
+                <option value="Beed">{% trans "Beed" %}</option>
+                <option value="Bhandara">{% trans "Bhandara" %}</option>
+                <option value="Buldhana">{% trans "Buldhana" %}</option>
+                <option value="Chandrapur">{% trans "Chandrapur" %}</option>
+                <option value="Gadchiroli">{% trans "Gadchiroli" %}</option>
+                <option value="Gondia">{% trans "Gondia" %}</option>
+                <option value="Hingoli">{% trans "Hingoli" %}</option>
+                <option value="Jalgaon">{% trans "Jalgaon" %}</option>
+                <option value="Jalna">{% trans "Jalna" %}</option>
+                <option value="Kolhapur">{% trans "Kolhapur" %}</option>
+                <option value="Latur">{% trans "Latur" %}</option>
+                <option value="Mumbai City">{% trans "Mumbai City" %}</option>
+                <option value="mumbai_suburb">{% trans "Mumbai Suburban" %}</option>
+                <option value="Nagpur">{% trans "Nagpur" %}</option>
+                <option value="Nanded">{% trans "Nanded" %}</option>
+                <option value="Nashik">{% trans "Nashik" %}</option>
+                <option value="Osmanabad">{% trans "Osmanabad" %}</option>
+                <option value="Palghar">{% trans "Palghar" %}</option>
+                <option value="Parbhani">{% trans "Parbhani" %}</option>
+                <option value="Pune">{% trans "Pune" %}</option>
+                <option value="Raigad">{% trans "Raigad" %}</option>
+                <option value="Ratnagiri">{% trans "Ratnagiri" %}</option>
+                <option value="Sangli">{% trans "Sangli" %}</option>
+                <option value="Satara">{% trans "Satara" %}</option>
+                <option value="Sindhudurg">{% trans "Sindhudurg" %}</option>
+                <option value="Solapur">{% trans "Solapur" %}</option>
+                <option value="Thane">{% trans "Thane" %}</option>
+                <option value="Wardha">{% trans "Wardha" %}</option>
+                <option value="Washim">{% trans "Washim" %}</option>
+                <option value="Yavatmal">{% trans "Yavatmal" %}</option>
                  </select>
-          </div>
+            </div>
+    
 
 
 
