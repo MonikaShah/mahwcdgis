@@ -152,46 +152,7 @@ class WomenStateHome(models.Model):
     class Meta:
         managed = False
         db_table = 'wsh_22aug23'
-    # report_date=models.DateField(blank=True, null=True)
-    # section=models.CharField(max_length=254, blank=True, null=True)
-    # district=models.CharField(max_length=254, blank=True, null=True)
-    # women_state_home=models.CharField(max_length=254, blank=True, null=True)
-    # address=models.CharField(max_length=254, blank=True, null=True)
-    # contact=models.CharField(max_length=254, blank=True, null=True)
-    # gmail=models.CharField(max_length=254, blank=True, null=True)
-    # latitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    # longitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    # capacity=models.BigIntegerField(blank=True, null=True)
-    # no_reported_women=models.BigIntegerField(blank=True, null=True)
-    # no_reported_childn=models.BigIntegerField(blank=True, null=True)
-    # superintendent_nam=models.CharField(max_length=254, blank=True, null=True)
-    # superintendent_contact=models.CharField(max_length=254, blank=True, null=True)
-    # date_appoint_or_charge=models.DateField(blank=True, null=True)
-    # scantioned_posts_no=models.BigIntegerField(blank=True, null=True)
-    # filled_posts_no=models.BigIntegerField(blank=True, null=True)
-    # empty_posts=models.BigIntegerField(blank=True, null=True)
-    # constr_type=models.CharField(max_length=254, blank=True, null=True)
-    # area=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    # no_printer_scanner=models.BigIntegerField(db_column='no_printer/scanner', blank=True, null=True)
-    # net_conn=models.CharField(max_length=254, db_column='net_conn?', blank=True, null=True)
-    # cooking_utensils=models.CharField(max_length=254, db_column='cooking_utensils?', blank=True, null=True)
-    # reported_no_females=models.BigIntegerField(blank=True, null=True)
-    # reported_no_childrn=models.BigIntegerField(blank=True, null=True)
-    # no_upto_12th=models.BigIntegerField(blank=True, null=True)
-    # no_benefi_degree_grad=models.BigIntegerField(db_column='no_benefi_degree/grad', blank=True, null=True)
-    # no_other_edu_benefi=models.BigIntegerField(blank=True, null=True)
-    # training_industry_nam1=models.CharField(max_length=254, db_column='training/industry_nam1', blank=True, null=True)
-    # training_industry_nam2=models.CharField(max_length=254, db_column='training/industry_nam2', blank=True, null=True)
-    # training_industry_nam3=models.CharField(max_length=254, db_column='training/industry_nam3', blank=True, null=True)
-    # training_industry_nam4=models.CharField(max_length=254, db_column='training/industry_nam4', blank=True, null=True)
-    # no_elegble_females_benefit_maher=models.BigIntegerField(blank=True, null=True)
-    # no_1stchildrn_benefit_Maher=models.BigIntegerField(blank=True, null=True)
-    # no_2ndchildrn_benefit_Maher=models.BigIntegerField(blank=True, null=True)
-    
-    # class Meta:
-    #     managed = False
-    #     db_table = 'women_state_home'
-
+   
 class AdharGruh22Aug23(models.Model):
     id = models.IntegerField(primary_key=True)
     sr_no = models.IntegerField(blank=True, null=True)
@@ -257,27 +218,6 @@ class OneStopCenter(models.Model):
         managed = False
         db_table = 'one_stop_center'
         
-# class CounsellingCenter(models.Model):
-#     report_date=models.DateField(blank=True, null=True)
-#     section=models.CharField(max_length=254, blank=True, null=True)
-#     district=models.CharField(max_length=254, blank=True, null=True)
-#     counselling_center=models.CharField(max_length=254, blank=True, null=True)
-#     cc_address=models.CharField(max_length=254, blank=True, null=True)
-#     cc_contact=models.CharField(max_length=254, blank=True, null=True)
-#     org_to_run_cc=models.CharField(max_length=254, blank=True, null=True)
-#     addres_to_run_cc=models.CharField(max_length=254, blank=True, null=True)
-#     nam_of_officers=models.CharField(max_length=254, blank=True, null=True)
-#     contact_of_officers=models.CharField(max_length=254, blank=True, null=True)
-#     gmail_of_cc=models.CharField(max_length=254, blank=True, null=True)
-#     counselor_nam1=models.CharField(max_length=254, blank=True, null=True)
-#     counselor_contact1=models.CharField(max_length=254, blank=True, null=True)
-#     counselor_nam2=models.CharField(max_length=254, blank=True, null=True)
-#     counselor_contact2=models.CharField(max_length=254, blank=True, null=True)
-#     seprt_tele_avail=models.CharField(max_length=254, db_column='seprt_tele_avail?', blank=True, null=True)
-    
-#     class Meta:
-#         managed = False
-#         db_table = 'counselling_center'
 
 class CounsellingCentresJuly23(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -491,100 +431,7 @@ class SwadhaarGreh(models.Model):
     class Meta:
         managed = False
         db_table = 'swadhar_gruh_22aug23'
-    # report_date=models.DateField(blank=True, null=True)
-    # section=models.CharField(max_length=254, blank=True, null=True)
-    # district=models.CharField(max_length=254, blank=True, null=True)
-    # swadhaar_home=models.CharField(max_length=254, blank=True, null=True)
-    # address=models.CharField(max_length=254, blank=True, null=True)
-    # building_type=models.CharField(max_length=254, blank=True, null=True)
-    # contact=models.CharField(max_length=254, blank=True, null=True)
-    # mobile_no=models.CharField(max_length=254, blank=True, null=True)
-    # gmail=models.CharField(max_length=254, blank=True, null=True)
-    # latitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    # longitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-    # approval_date=models.DateField(blank=True, null=True)
-    # capacity=models.BigIntegerField(blank=True, null=True)
-    # women_admitted=models.BigIntegerField(blank=True, null=True)
-    # children_with_women=models.BigIntegerField(blank=True, null=True)
-    # superintendent_nam=models.CharField(max_length=254, blank=True, null=True)
-    # superintendent_contact=models.CharField(max_length=254, blank=True, null=True)
-    # no_posts=models.BigIntegerField(blank=True, null=True)
-    # filled_no_posts=models.BigIntegerField(blank=True, null=True)
-    # no_vacancies=models.BigIntegerField(blank=True, null=True)
-    # nursery_facility=models.CharField(max_length=254, db_column='nursery_facility?',  blank=True,null=True)
-    # cooking_utensils=models.CharField(max_length=254, db_column='cooking_utensils?',  blank=True,null=True)
-    # net_conn=models.CharField(max_length=254, db_column='net_conn?',null=True)
-    # first_aid_kit=models.CharField(max_length=254, db_column='first_aid_kit?',  blank=True,null=True)
-    # no_cctv=models.BigIntegerField(blank=True, null=True)
-    # no_running_water_filters=models.BigIntegerField(blank=True, null=True)
-    
-    # class Meta:
-    #     managed = False
-    #     db_table = 'swadhaar_greh'
-        
-# class UjjwalGreh(models.Model):
-#     report_date=models.DateField(blank=True, null=True)
-#     section=models.CharField(max_length=254, blank=True, null=True)
-#     district=models.CharField(max_length=254, blank=True, null=True)
-#     ujjwal_greh=models.CharField(max_length=254, blank=True, null=True)
-#     address=models.CharField(max_length=254, blank=True, null=True)
-#     constr_type=models.CharField(max_length=254, blank=True, null=True)
-#     contact=models.CharField(max_length=254, blank=True, null=True)
-#     mobile_no=models.CharField(max_length=254, blank=True, null=True)
-#     #gmail=models.CharField(max_length=254, blank=True, null=True)
-#     latitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-#     longitude=models.DecimalField(max_digits=65535, decimal_places=65535, blank=True, null=True)
-#     approval_date=models.DateField(blank=True, null=True)
-#     admitted_approved_no=models.BigIntegerField(blank=True, null=True)
-#     admitted_sanctioned_capacity=models.BigIntegerField(blank=True, null=True)
-#     no_women_admitted=models.BigIntegerField(blank=True, null=True)
-#     no_childn_with_women=models.BigIntegerField(blank=True, null=True)
-#     project_director_nam=models.CharField(max_length=254, blank=True, null=True)
-#     project_director_contact=models.CharField(max_length=254, blank=True, null=True)
-#     no_posts_sanctioned=models.BigIntegerField(blank=True, null=True)
-#     no_posts_filled=models.BigIntegerField(blank=True, null=True)
-#     no_empty_posts=models.BigIntegerField(blank=True, null=True)
-#     nursery_facility=models.CharField(max_length=254, db_column='nursery_facility?', blank=True, null=True)
-#     cooking_utensils=models.CharField(max_length=254, db_column='cooking_utensils?', blank=True, null=True)
-#     net_conn=models.CharField(max_length=254, db_column='net_conn?',null=True)
-#     first_aid_kit=models.CharField(max_length=254, db_column='first_aid_kit?', blank=True, null=True)
-#     first_aid_kit=models.CharField(max_length=254, db_column='first_aid_kit?', blank=True, null=True)
-#     no_cctv=models.BigIntegerField(blank=True, null=True)
-#     no_working_water_filter=models.BigIntegerField(blank=True, null=True)
-    
-#     class Meta:
-#         managed = False
-# #         db_table = 'ujjwal_greh'
-# class CCI7July23(models.Model):
-    
-#     id = models.IntegerField(primary_key=True)
-#     geom = models.CharField(max_length=100, blank=True, null=True)
-#     sr_no = models.IntegerField(blank=True, null=True)
-#     division = models.CharField(max_length=100, blank=True, null=True)
-#     district = models.CharField(max_length=100, blank=True, null=True)
-#     cci = models.CharField(max_length=100, blank=True, null=True)
-#     location = models.CharField(max_length=100, blank=True, null=True)
-#     latitude = models.FloatField(blank=True, null=True)
-#     longitude = models.FloatField(blank=True, null=True)
-#     altitude = models.FloatField(blank=True, null=True)
-#     precision = models.FloatField(blank=True, null=True)
-#     cci_officer = models.CharField(max_length=100, blank=True, null=True)
-#     cci_officer_contact = models.CharField(max_length=100, blank=True, null=True)
-#     num_cctv = models.IntegerField(blank=True, null=True)
-#     vacant_post = models.IntegerField(blank=True, null=True)
-#     kich_garden_place = models.CharField(max_length=100, blank=True, null=True)
-#     frontgate_photo1_id = models.CharField(max_length=100, blank=True, null=True)
-#     frontgate_photo1 = models.CharField(max_length=100, blank=True, null=True)
-#     livingroom_dormitory_photo2_id = models.CharField(max_length=100, blank=True, null=True)
-#     livingroom_dormitory_photo2 = models.CharField(max_length=100, blank=True, null=True)
-#     open_campus_photo_id = models.CharField(max_length=100, blank=True, null=True)
-#     open_campus_photo = models.CharField(max_length=100, blank=True, null=True)
-#     signature_photo_id = models.CharField(max_length=100, blank=True, null=True)
-#     signature_photo = models.CharField(max_length=100, blank=True, null=True)
 
-#     class Meta:
-#         managed = False
-#         db_table = 'cci_7august23'
 class Cci7August23(models.Model):
     id = models.IntegerField(primary_key=True)
     geom = models.CharField(max_length=100, blank=True, null=True)
