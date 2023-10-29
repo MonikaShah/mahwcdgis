@@ -445,7 +445,7 @@ class Cci7August23(models.Model):
     altitude = models.FloatField(blank=True, null=True)
     precision = models.FloatField(blank=True, null=True)
     #counselling_officer = models.CharField(max_length=100, blank=True, null=True)
-    officer_contact = models.CharField(max_length=100, blank=True, null=True)
+    #officer_contact = models.CharField(max_length=100, blank=True, null=True)
     num_cctv = models.IntegerField(blank=True, null=True)
     vacant_post = models.IntegerField(blank=True, null=True)
     kich_garden_place = models.CharField(max_length=100, blank=True, null=True)
