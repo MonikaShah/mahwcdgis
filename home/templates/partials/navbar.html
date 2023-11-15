@@ -51,7 +51,7 @@
             <div style="display: flex; margin-left:30px;">
               
               <form action="{% url 'set_language' %}" method="post">
-                {% csrf_token %}
+                {% csrf_token %}Change Language
                 <input name="next" type="hidden" value="{{ redirect_to }}" />            
                 <select name="language" style="width: auto;" id="">
                   {% get_current_language as LANGUAGE_CODE %}
