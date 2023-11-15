@@ -49,6 +49,7 @@
           </div>
           <div class="stm-header__cell-1 stm-header__cell_right-1" style="display: flex; justify-content: flex-end; align-items:center;width:100%;">
             <div style="display: flex; margin-left:30px;">
+              
               <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}" />            
