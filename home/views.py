@@ -219,7 +219,7 @@ def viewCCMap(request):
         else:
             if child_care!=None:
                 d1 = Cci7August23.objects.all()
-                #print(d1)
+                # print(d1)
             if jjb!=None:
                 d2 = Jjb.objects.all()
                 print(d2)
