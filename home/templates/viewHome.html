@@ -1,3 +1,4 @@
+{% include 'partials/navbar.html' %}
 {% load static %}
 
 {%load i18n %}
@@ -43,7 +44,7 @@ img.emoji {
 }
 </style>
 
-	<link rel='stylesheet' id='wp-block-library-css'  href='{% static "wp-includes/css/dist/block-library/style.min.css" %}' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-block-library-css'  href='{% static "wp-includes/css/dist/block-library/style.min.css" %}' type='text/css' media='all' />
 <link rel='stylesheet' id='contact-form-7-css'  href='{% static "wp-content/plugins/contact-form-7/includes/css/styles.css" %}' type='text/css' media='all' />
 <link rel='stylesheet' id='rs-plugin-settings-css'  href='{% static "wp-content/plugins/revslider/public/assets/css/rs6.css" %}' type='text/css' media='all' />
 <style id='rs-plugin-settings-inline-css' type='text/css'>
@@ -526,7 +527,7 @@ color:#fff!important
 <body class="home page-template-default page page-id-1713 translatepress-en_US stm_header_transparent stm_title_box_disabled stm_form_style_3 stm_breadcrumbs_disabled  stm_pagination_style_3 stm_blockquote_style_3 stm_lists_style_10 stm_sidebar_style_1 stm_header_style_1 stm_post_style_1 stm_tabs_style_2 stm_tour_style_1 stm_buttons_style_3 stm_accordions_style_2 stm_projects_style_default stm_events_layout_1 stm_footer_layout_1 error_page_style_4 stm_shop_layout_business stm_products_style_left stm_header_sticky_center stm_post_view_list stm_layout_business wpb-js-composer js-comp-ver-6.4.1 vc_responsive"  ontouchstart="true">
         	    <div id="wrapper">
                 
-                {% include 'partials/navbar.html' %}
+
                 {% block content %}{% endblock %}
 
                         
