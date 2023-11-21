@@ -287,8 +287,8 @@
 
         <button id="plot" style="display: none;" type="submit">{% trans "Plot" %}</button>
     </div>
-    <div class="border"><label>{% trans "Clear Selection" %} </label><br>
-    
+    <div class="border"><label>{% trans "Download Data or Clear Selection" %} </label><br>
+        <button onclick="download()" id="down-data"class="btn btn-primary">{% trans "Download"%}</button>
         <button onclick="clearAll()" id="clear-data"class="btn btn-primary" style="align-items: center;">{% trans "Clear All" %}</button>
     </div>  
     <!-- <div class="border"><label>Download </label><br>
