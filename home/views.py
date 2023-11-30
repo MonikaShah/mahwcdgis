@@ -312,7 +312,7 @@ def viewWcdMap(request):
                 d1 = WomenStateHome.objects.all()
                 #print(d1)
             if one_stop_center!=None:
-                d2 = OneStopCenter.objects.all()
+                d2 = Osc.objects.all()
                 print(d2)
             if counselling_center!=None:
                 d3 = CounsellingCentresJuly23.objects.all()

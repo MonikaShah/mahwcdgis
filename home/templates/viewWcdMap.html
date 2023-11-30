@@ -1298,7 +1298,7 @@ function plotData(d, optn){
             if(optn=="osc"){
                 // alert("right [place]")
                 var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon2});
-                var point = L.marker([d[x].fields.latitude,d[x].fields.longitude],{icon:icon1});
+
                 htm=""
                 filename=""
                 htm_1=""
@@ -1322,7 +1322,7 @@ function plotData(d, optn){
                         // .split(".")[0] + ".jpg";
                         ////console.log("filename is : "+filename)
                         // alert(filename)
-                        htm_1=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        htm_1=" <img class = 'popupimage1' alt=':Sorry! Image not found.' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
                     if(d[x].fields.sitting_arrangement_photo_id!=''){
@@ -1333,7 +1333,7 @@ function plotData(d, optn){
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
-                        htm_2=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        htm_2=" <img class = 'popupimage1' alt=':Sorry! Image not found.' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
                     if(d[x].fields.kitchen_photo_id!=''){
@@ -1344,7 +1344,7 @@ function plotData(d, optn){
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
-                        htm_3=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        htm_3=" <img class = 'popupimage1' alt=':Sorry! Image not found.' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
                     if(d[x].fields.room_dormitory_photo_id!=''){
@@ -1355,7 +1355,7 @@ function plotData(d, optn){
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
-                        htm_4=" <img class = 'popupimage1' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
+                        htm_4=" <img class = 'popupimage1'  alt=':Sorry! Image not found.'src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         var str7 = htm_4.concat("' alt='image not found'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
@@ -1389,7 +1389,7 @@ function plotData(d, optn){
                 count=0
                 for (const key in d[x].fields) {
                   count = count + 1;  
-                  if(count<21 && count!=1 && count!=2 && count!=3 && count!=4 && count!=8 && count!=9 && count!=10 && count!=11 && count!=12){
+                  if(count<21 && count!=1 && count!=2 && count!=3 && count!=4 && count!=8 && count!=9 && count!=10 && count!=11 && count!=7 && count!=20){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
@@ -1570,7 +1570,7 @@ function plotData(d, optn){
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
-                        htm_3=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
+                        htm_3=" <img class = 'popupimage1' alt='Sorry! Image not found.' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
                     if(d[x].fields.room_dormitory_photo4_id!=''){
