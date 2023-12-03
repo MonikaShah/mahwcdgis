@@ -8,364 +8,521 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-18 08:00+0000\n"
+"POT-Creation-Date: 2023-12-02 22:49+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: home/templates/base_map_1.html:244 home/templates/mainpage.html:178
-#: home/templates/partials/navbar.html:17
-msgid "Home"
-msgstr "मुख्यपृष्ठ"
-
-#: home/templates/base_map_1.html:245 home/templates/mainpage.html:184
-#: home/templates/partials/navbar.html:18
-msgid "Maps"
-msgstr "नकाशा"
-
-#: home/templates/base_map_1.html:248 home/templates/partials/navbar.html:21
-msgid "WCD Maps"
-msgstr "WCD नकाशे"
-
-#: home/templates/base_map_1.html:251 home/templates/partials/navbar.html:24
-msgid "Women Institutes"
-msgstr "महिला संस्था"
-
-#: home/templates/base_map_1.html:252 home/templates/partials/navbar.html:25
-msgid "Child Institutes"
-msgstr "बाल संस्था"
-
-#: home/templates/base_map_1.html:256 home/templates/partials/navbar.html:29
-msgid "ICDS Maps"
-msgstr "ICDS नकाशे"
-
-#: home/templates/base_map_1.html:260 home/templates/mainpage.html:181
-#: home/templates/partials/navbar.html:33
+#: .\home\templates\about_us.html:471 .\home\templates\base_map_1.html:260
+#: .\home\templates\mainpage.html:181 .\home\templates\partials\navbar.html:34
 msgid "About Us"
 msgstr "आमच्याविषयी"
 
-#: home/templates/base_map_1.html:270 home/templates/partials/navbar.html:43
+#: .\home\templates\about_us.html:473 .\home\templates\about_us.html:479
+msgid "Introduction"
+msgstr "परिचय"
+
+#: .\home\templates\about_us.html:474 .\home\templates\about_us.html:495
+msgid "Organizational Structure"
+msgstr "संघटनात्मक रचना"
+
+#: .\home\templates\about_us.html:475 .\home\templates\about_us.html:506
+msgid "Our Leadership"
+msgstr "आमचे नेतृत्व"
+
+#: .\home\templates\about_us.html:482
+msgid ""
+"Women and Child Development Department was formed as a separate "
+"Administrative Department by the Government of Maharashtra in June 1993."
+msgstr ""
+"महिला व बालविकास विभाग स्वतंत्र म्हणून स्थापन करण्यात आलाजून 1993 मध्ये महाराष्ट्र "
+"शासनाकडून प्रशासकीय विभाग."
+
+#: .\home\templates\about_us.html:483
+msgid ""
+"The main objectives of the Department are to focus on promoting the "
+"survival, protection, development, welfare and participation of women and "
+"children in a holistic manner. The department is responsible for policy "
+"making, formulation of programmes /schemes, implementation of development "
+"programmes, and co-ordination of efforts of both governmental and non-"
+"governmental organizations working in the field of Women and Child "
+"Development."
+msgstr ""
+"विभागाची मुख्य उद्दिष्टे म्हणजे महिलांचे अस्तित्व, संरक्षण, विकास, कल्याण आणि सहभाग "
+"आणिसर्वसमावेशक पद्धतीने मुले. धोरणासाठी विभाग जबाबदार आहे निर्मिती, कार्यक्रम/योजना "
+"तयार करणे, विकासाची अंमलबजावणीकार्यक्रम, आणि सरकारी आणि गैर-दोन्हींच्या प्रयत्नांचे "
+"समन्वयमहिला आणि बालकांच्या क्षेत्रात काम करणाऱ्या सरकारी संस्थाविकास."
+
+#: .\home\templates\about_us.html:485
+msgid ""
+"Maharashtra is the second most populous state with around 11.2 crores "
+"citizens residing in the state."
+msgstr ""
+"सुमारे ११.२ कोटी लोकसंख्येसह महाराष्ट्र दुसऱ्या क्रमांकाचे राज्य आहे.राज्यात राहणारे नागरिक"
+
+#: .\home\templates\about_us.html:487
+#, python-format
+msgid "Women constitute around 48%% at around 5.41 crores."
+msgstr "सुमारे 5.41 कोटी म्हणजे सुमारे 48%% महिला आहेत."
+
+#: .\home\templates\about_us.html:488
+#, python-format
+msgid "Children (0-6 yrs.) constitute around 12%% at around 1.33 Crores"
+msgstr "सुमारे 5.41 कोटी म्हणजे सुमारे 48%% महिला आहेत."
+
+#: .\home\templates\about_us.html:489
+#, fuzzy
+#| msgid "Sex ratio of 894 for age group of 0-6 yrs."
+msgid "Sex ratio of 894 for age group of 0-6 yrs"
+msgstr "0-6 वर्षे वयोगटासाठी 894 लिंग गुणोत्तर."
+
+#: .\home\templates\about_us.html:500
+msgid ""
+"There are Two Commissionerates and other field offices under the "
+"administrative control of Women and Child Development Department. The "
+"department is responsible for the overall strategic direction setting, "
+"administration and financial matters pertaining to these Commissionerates "
+"and Field Offices. The above chart depicts various commissionerates/ field "
+"offices that the Dept. has under its wing:"
+msgstr ""
+"या अंतर्गत दोन आयुक्तालये आणि इतर क्षेत्रीय कार्यालये आहेतमहिला आणि बाल विकास विभागाचे "
+"प्रशासकीय नियंत्रण.एकूण धोरणात्मक दिशा सेटिंगसाठी विभाग जबाबदार आहे,या आयुक्तालयांशी "
+"संबंधित प्रशासन आणि आर्थिक बाबीआणि क्षेत्रीय कार्यालये. वरील तक्त्यामध्ये विविध आयुक्तालये/"
+"क्षेत्राचे चित्रण आहेविभागाच्या अंतर्गत असलेली कार्यालये:"
+
+#: .\home\templates\about_us.html:512
+msgid "Shri. Eknath Shinde"
+msgstr "श्री. एकनाथ शिंदे"
+
+#: .\home\templates\about_us.html:513
+msgid "Hon'ble Chief Minister"
+msgstr "माननीय मुख्यमंत्री"
+
+#: .\home\templates\about_us.html:516
+msgid ""
+"6th Floor, Mantralaya Madam Kama Road, Hutatma Rajguru Chowk, Mumbai - "
+"400032, Maharashtra, India Landline No: 022-22025051 /22023858 Email ID:"
+"cm@maharashtra.gov.in"
+msgstr ""
+"6 वा मजला, मंत्रालय मॅडम कामा रोड, हुतात्मा राजगुरू चौक, मुंबई - 400032, महाराष्ट्र, "
+"भारत लँडलाइन क्रमांक: 022-22025051 / 22023858Email ID:cm@maharashtra.gov.in"
+
+#: .\home\templates\about_us.html:522
+msgid "Shri. Mangal Prabhat Lodha"
+msgstr "श्री. मंगल प्रभात लोढा"
+
+#: .\home\templates\about_us.html:523
+msgid "Hon'ble Minister Women and Child Development Department."
+msgstr "महिला व बाल विकास विभागाच्या मंत्री मा."
+
+#: .\home\templates\about_us.html:532
+msgid "Smt. I. A. Kundan"
+msgstr "श्रीमती. आय.ए. कुंदन"
+
+#: .\home\templates\about_us.html:533
+msgid "Principal Secretary,"
+msgstr "प्रधान सचिव,"
+
+#: .\home\templates\about_us.html:534
+msgid "Women and Child Development Department"
+msgstr "महिला व बाल विकास विभाग"
+
+#: .\home\templates\about_us.html:537
+#, fuzzy
+#| msgid ""
+#| "6th Floor, Mantralaya Madam Kama Road, Hutatma Rajguru Chowk, Mumbai - "
+#| "400032, Maharashtra, India Landline No: 022-22025051 /22023858 Email ID:"
+#| "cm@maharashtra.gov.in"
+msgid ""
+"3rd Floor, New Administrative Building Madam Kama Road, Hutatma Rajguru "
+"Chowk, Mumbai - 400032, Maharashtra, India Landline No: 022- 2202 7050 Email "
+"ID: psec.wchd@maharashtra.gov.in"
+msgstr ""
+"6 वा मजला, मंत्रालय मॅडम कामा रोड, हुतात्मा राजगुरू चौक, मुंबई - 400032, महाराष्ट्र, "
+"भारत लँडलाइन क्रमांक: 022-22025051 / 22023858Email ID:cm@maharashtra.gov.in"
+
+#: .\home\templates\base_map_1.html:244 .\home\templates\mainpage.html:178
+#: .\home\templates\partials\navbar.html:18
+msgid "Home"
+msgstr "मुख्यपृष्ठ"
+
+#: .\home\templates\base_map_1.html:245 .\home\templates\mainpage.html:184
+#: .\home\templates\partials\navbar.html:19
+msgid "Maps"
+msgstr "नकाशा"
+
+#: .\home\templates\base_map_1.html:248
+#: .\home\templates\partials\navbar.html:22
+msgid "WCD Maps"
+msgstr "WCD नकाशे"
+
+#: .\home\templates\base_map_1.html:251
+#: .\home\templates\partials\navbar.html:25
+msgid "Women Institutes"
+msgstr "महिला संस्था"
+
+#: .\home\templates\base_map_1.html:252
+#: .\home\templates\partials\navbar.html:26
+msgid "Child Institutes"
+msgstr "बाल संस्था"
+
+#: .\home\templates\base_map_1.html:256
+#: .\home\templates\partials\navbar.html:30
+msgid "ICDS Maps"
+msgstr "ICDS नकाशे"
+
+#: .\home\templates\base_map_1.html:270
+#: .\home\templates\partials\navbar.html:44
 msgid "Our Contacts"
 msgstr "संपर्क करा"
 
-#: home/templates/base_map_1.html:344 home/templates/contact_us.html:534
-#, fuzzy
-#| msgid "Contact"
+#: .\home\templates\base_map_1.html:344 .\home\templates\contact_us.html:534
+#: .\home\templates\partials\footer.html:21
 msgid "Contact Us"
 msgstr "संपर्क करा"
 
-#: home/templates/contact_us.html:576
+#: .\home\templates\contact_us.html:576
 msgid "ADDRESS"
 msgstr ""
 
-#: home/templates/contact_us.html:576
+#: .\home\templates\contact_us.html:576
 msgid ""
 "Rajmata Jijau Mother-Child Health and Nutrition Mission, Department of Women "
 "and Child Development, 3rd Floor, New Administrative Building, Mantralay, "
 "Mumbai-400 032"
 msgstr ""
+"राजमाता जिजाऊ माता-बाल आरोग्य व पोषण अभियान, महिला व बाल विकास विभाग,तिसरा "
+"मजला, नवीन प्रशासकीय इमारत, मंत्रालय,मुंबई-400 032"
 
-#: home/templates/contact_us.html:592
+#: .\home\templates\contact_us.html:592
 msgid "EMAIL"
 msgstr ""
 
-#: home/templates/mainpage.html:188
+#: .\home\templates\mainpage.html:188
 msgid "Contact"
 msgstr "संपर्क करा"
 
-#: home/templates/mainpage.html:196
+#: .\home\templates\mainpage.html:196
 msgid "Visitors Count"
 msgstr ""
 
-#: home/templates/partials/navbar.html:70
-msgid "English"
-msgstr ""
+#: .\home\templates\partials\footer.html:5
+msgid "Designed and Developed at"
+msgstr "येथे डिझाइन आणि विकसित केले"
 
-#: home/templates/partials/navbar.html:75
-msgid "Marathiमराठी "
-msgstr ""
+#: .\home\templates\partials\footer.html:9
+msgid "Rajmata Jijau Mother-Child Health &#038; Nutrition Mission"
+msgstr "राजमाता जिजाऊ माता-बाल आरोग्य पोषण अभियान"
 
-#: home/templates/viewCCMap.html:230 home/templates/viewMap.html:236
-#: home/templates/viewWcdMap.html:245
+#: .\home\templates\partials\footer.html:9
+msgid ""
+"Maharashtra was the first state in the country to take a decision to tackle "
+"malnutrition in ‘Mission – mode’ and with this purpose, <b>Rajmata Jijau "
+"Mother – Child Health & Nutrition</b> Mission was established. The first "
+"phase of the Mission was set up in 2005, and the second phase started in "
+"2011 and the third phase in 2017. The aim of the Mission is to reduce child "
+"malnutrition in Maharashtra by focusing on the child's first 1000 days from "
+"conception. "
+msgstr ""
+"याला सामोरे जाण्याचा निर्णय घेणारे महाराष्ट्र हे देशातील पहिले राज्य आहे.मिशन – मोडमध्ये "
+"कुपोषण आणि याच उद्देशाने, <b>राजमाता जिजाऊमाता - बालकाचे आरोग्य आणि पोषण</b> मिशन "
+"स्थापन करण्यात आले. पहिले मिशनचा टप्पा 2005 मध्ये स्थापित झाला आणि दुसरा टप्पा 2011 "
+"आणि 2017 मध्ये तिसरा टप्पा. मिशनचे उद्दिष्ट बालक कमी करणे आहेमुलांच्या पहिल्या 1000 "
+"दिवसांवर लक्ष केंद्रित करून महाराष्ट्रातील कुपोषणगर्भधारणा."
+
+#: .\home\templates\partials\footer.html:27
+msgid ""
+"Address:-  Rajmata Jijau Mother-child Health  & Nutrition Mission, Women & "
+"Child Development Department, 3rd Floor, New Administrative Building, "
+"Mantralay Mumbai-400 032"
+msgstr ""
+"राजमाता जिजाऊ माता-बाल आरोग्य व पोषण अभियान, महिला व बाल विकास विभाग,तिसरा "
+"मजला, नवीन प्रशासकीय इमारत,मंत्रालय,मुंबई-400 032"
+
+#: .\home\templates\viewCCMap.html:230 .\home\templates\viewMap.html:237
+#: .\home\templates\viewWcdMap.html:245
 #, fuzzy
 #| msgid "Select District"
 msgid "Please select the District"
 msgstr "जिल्हा निवडा"
 
-#: home/templates/viewCCMap.html:232 home/templates/viewMap.html:238
-#: home/templates/viewWcdMap.html:247
+#: .\home\templates\viewCCMap.html:232 .\home\templates\viewMap.html:239
+#: .\home\templates\viewWcdMap.html:247
 msgid "Select District"
 msgstr "जिल्हा निवडा"
 
-#: home/templates/viewCCMap.html:233 home/templates/viewMap.html:239
-#: home/templates/viewWcdMap.html:248
+#: .\home\templates\viewCCMap.html:233 .\home\templates\viewMap.html:240
+#: .\home\templates\viewWcdMap.html:248
 msgid "Ahmednagar"
 msgstr "अहमदनगर"
 
-#: home/templates/viewCCMap.html:234 home/templates/viewMap.html:240
-#: home/templates/viewWcdMap.html:249
+#: .\home\templates\viewCCMap.html:234 .\home\templates\viewMap.html:241
+#: .\home\templates\viewWcdMap.html:249
 msgid "Akola"
 msgstr "अकोला"
 
-#: home/templates/viewCCMap.html:235 home/templates/viewMap.html:241
-#: home/templates/viewWcdMap.html:250
+#: .\home\templates\viewCCMap.html:235 .\home\templates\viewMap.html:242
+#: .\home\templates\viewWcdMap.html:250
 msgid "Amravati"
 msgstr "अमरावती"
 
-#: home/templates/viewCCMap.html:236 home/templates/viewMap.html:242
-#: home/templates/viewWcdMap.html:251
+#: .\home\templates\viewCCMap.html:236 .\home\templates\viewMap.html:243
+#: .\home\templates\viewWcdMap.html:251
 msgid "Aurangabad"
 msgstr "औरंगाबाद"
 
-#: home/templates/viewCCMap.html:237 home/templates/viewMap.html:243
-#: home/templates/viewWcdMap.html:252
+#: .\home\templates\viewCCMap.html:237 .\home\templates\viewMap.html:244
+#: .\home\templates\viewWcdMap.html:252
 msgid "Beed"
 msgstr "बीड"
 
-#: home/templates/viewCCMap.html:238 home/templates/viewMap.html:244
-#: home/templates/viewWcdMap.html:253
+#: .\home\templates\viewCCMap.html:238 .\home\templates\viewMap.html:245
+#: .\home\templates\viewWcdMap.html:253
 msgid "Bhandara"
 msgstr "भंडारा"
 
-#: home/templates/viewCCMap.html:239 home/templates/viewMap.html:245
-#: home/templates/viewWcdMap.html:254
+#: .\home\templates\viewCCMap.html:239 .\home\templates\viewMap.html:246
+#: .\home\templates\viewWcdMap.html:254
 msgid "Buldhana"
 msgstr "बुलढाणा"
 
-#: home/templates/viewCCMap.html:240 home/templates/viewMap.html:246
-#: home/templates/viewWcdMap.html:255
+#: .\home\templates\viewCCMap.html:240 .\home\templates\viewMap.html:247
+#: .\home\templates\viewWcdMap.html:255
 msgid "Chandrapur"
 msgstr "चंद्रपूर"
 
-#: home/templates/viewCCMap.html:241 home/templates/viewMap.html:247
-#: home/templates/viewWcdMap.html:256
+#: .\home\templates\viewCCMap.html:241 .\home\templates\viewMap.html:248
+#: .\home\templates\viewWcdMap.html:256
 msgid "Gadchiroli"
 msgstr "गडचिरोली"
 
-#: home/templates/viewCCMap.html:242 home/templates/viewMap.html:248
-#: home/templates/viewWcdMap.html:257
+#: .\home\templates\viewCCMap.html:242 .\home\templates\viewMap.html:249
+#: .\home\templates\viewWcdMap.html:257
 msgid "Gondia"
 msgstr "गोंदिया"
 
-#: home/templates/viewCCMap.html:243 home/templates/viewMap.html:249
-#: home/templates/viewWcdMap.html:258
+#: .\home\templates\viewCCMap.html:243 .\home\templates\viewMap.html:250
+#: .\home\templates\viewWcdMap.html:258
 msgid "Hingoli"
 msgstr "हिंगोली"
 
-#: home/templates/viewCCMap.html:244 home/templates/viewMap.html:250
-#: home/templates/viewWcdMap.html:259
+#: .\home\templates\viewCCMap.html:244 .\home\templates\viewMap.html:251
+#: .\home\templates\viewWcdMap.html:259
 msgid "Jalgaon"
 msgstr "जळगाव"
 
-#: home/templates/viewCCMap.html:245 home/templates/viewMap.html:251
-#: home/templates/viewWcdMap.html:260
+#: .\home\templates\viewCCMap.html:245 .\home\templates\viewMap.html:252
+#: .\home\templates\viewWcdMap.html:260
 msgid "Jalna"
 msgstr "जालना"
 
-#: home/templates/viewCCMap.html:246 home/templates/viewMap.html:252
-#: home/templates/viewWcdMap.html:261
+#: .\home\templates\viewCCMap.html:246 .\home\templates\viewMap.html:253
+#: .\home\templates\viewWcdMap.html:261
 msgid "Kolhapur"
 msgstr "कोल्हापूर"
 
-#: home/templates/viewCCMap.html:247 home/templates/viewMap.html:253
-#: home/templates/viewWcdMap.html:262
+#: .\home\templates\viewCCMap.html:247 .\home\templates\viewMap.html:254
+#: .\home\templates\viewWcdMap.html:262
 msgid "Latur"
 msgstr "लातुर"
 
-#: home/templates/viewCCMap.html:248 home/templates/viewMap.html:254
-#: home/templates/viewWcdMap.html:263
+#: .\home\templates\viewCCMap.html:248 .\home\templates\viewMap.html:255
+#: .\home\templates\viewWcdMap.html:263
 msgid "Mumbai City"
 msgstr "मुंबई शहर"
 
-#: home/templates/viewCCMap.html:249 home/templates/viewMap.html:255
-#: home/templates/viewWcdMap.html:264
+#: .\home\templates\viewCCMap.html:249 .\home\templates\viewMap.html:256
+#: .\home\templates\viewWcdMap.html:264
 msgid "Mumbai Suburban"
 msgstr "मुंबई उपनगर"
 
-#: home/templates/viewCCMap.html:250 home/templates/viewMap.html:256
-#: home/templates/viewWcdMap.html:265
+#: .\home\templates\viewCCMap.html:250 .\home\templates\viewMap.html:257
+#: .\home\templates\viewWcdMap.html:265
 msgid "Nagpur"
 msgstr "नागपूर"
 
-#: home/templates/viewCCMap.html:251 home/templates/viewMap.html:257
-#: home/templates/viewWcdMap.html:266
+#: .\home\templates\viewCCMap.html:251 .\home\templates\viewMap.html:258
+#: .\home\templates\viewWcdMap.html:266
 msgid "Nanded"
 msgstr "नांदेड"
 
-#: home/templates/viewCCMap.html:252 home/templates/viewMap.html:258
-#: home/templates/viewWcdMap.html:267
+#: .\home\templates\viewCCMap.html:252 .\home\templates\viewMap.html:259
+#: .\home\templates\viewWcdMap.html:267
 msgid "Nashik"
 msgstr "नाशिक"
 
-#: home/templates/viewCCMap.html:253 home/templates/viewMap.html:259
-#: home/templates/viewWcdMap.html:268
+#: .\home\templates\viewCCMap.html:253 .\home\templates\viewMap.html:260
+#: .\home\templates\viewWcdMap.html:268
 msgid "Osmanabad"
 msgstr "उस्मानाबाद"
 
-#: home/templates/viewCCMap.html:254 home/templates/viewMap.html:260
-#: home/templates/viewWcdMap.html:269
+#: .\home\templates\viewCCMap.html:254 .\home\templates\viewMap.html:261
+#: .\home\templates\viewWcdMap.html:269
 msgid "Palghar"
 msgstr "पालघर"
 
-#: home/templates/viewCCMap.html:255 home/templates/viewMap.html:261
-#: home/templates/viewWcdMap.html:270
+#: .\home\templates\viewCCMap.html:255 .\home\templates\viewMap.html:262
+#: .\home\templates\viewWcdMap.html:270
 msgid "Parbhani"
 msgstr "परभणी"
 
-#: home/templates/viewCCMap.html:256 home/templates/viewMap.html:262
-#: home/templates/viewWcdMap.html:271
+#: .\home\templates\viewCCMap.html:256 .\home\templates\viewMap.html:263
+#: .\home\templates\viewWcdMap.html:271
 msgid "Pune"
 msgstr "पुणे"
 
-#: home/templates/viewCCMap.html:257 home/templates/viewMap.html:263
-#: home/templates/viewWcdMap.html:272
+#: .\home\templates\viewCCMap.html:257 .\home\templates\viewMap.html:264
+#: .\home\templates\viewWcdMap.html:272
 msgid "Raigad"
 msgstr "रायगड"
 
-#: home/templates/viewCCMap.html:258 home/templates/viewMap.html:264
-#: home/templates/viewWcdMap.html:273
+#: .\home\templates\viewCCMap.html:258 .\home\templates\viewMap.html:265
+#: .\home\templates\viewWcdMap.html:273
 msgid "Ratnagiri"
 msgstr "रत्नागिरी"
 
-#: home/templates/viewCCMap.html:259 home/templates/viewMap.html:265
-#: home/templates/viewWcdMap.html:274
+#: .\home\templates\viewCCMap.html:259 .\home\templates\viewMap.html:266
+#: .\home\templates\viewWcdMap.html:274
 msgid "Sangli"
 msgstr "सांगली"
 
-#: home/templates/viewCCMap.html:260 home/templates/viewMap.html:266
-#: home/templates/viewWcdMap.html:275
+#: .\home\templates\viewCCMap.html:260 .\home\templates\viewMap.html:267
+#: .\home\templates\viewWcdMap.html:275
 msgid "Satara"
 msgstr "सातारा"
 
-#: home/templates/viewCCMap.html:261 home/templates/viewMap.html:267
-#: home/templates/viewWcdMap.html:276
+#: .\home\templates\viewCCMap.html:261 .\home\templates\viewMap.html:268
+#: .\home\templates\viewWcdMap.html:276
 msgid "Sindhudurg"
 msgstr "सिंधुदुर्ग"
 
-#: home/templates/viewCCMap.html:262 home/templates/viewMap.html:268
-#: home/templates/viewWcdMap.html:277
+#: .\home\templates\viewCCMap.html:262 .\home\templates\viewMap.html:269
+#: .\home\templates\viewWcdMap.html:277
 msgid "Solapur"
 msgstr "सोलापूर"
 
-#: home/templates/viewCCMap.html:263 home/templates/viewMap.html:269
-#: home/templates/viewWcdMap.html:278
+#: .\home\templates\viewCCMap.html:263 .\home\templates\viewMap.html:270
+#: .\home\templates\viewWcdMap.html:278
 msgid "Thane"
 msgstr "ठाणे"
 
-#: home/templates/viewCCMap.html:264 home/templates/viewMap.html:270
-#: home/templates/viewWcdMap.html:279
+#: .\home\templates\viewCCMap.html:264 .\home\templates\viewMap.html:271
+#: .\home\templates\viewWcdMap.html:279
 msgid "Wardha"
 msgstr "वर्धा"
 
-#: home/templates/viewCCMap.html:265 home/templates/viewMap.html:271
-#: home/templates/viewWcdMap.html:280
+#: .\home\templates\viewCCMap.html:265 .\home\templates\viewMap.html:272
+#: .\home\templates\viewWcdMap.html:280
 msgid "Washim"
 msgstr "वाशिम"
 
-#: home/templates/viewCCMap.html:266 home/templates/viewMap.html:272
-#: home/templates/viewWcdMap.html:281
+#: .\home\templates\viewCCMap.html:266 .\home\templates\viewMap.html:273
+#: .\home\templates\viewWcdMap.html:281
 msgid "Yavatmal"
 msgstr "यवतमाळ"
 
-#: home/templates/viewCCMap.html:273 home/templates/viewWcdMap.html:287
+#: .\home\templates\viewCCMap.html:273 .\home\templates\viewWcdMap.html:287
 msgid "Facilities"
 msgstr "सुविधा"
 
-#: home/templates/viewCCMap.html:274 home/templates/viewCCMap.html:818
+#: .\home\templates\viewCCMap.html:274 .\home\templates\viewCCMap.html:825
 #, fuzzy
 #| msgid "Child Institutes"
 msgid "Child Care Institutes"
 msgstr "बाल संस्था"
 
-#: home/templates/viewCCMap.html:275 home/templates/viewCCMap.html:401
-#: home/templates/viewCCMap.html:876
+#: .\home\templates\viewCCMap.html:275 .\home\templates\viewCCMap.html:406
+#: .\home\templates\viewCCMap.html:883
 msgid "Justice Juvenile Board"
 msgstr "जस्टिस जुवेनाईल बोर्ड"
 
-#: home/templates/viewCCMap.html:276 home/templates/viewCCMap.html:933
+#: .\home\templates\viewCCMap.html:276 .\home\templates\viewCCMap.html:940
 msgid "Child Welfare Center"
 msgstr "बाल कल्याण केंद्र"
 
-#: home/templates/viewCCMap.html:277 home/templates/viewCCMap.html:403
-#: home/templates/viewCCMap.html:990
+#: .\home\templates\viewCCMap.html:277 .\home\templates\viewCCMap.html:408
+#: .\home\templates\viewCCMap.html:997
 msgid "Abhay Kendra"
 msgstr "अभय केंद्र"
 
-#: home/templates/viewCCMap.html:278 home/templates/viewCCMap.html:405
-#: home/templates/viewCCMap.html:1104
+#: .\home\templates\viewCCMap.html:278 .\home\templates\viewCCMap.html:410
+#: .\home\templates\viewCCMap.html:1111
 msgid "DCPO"
 msgstr "DCPO"
 
-#: home/templates/viewCCMap.html:279 home/templates/viewCCMap.html:406
-#: home/templates/viewCCMap.html:1047
+#: .\home\templates\viewCCMap.html:279 .\home\templates\viewCCMap.html:411
+#: .\home\templates\viewCCMap.html:1054
 msgid "Special Adoption Agency"
 msgstr "विशेष दत्तक एजन्सी"
 
-#: home/templates/viewCCMap.html:281 home/templates/viewCCMap.html:408
-#: home/templates/viewWcdMap.html:295 home/templates/viewWcdMap.html:756
+#: .\home\templates\viewCCMap.html:281 .\home\templates\viewCCMap.html:413
+#: .\home\templates\viewWcdMap.html:295 .\home\templates\viewWcdMap.html:756
 msgid "Police Stations"
 msgstr "पोलीस स्टेशन्स"
 
-#: home/templates/viewCCMap.html:288
+#: .\home\templates\viewCCMap.html:288
 #, fuzzy
 #| msgid "Plot Data"
 msgid "Plot"
 msgstr "प्लॉट डेटा"
 
-#: home/templates/viewCCMap.html:290
-msgid "Clear Selection"
+#: .\home\templates\viewCCMap.html:290 .\home\templates\viewWcdMap.html:302
+#, fuzzy
+#| msgid "Clear Selection"
+msgid "Download Data or Clear Selection"
 msgstr "निवड साफ करा"
 
-#: home/templates/viewCCMap.html:292 home/templates/viewWcdMap.html:304
-msgid "Clear All"
-msgstr "सर्व साफ करा"
-
-#: home/templates/viewCCMap.html:296 home/templates/viewWcdMap.html:303
+#: .\home\templates\viewCCMap.html:291 .\home\templates\viewCCMap.html:301
+#: .\home\templates\viewWcdMap.html:303
 msgid "Download"
 msgstr "डाउनलोड करा"
 
-#: home/templates/viewCCMap.html:299 home/templates/viewWcdMap.html:307
+#: .\home\templates\viewCCMap.html:292 .\home\templates\viewWcdMap.html:304
+msgid "Clear All"
+msgstr "सर्व साफ करा"
+
+#: .\home\templates\viewCCMap.html:304 .\home\templates\viewWcdMap.html:307
 msgid "Proximity of Facilities"
 msgstr "सुविधांची समीपता"
 
-#: home/templates/viewCCMap.html:300 home/templates/viewWcdMap.html:308
+#: .\home\templates\viewCCMap.html:305 .\home\templates\viewWcdMap.html:308
 msgid "Your Location"
 msgstr "तुमचे स्थान"
 
-#: home/templates/viewCCMap.html:301 home/templates/viewWcdMap.html:309
+#: .\home\templates\viewCCMap.html:306 .\home\templates\viewWcdMap.html:309
 msgid "Set Location"
 msgstr "स्थान सेट करा"
 
-#: home/templates/viewCCMap.html:304
+#: .\home\templates\viewCCMap.html:309
 msgid "Set Range"
 msgstr "श्रेणी सेट करा"
 
-#: home/templates/viewCCMap.html:318
+#: .\home\templates\viewCCMap.html:323
 msgid "Facilities within"
 msgstr "अंतरगत सुविधा"
 
-#: home/templates/viewCCMap.html:318
+#: .\home\templates\viewCCMap.html:323
 msgid "Km"
 msgstr "किमी"
 
-#: home/templates/viewCCMap.html:400
+#: .\home\templates\viewCCMap.html:405
 msgid "Child Care"
 msgstr "बाल संगोपन"
 
-#: home/templates/viewCCMap.html:402
+#: .\home\templates\viewCCMap.html:407
 msgid "Child Welfare Centres"
 msgstr "बाल कल्याण केंद्रे"
 
-#: home/templates/viewHome.html:684
-msgid "Maharashtra Women and Child GIS Mapping Project"
+#: .\home\templates\viewHome.html:1757
+msgid "Maharashtra's Women and Child GIS Mapping Project"
 msgstr "महाराष्ट्र महिला आणि बाल जीआयएस मॅपिंग प्रकल्प"
 
-#: home/templates/viewHome.html:689
+#: .\home\templates\viewHome.html:1778 .\home\templates\viewHome.html:1796
 msgid ""
 "Maha WCD GIS is a project by the department of women and child development, "
 "Government of Maharashtra to make data on Integrated Child Development "
@@ -382,11 +539,11 @@ msgstr ""
 "अंगणवाडी केंद्रे आणि विविध WCD संस्थांवरील डेटा वर दृश्यमान केला जातोसहज विश्लेषणासाठी "
 "नकाशा. डेटा ऍक्सेस करण्यासाठी खालील दोन लिंक वापरा."
 
-#: home/templates/viewHome.html:697
+#: .\home\templates\viewHome.html:1815
 msgid "ICDS GIS mapping"
 msgstr "ICDS GIS मॅपिंग"
 
-#: home/templates/viewHome.html:698
+#: .\home\templates\viewHome.html:1817
 msgid ""
 "Anganwadi centers are government run child-care and mother care centers, "
 "established under the Integrated Child Development Services (ICDS) program. "
@@ -402,43 +559,49 @@ msgstr ""
 "प्रदान करतात. अंगणवाडी केंद्रांचे उद्दिष्ट ग्रामीण आणि वंचित समाजातील मुले, माता आणि "
 "कुटुंबांचे आरोग्य आणि पोषण स्थिती सुधारणे आहे."
 
-#: home/templates/viewHome.html:709
-#, fuzzy
+#: .\home\templates\viewHome.html:1841
 msgid "WCD GIS mapping"
 msgstr "WCD GIS मॅपिंग"
 
-#: home/templates/viewHome.html:710
+#: .\home\templates\viewHome.html:1843
 msgid ""
-"The Integrated Child Protection Scheme (ICPS) is a central government scheme "
+"The Integrated Child Protection Scheme ICPS is a central government scheme "
 "that aims to provide a range of protective services to children in need of "
 "care and protection, such as those who are abandoned, abused, or exploited. "
 "It seeks to ensure these children have access to shelter, food, education, "
-"and medical care.\n"
-"    Childcare institutions are residential facilities that provide care and "
-"protection to children who cannot live with their families. These "
-"institutions provide a safe and nurturing environment, where children can "
-"receive education, health care, and other basic necessities. The goal of "
-"childcare institutions is to promote the child’s overall development and "
+"and medical care. Childcare institutions are residential facilities that "
+"provide care and protection to children who cannot live with their families. "
+"These institutions provide a safe and nurturing environment, where children "
+"can receive education, health care, and other basic necessities. The goal of "
+"childcare institutions is to promote the chil`s overall development and "
 "prepare them for a successful future."
 msgstr ""
+"इंटिग्रेटेड चाइल्ड प्रोटेक्शन स्कीम (ICPS) ही केंद्र सरकारची योजना आहे ज्याचा उद्देशकाळजी "
+"आणि संरक्षणाची गरज असलेल्या मुलांना, जसे की सोडून दिलेल्या,शोषण झालेल्या किंवा शोषण "
+"झालेल्या मुलांना संरक्षणात्मक सेवा प्रदान करणे आहे.या मुलांना निवारा, अन्न, शिक्षण आणि "
+"वैद्यकीय सेवा मिळतील याची खात्री करण्याचा प्रयत्न करतो.बालसंगोपन संस्था ही निवासी "
+"सुविधा आहेतजी त्यांच्या कुटुंबासोबत राहू शकत नसलेल्या मुलांना काळजी आणि संरक्षण देतात.या "
+"संस्था एक सुरक्षित आणि पोषक वातावरण प्रदान करतात,जिथे मुलांना शिक्षण, आरोग्य सेवा आणि "
+"इतर मूलभूत गरजा मिळू शकतात.मुलाच्या सर्वांगीण विकासाला चालना देणे आणि त्यांना "
+"यशस्वीभविष्यासाठी तयार करणे हे बालसंगोपन संस्थांचे ध्येय आहे."
 
-#: home/templates/viewHome.html:727
+#: .\home\templates\viewHome.html:1890
 msgid "Our Role"
 msgstr "आमची भूमिका"
 
-#: home/templates/viewHome.html:743
+#: .\home\templates\viewHome.html:1945
 msgid "Advocacy"
 msgstr "वकिली"
 
-#: home/templates/viewHome.html:757
+#: .\home\templates\viewHome.html:1970
 msgid "Emphasize the significance of child's first 1000 days"
 msgstr "मुलाच्या पहिल्या 1000 दिवसांच्या महत्त्वावर जोर द्या"
 
-#: home/templates/viewHome.html:777
+#: .\home\templates\viewHome.html:2016
 msgid "Think Tank"
 msgstr "विचार गट"
 
-#: home/templates/viewHome.html:791
+#: .\home\templates\viewHome.html:2041
 msgid ""
 "Acting as a ‘think tank’ and advising the government based on actual "
 "evidence to decide the policy"
@@ -446,22 +609,31 @@ msgstr ""
 "‘विचार गट’ म्हणून काम करणे आणि वास्तविकतेवर आधारित सरकारला सल्ला देणे धोरण "
 "ठरवण्यासाठी पुरावा"
 
-#: home/templates/viewHome.html:811
+#: .\home\templates\viewHome.html:2087
 msgid "Convergence"
 msgstr "अभिसरण"
 
-#: home/templates/viewHome.html:825
+#: .\home\templates\viewHome.html:2112
 msgid ""
 "Integrate / unify different sectors to achieve common goals of reducing "
 "malnutrition"
 msgstr ""
 "कमी करण्याचे सामाईक उद्दिष्ट साध्य करण्यासाठी विविध क्षेत्रांचे एकत्रीकरण/एकत्रीकरणकुपोषण"
 
-#: home/templates/viewHome.html:837
+#: .\home\templates\viewHome.html:2145
 msgid "What's New"
 msgstr "नवीन काय आहे"
 
-#: home/templates/viewHome.html:847
+#: .\home\templates\viewHome.html:2164
+msgid ""
+"DWCD, GoM won the &#8220;SKOCH Silver Award&#8221; for MAVIM e-Business "
+"Platform, a digital intervention for strengthening linkages from farm-to-"
+"market, thus empowering women farmers."
+msgstr ""
+"DWCD, GoM ने MAVIM ई-बिझनेस प्लॅटफॉर्मसाठीSKOCH सिल्व्हर अवॉर्डजिंकला, जो शेत-ते-मार्केट "
+"संबंध मजबूत करण्यासाठी डिजिटल हस्तक्षेप आहे, अशा प्रकारे महिला शेतकर्‍यांचे सक्षमीकरण."
+
+#: .\home\templates\viewHome.html:2174
 msgid ""
 "DWCD, GoM won &#8220;Order of Merits&#8221; for &#8220;Know Your "
 "District&#8221;, a digital low-cost intervention for intelligent "
@@ -469,133 +641,82 @@ msgid ""
 "and &#8220;Tarang Suposhit Maharashtracha&#8221;, a digital communication "
 "initiative for counselling and IEC dissemination during COVID-19"
 msgstr ""
+"महिला आणि बालविकास विभाग तसेच महाराष्ट्र शासन यांचा ऑर्डर ऑफ मेरीट पुरस्काराने गौरव "
+"करण्यात आला.एकात्मिक बालविकास योजनेची माहिती अंगणवाड्यांमध्ये देण्यासाठी राबवलेला Know "
+"Your District उपक्रम,पोषणाच्या बाबत मार्गदर्शन करणारी ‘तरंग सुपोषित महाराष्ट्राचा’ही "
+"डिजिटल प्रणाली यासारख्या नाविन्यपूर्णउपक्रमांची दखल घेत हा पुरस्कार प्रदान करण्यात आला."
 
-#: home/templates/viewHome.html:854
+#: .\home\templates\viewHome.html:2211
 msgid "Follow Us on Facebook"
 msgstr "फेसबुकवर आमचे अनुसरण करा"
 
-#: home/templates/viewHome.html:862
+#: .\home\templates\viewHome.html:2243
 msgid "Follow Us on Twitter"
 msgstr "ट्विटर वर आमचे अनुसरण करा"
 
-#: home/templates/viewHome.html:867
+#: .\home\templates\viewHome.html:2287
 msgid "Follow Us on Instagram"
 msgstr "इंस्टाग्राम आमचे अनुसरण करा"
 
-#: home/templates/viewWcdMap.html:288 home/templates/viewWcdMap.html:748
-#: home/templates/viewWcdMap.html:1295
+#: .\home\templates\viewHome2.html:13
+#, fuzzy
+#| msgid "Home"
+msgid "women"
+msgstr "मुख्यपृष्ठ"
+
+#: .\home\templates\viewWcdMap.html:288 .\home\templates\viewWcdMap.html:748
+#: .\home\templates\viewWcdMap.html:1295
 msgid "Women State Home"
 msgstr "महिला राज्य गृह"
 
-#: home/templates/viewWcdMap.html:289 home/templates/viewWcdMap.html:749
+#: .\home\templates\viewWcdMap.html:289 .\home\templates\viewWcdMap.html:749
 msgid "One Stop Center"
 msgstr "वन स्टॉप सेंटर"
 
-#: home/templates/viewWcdMap.html:290 home/templates/viewWcdMap.html:750
+#: .\home\templates\viewWcdMap.html:290 .\home\templates\viewWcdMap.html:750
 msgid "Counselling Center"
 msgstr "समुपदेशन केंद्र"
 
-#: home/templates/viewWcdMap.html:291 home/templates/viewWcdMap.html:751
-#: home/templates/viewWcdMap.html:1524
+#: .\home\templates\viewWcdMap.html:291 .\home\templates\viewWcdMap.html:751
+#: .\home\templates\viewWcdMap.html:1524
 msgid "Swadhaar Greh"
 msgstr "स्वाधार गृह"
 
-#: home/templates/viewWcdMap.html:292 home/templates/viewWcdMap.html:753
-#: home/templates/viewWcdMap.html:1603
+#: .\home\templates\viewWcdMap.html:292 .\home\templates\viewWcdMap.html:753
+#: .\home\templates\viewWcdMap.html:1603
 msgid "Ujjwal Greh"
 msgstr "उज्ज्वल गृह"
 
-#: home/templates/viewWcdMap.html:293 home/templates/viewWcdMap.html:755
-#: home/templates/viewWcdMap.html:1676
+#: .\home\templates\viewWcdMap.html:293 .\home\templates\viewWcdMap.html:755
+#: .\home\templates\viewWcdMap.html:1676
 msgid "Aadhar Greh"
 msgstr "आधार गृह "
 
-#: home/templates/viewWcdMap.html:294 home/templates/viewWcdMap.html:754
-#: home/templates/viewWcdMap.html:1762
+#: .\home\templates\viewWcdMap.html:294 .\home\templates\viewWcdMap.html:754
+#: .\home\templates\viewWcdMap.html:1762
 msgid "Working Women Hostel"
 msgstr "कार्यरत महिला वसतिगृह"
 
-#: home/templates/viewWcdMap.html:302
-#, fuzzy
-#| msgid "Clear Selection"
-msgid "Download Data or Clear Selection"
-msgstr "निवड साफ करा"
-
-#: home/templates/viewWcdMap.html:312
+#: .\home\templates\viewWcdMap.html:312
 #, fuzzy
 #| msgid "Set Range"
 msgid "Set Range(Kms)"
 msgstr "श्रेणी सेट करा"
 
-#: home/templates/viewWcdMap.html:1377
+#: .\home\templates\viewWcdMap.html:1377
 #, fuzzy
 #| msgid "One Stop Center"
 msgid "One Stop Centers"
 msgstr "वन स्टॉप सेंटर"
 
-#: home/templates/viewWcdMap.html:1445
+#: .\home\templates\viewWcdMap.html:1445
 #, fuzzy
 #| msgid "Counselling Center"
 msgid "Counselling Centers"
 msgstr "समुपदेशन केंद्र"
 
-#~ msgid "Introduction"
-#~ msgstr "परिचय"
-
-#~ msgid ""
-#~ "Women and Child Development Department was formed as a separate "
-#~ "Administrative Department by the Government of Maharashtra in June 1993."
-#~ msgstr ""
-#~ "महिला व बालविकास विभाग स्वतंत्र म्हणून स्थापन करण्यात आलाजून 1993 मध्ये महाराष्ट्र "
-#~ "शासनाकडून प्रशासकीय विभाग."
-
-#~ msgid ""
-#~ "The main objectives of the Department are to focus on promoting the "
-#~ "survival, protection, development, welfare and participation of women and "
-#~ "children in a holistic manner. The department is responsible for policy "
-#~ "making, formulation of programmes /schemes, implementation of development "
-#~ "programmes, and co-ordination of efforts of both governmental and non-"
-#~ "governmental organizations working in the field of Women and Child "
-#~ "Development."
-#~ msgstr ""
-#~ "विभागाची मुख्य उद्दिष्टे म्हणजे महिलांचे अस्तित्व, संरक्षण, विकास, कल्याण आणि सहभाग "
-#~ "आणिसर्वसमावेशक पद्धतीने मुले. धोरणासाठी विभाग जबाबदार आहे निर्मिती, कार्यक्रम/योजना "
-#~ "तयार करणे, विकासाची अंमलबजावणीकार्यक्रम, आणि सरकारी आणि गैर-दोन्हींच्या प्रयत्नांचे "
-#~ "समन्वयमहिला आणि बालकांच्या क्षेत्रात काम करणाऱ्या सरकारी संस्थाविकास."
-
-#~ msgid "Women constitute around 48%% at around 5.41 crores."
-#~ msgstr "सुमारे 5.41 कोटी म्हणजे सुमारे 48%% महिला आहेत."
-
-#~ msgid "Children (0-6 yrs.) constitute around 12%% at around 1.33 Crores"
-#~ msgstr "सुमारे 5.41 कोटी म्हणजे सुमारे 48%% महिला आहेत."
-
-#~ msgid "Sex ratio of 894 for age group of 0-6 yrs."
-#~ msgstr "0-6 वर्षे वयोगटासाठी 894 लिंग गुणोत्तर."
-
-#~ msgid "Organizational Structure"
-#~ msgstr "संघटनात्मक रचना"
-
-#~ msgid ""
-#~ "There are Two Commissionerates and other field offices under the "
-#~ "administrative control of Women and Child Development Department. The "
-#~ "department is responsible for the overall strategic direction setting, "
-#~ "administration and financial matters pertaining to these Commissionerates "
-#~ "and Field Offices. The above chart depicts various commissionerates/ "
-#~ "field offices that the Dept. has under its wing:"
-#~ msgstr ""
-#~ "या अंतर्गत दोन आयुक्तालये आणि इतर क्षेत्रीय कार्यालये आहेतमहिला आणि बाल विकास "
-#~ "विभागाचे प्रशासकीय नियंत्रण.एकूण धोरणात्मक दिशा सेटिंगसाठी विभाग जबाबदार आहे,या "
-#~ "आयुक्तालयांशी संबंधित प्रशासन आणि आर्थिक बाबीआणि क्षेत्रीय कार्यालये. वरील तक्त्यामध्ये "
-#~ "विविध आयुक्तालये/क्षेत्राचे चित्रण आहेविभागाच्या अंतर्गत असलेली कार्यालये:"
-
-#~ msgid "Our Leadership"
-#~ msgstr "आमचे नेतृत्व"
-
-#~ msgid "Shri. Eknath Shinde"
-#~ msgstr "श्री. एकनाथ शिंदे"
-
-#~ msgid "Hon'ble Chief Minister"
-#~ msgstr "माननीय मुख्यमंत्री"
+#~ msgid "Clear Selection"
+#~ msgstr "निवड साफ करा"
 
 #~ msgid "Madam Kama Road,"
 #~ msgstr "मॅडम कामा रोड"
@@ -615,20 +736,8 @@ msgstr "समुपदेशन केंद्र"
 #~ msgid "Email ID:cm@maharashtra.gov.in"
 #~ msgstr "ईमेल आयडी: cm@maharashtra.gov.in"
 
-#~ msgid "Hon'ble Minister Women and Child Development Department."
-#~ msgstr "महिला व बाल विकास विभागाच्या मंत्री मा."
-
 #~ msgid "Email ID:min.wcd@ maharashtra.gov.in"
 #~ msgstr "ईमेल आयडी: min.wcd@maharashtra.gov.in"
-
-#~ msgid "Smt. I. A. Kundan"
-#~ msgstr "श्रीमती. आय.ए. कुंदन"
-
-#~ msgid "Principal Secretary,"
-#~ msgstr "प्रधान सचिव,"
-
-#~ msgid "Women and Child Development Department"
-#~ msgstr "महिला व बाल विकास विभाग"
 
 #~ msgid "3rd Floor, New Administrative Building"
 #~ msgstr "3 रा मजला, नवीन प्रशासकीय इमारत"
