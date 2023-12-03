@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -467,65 +468,59 @@ https://yellowpencil.waspthemes.com
     <div class="container" style="position: relative;">
         <div class="content" style="display: flex; padding-bottom: 110px;">
             <div class="left-sidebar" style="height:100%; position: relative;">
-              <h2 style="background-color: #109af1; margin:0; padding: 10px;border-radius: 5px 5px 0 0;">About Us</h2>
+              <h2 style="background-color: #109af1; margin:0; padding: 10px;border-radius: 5px 5px 0 0;">{% trans "About Us" %}</h2>
                 <ul id="opt" style="list-style: none; background: #109af1; padding: 0;">
-                  <li><a style="color: #000; cursor: pointer;" onclick="show('intro'); ">Introduction</a></li>
-                  <li><a style="color: #000; cursor: pointer;" onclick="show('os'); ">Organizational Structure</a></li>
-                  <li><a style="color: #000; cursor: pointer;" onclick="show('ol'); " >Our Leadership</a></li>
+                  <li><a style="color: #000; cursor: pointer;" onclick="show('intro'); ">{% trans "Introduction" %}</a></li>
+                  <li><a style="color: #000; cursor: pointer;" onclick="show('os'); ">{% trans "Organizational Structure"%}</a></li>
+                  <li><a style="color: #000; cursor: pointer;" onclick="show('ol'); " >{% trans "Our Leadership" %}</a></li>
                 </ul>
             </div>
             <div class="right-container-1" id="intro" style="padding: 0 5%; display: block;">
-                <h3>Introduction</h3>
+                <h3>{% trans "Introduction" %}</h3>
                 <hr style="border: #000 solid 1px;">
                 
-                  <p>Women and Child Development Department was formed as a separate Administrative Department by the Government of Maharashtra in June 1993.</p>
-                  <p>The main objectives of the Department are to focus on promoting the survival, protection, development, welfare and participation of women and children in a holistic manner. The department is responsible for policy making, formulation of programmes /schemes, implementation of development programmes, and co-ordination of efforts of both governmental and non-governmental organizations working in the field of Women and Child Development.</p>
+                  <p>{% trans "Women and Child Development Department was formed as a separate Administrative Department by the Government of Maharashtra in June 1993." %}</p>
+                  <p>{% trans "The main objectives of the Department are to focus on promoting the survival, protection, development, welfare and participation of women and children in a holistic manner. The department is responsible for policy making, formulation of programmes /schemes, implementation of development programmes, and co-ordination of efforts of both governmental and non-governmental organizations working in the field of Women and Child Development." %}</p>
                   <p>
-                    Maharashtra is the second most populous state with around 11.2 crores citizens residing in the state.
+                    {% trans "Maharashtra is the second most populous state with around 11.2 crores citizens residing in the state." %}
                     <ul>
-                      <li>Women constitute around 48% at around 5.41 crores.</li>
-                      <li>Children (0-6 yrs.) constitute around 12% at around 1.33 Crores</li>
-                      <li>Sex ratio of 894 for age group of 0-6 yrs.</li>
+                      <li>{% trans "Women constitute around 48% at around 5.41 crores." %}</li>
+                      <li>{% trans "Children (0-6 yrs.) constitute around 12% at around 1.33 Crores" %}</li>
+                      <li>{% trans "Sex ratio of 894 for age group of 0-6 yrs" %}.</li>
                     </ul>
                   </p> 
                 
             </div>
             <div class="right-container-1" id="os" style="padding: 0 5%;">
-              <h3>Organizational Structure</h3>
+              <h3>{% trans "Organizational Structure" %}</h3>
               <hr style="border: #000 solid 1px;">
               <p>
                 <img src="{% static 'e1.png' %}" alt="">
               </p>
-              <p>There are Two Commissionerates and other field offices under the administrative control of Women and Child Development Department. The department is responsible for the overall strategic direction setting, administration and financial matters pertaining to these Commissionerates and Field Offices. The above chart depicts various commissionerates/ field offices that the Dept. has under its wing:</p>
+              <p>{% trans "There are Two Commissionerates and other field offices under the administrative control of Women and Child Development Department. The department is responsible for the overall strategic direction setting, administration and financial matters pertaining to these Commissionerates and Field Offices. The above chart depicts various commissionerates/ field offices that the Dept. has under its wing:" %}</p>
               <p>
                 <img src="{% static 'e2.png' %}" alt="">
               </p>
           </div>
           <div class="right-container-1" id="ol" style="padding: 0 5%; ">
-            <h3>Our Leadership</h3>
+            <h3>{% trans "Our Leadership" %}</h3>
             <table class="table">
               <tbody>
                 <tr>
                   <td><img src="{% static 'cm.jpg' %}" style="height: 100px; max-width: 100px;" alt=""></td>
                   <td>
-                    <strong>Shri. Eknath Shinde</strong>
-                    <br>Hon'ble Chief Minister
+                    <strong>{% trans "Shri. Eknath Shinde" %}</strong>
+                    <br>{% trans "Hon'ble Chief Minister" %}
                   </td>
                   <td>
-                    <p>6th Floor, Mantralaya
-                      Madam Kama Road,
-                      Hutatma Rajguru Chowk,
-                      Mumbai - 400032,
-                      Maharashtra, India
-                      Landline No: 022-22025051 /22023858
-                      Email ID:cm@maharashtra.gov.in</p>
+                    <p>{% trans "6th Floor, Mantralaya Madam Kama Road, Hutatma Rajguru Chowk, Mumbai - 400032, Maharashtra, India Landline No: 022-22025051 /22023858 Email ID:cm@maharashtra.gov.in" %}</p>
                   </td>
                 </tr>
                 <tr>
                   <td><img src="{% static 'Minister.jpg' %}" style="height: 100px; max-width: 100px;" alt=""></td>
                   <td>
-                    <strong>Shri. Mangal Prabhat Lodha</strong>
-                    <br>Hon'ble Minister Women and Child Development Department.
+                    <strong>{% trans "Shri. Mangal Prabhat Lodha" %}</strong>
+                    <br>{% trans "Hon'ble Minister Women and Child Development Department." %}
                   </td>
                   <td>
                     <p>Email ID:min.wcd@ maharashtra.gov.in</p>
@@ -534,18 +529,12 @@ https://yellowpencil.waspthemes.com
                 <tr>
                   <td><img src="{% static 'Secmam.jpg' %}" style="height: 100px; max-width: 100px;" alt=""></td>
                   <td>
-                    <strong>Smt. I. A. Kundan</strong>
-                    <br>Principal Secretary,<br>
-                    Women and Child Development Department
+                    <strong>{% trans "Smt. I. A. Kundan" %}</strong>
+                    <br>{% trans "Principal Secretary," %}<br>
+                    {% trans "Women and Child Development Department" %}
                   </td>
                   <td>
-                    <p>3rd Floor, New Administrative Building
-                      Madam Kama Road,
-                      Hutatma Rajguru Chowk,
-                      Mumbai - 400032,
-                      Maharashtra, India
-                      Landline No: 022- 2202 7050
-                      Email ID: psec.wchd@maharashtra.gov.in</p>
+                    <p>{% trans "3rd Floor, New Administrative Building Madam Kama Road, Hutatma Rajguru Chowk, Mumbai - 400032, Maharashtra, India Landline No: 022- 2202 7050 Email ID: psec.wchd@maharashtra.gov.in" %}</p>
                   </td>
                 </tr>
               </tbody>
