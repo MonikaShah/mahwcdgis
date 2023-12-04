@@ -996,20 +996,8 @@ msgstr "समुपदेशन केंद्र"
 #~ msgid "Email ID: psec.wchd@maharashtra.gov.in"
 #~ msgstr "ईमेल आयडी: psec.wchd@maharashtra.gov.in"
 
-#~ msgid "Select Taluka"
-#~ msgstr "तालुका निवडा"
-
 #~ msgid " Select Project"
 #~ msgstr "प्रकल्प निवडा"
-
-#~ msgid "Select"
-#~ msgstr "निवडा"
-
-#~ msgid "Anganwadi Type"
-#~ msgstr "अंगणवाडी प्रकार"
-
-#~ msgid "Add Filter"
-#~ msgstr "फिल्टर जोडा"
 
 #, fuzzy
 #~ msgid "Download Data"
