@@ -241,18 +241,19 @@ img{
               <div class="stm-navigation__default">
                 <ul style="list-style: none;">
                   <li ><a href="{% url 'homepage' %}">{% trans "Home" %}</a></li>
-                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'">{% trans "Maps" %}</a>
-                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="document.getElementById('map-optn').style.display='none'" style="position:fixed; display: none;background: #fff;padding: 10px;  z-index:11111; border: 1px black solid;">
+                  <li ><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="//document.getElementById('map-optn').style.display='none'">{% trans "Maps" %}</a>
+                    <div id="map-optn" onmouseover="document.getElementById('map-optn').style.display='block'" onmouseout="//document.getElementById('map-optn').style.display='none';" style="position:fixed; display: none;background: #fff;padding: 10px;  border: 1px black solid; z-index: 10000;">
                       <ul style="list-style-type: none; padding: 0;">
-                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" >{% trans "WCD Maps" %}</a>
-                          <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="document.getElementById('sub').style.display='none'" style="display: none;position: fixed; background: white; border: 1px black solid;">
-                            <ul style="list-style-type: none;padding:10px 0;">
+                        <li style="padding: 5px;"><a onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="//document.getElementById('sub').style.display='none'" >{% trans "WCD Maps" %}</a></li><br>
+                        <li>
+                          <div id="sub" onmouseover="document.getElementById('sub').style.display='block'" onmouseleave="//document.getElementById('sub').style.display='none'" style="display: none; position: fixed; background: white; border: 1px black solid;">
+                            <ul style="list-style-type: none;padding: 10px 0px;">
                               <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">{% trans "Women Institutes" %}</a></li><br>
-                              <li style="padding: 5px;"><a href="{% url 'viewCCMap' %}">{% trans "Child Institutes" %}</a></li>
+                              <li style="padding: 5px;"><a href="{% url 'viewCCMap' %}">{% trans "Child Institutes" %} </a></li>
                             </ul>
                           </div>
-                        </li><br>
-                        <li style="padding: 5px;"><a href="{% url 'map' %}">{% trans "ICDS Maps" %} </a></li><br>
+                        </li>
+                        <li style="padding: 5px;" onmouseover="document.getElementById('sub').style.display='none'"><a href="{% url 'map' %}">{% trans "ICDS Maps" %} </a></li><br>
                       </ul>
                     </div>
                   </li>
