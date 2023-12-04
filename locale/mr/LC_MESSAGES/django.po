@@ -658,6 +658,254 @@ msgstr "ट्विटर वर आमचे अनुसरण करा"
 msgid "Follow Us on Instagram"
 msgstr "इंस्टाग्राम आमचे अनुसरण करा"
 
+
+#: .\home\templates\viewMap.html:282
+msgid "Select Taluka"
+msgstr "तालुका निवडा"
+
+#: .\home\templates\viewMap.html:284
+#, python-format
+msgid "%(i.block_n)s"
+msgstr ""
+
+#: .\home\templates\viewMap.html:291
+msgid "Select Project"
+msgstr "प्रकल्प निवडा"
+
+#: .\home\templates\viewMap.html:300
+msgid "Select"
+msgstr "निवडा"
+
+#: .\home\templates\viewMap.html:301
+msgid "Anganwadi Type"
+msgstr "अंगणवाडी प्रकार"
+
+#: .\home\templates\viewMap.html:302
+msgid "Anganwadi Construction"
+msgstr "अंगणवाडी बांधकाम"
+
+#: .\home\templates\viewMap.html:303
+msgid "Is Anganwadi Center on Rent ?"
+msgstr "अंगणवाडी केंद्र भाड्यावर आहे का?"
+
+#: .\home\templates\viewMap.html:304
+msgid ""
+"If yes, then is it possible to move your Anganwadi Center to the nearest "
+"Government School or Government premises ?"
+msgstr ""
+"होय, तर तुमचे अंगणवाडी केंद्र जवळच्या ठिकाणी हलवणे शक्य आहे का"
+"सरकारी शाळा की सरकारी जागा?"
+
+#: .\home\templates\viewMap.html:305
+msgid "If no, then What is the name of the owner of the place ?"
+msgstr "जर नाही, तर जागेच्या मालकाचे नाव काय?"
+
+#: .\home\templates\viewMap.html:306
+msgid "Child sitting capacity of Anganwadi Center"
+msgstr "अंगणवाडी केंद्राची मुलांची बसण्याची क्षमता"
+
+#: .\home\templates\viewMap.html:307
+msgid "Is Your Anganwadi Center Fenced ?"
+msgstr "तुमच्या अंगणवाडी केंद्राला कुंपण आहे का?"
+
+#: .\home\templates\viewMap.html:308
+msgid ""
+"Does your Anganwadi center have equipment to measure weight of small "
+"children ?"
+msgstr ""
+"तुमच्या अंगणवाडी केंद्रात लहान वजन मोजण्यासाठी उपकरणे आहेत का"
+"मुले?"
+
+#: .\home\templates\viewMap.html:309
+msgid "Is the weight machine for children, working ?"
+msgstr "मुलांसाठी वजनाचे यंत्र काम करत आहे का?"
+
+#: .\home\templates\viewMap.html:310
+msgid "Does your Anganwadi center have equipment to measure weight of adults ?"
+msgstr "तुमच्या अंगणवाडी केंद्रात प्रौढांचे वजन मोजण्यासाठी उपकरणे आहेत का?"
+
+#: .\home\templates\viewMap.html:311
+msgid "Is the weight machine for adults, working ?"
+msgstr "प्रौढांसाठी वजन मशीन कार्यरत आहे का?"
+
+#: .\home\templates\viewMap.html:312
+msgid ""
+"Does your Anganwadi center have equipment (Infantometer) to measure length "
+"of small children ?"
+msgstr ""
+"तुमच्या अंगणवाडी केंद्रात लांबी मोजण्यासाठी उपकरणे (इन्फँटोमीटर) आहेत का"
+"लहान मुलांची?"
+
+#: .\home\templates\viewMap.html:313
+msgid "Is the Infantometer for children, working ?"
+msgstr "मुलांसाठी इन्फँटोमीटर कार्यरत आहे का?"
+
+#: .\home\templates\viewMap.html:314
+msgid ""
+"Does your Anganwadi center have any equipment (Stadiometer) to measure "
+"height ?"
+msgstr ""
+"तुमच्या अंगणवाडी केंद्रात मोजण्यासाठी काही उपकरणे (स्टेडीओमीटर) आहेत का"
+"उंची?"
+
+#: .\home\templates\viewMap.html:315
+msgid "Is Stadiometer working"
+msgstr "स्टॅडिओमीटर कार्यरत आहे"
+
+#: .\home\templates\viewMap.html:316
+msgid "Does your AWC building needs care or repair"
+msgstr "तुमच्या अंगणवाडी केंद्रात वर्षभर पिण्याचे पाणी उपलब्ध आहे का?"
+
+#: .\home\templates\viewMap.html:317
+msgid ""
+"Does your Anganwadi center have drinking water available throughout the year?"
+msgstr ""
+"तुमच्या अंगणवाडी केंद्रात वर्षभर पिण्याचे पाणी उपलब्ध आहे का?"
+
+#: .\home\templates\viewMap.html:318
+msgid "Does your Anganwadi center have tap water connection?"
+msgstr "तुमच्या अंगणवाडी केंद्रात नळाचे कनेक्शन आहे का?"
+
+#: .\home\templates\viewMap.html:319
+msgid "Is the tap connection in ON condition?"
+msgstr "टॅप कनेक्शन चालू स्थितीत आहे का?"
+
+#: .\home\templates\viewMap.html:320
+msgid "Does your Anganwadi center have toilet facilities?"
+msgstr "तुमच्या अंगणवाडी केंद्रात शौचालयाची सोय आहे का?"
+
+#: .\home\templates\viewMap.html:321
+msgid "Is the toilet in working order?"
+msgstr "शौचालय कामाच्या क्रमाने आहे का?"
+
+#: .\home\templates\viewMap.html:322
+msgid ""
+"Does your Anganwadi center have electricity connection? Is it in condition?"
+msgstr "तुमच्या अंगणवाडी केंद्रात वीज कनेक्शन आहे का? स्थिती आहे का?"
+
+#: .\home\templates\viewMap.html:323
+msgid "Is your Anganwadi center powered by solar power?"
+msgstr "तुमचे अंगणवाडी केंद्र सौर उर्जेवर चालते का?"
+
+#: .\home\templates\viewMap.html:324
+msgid "Does your Anganwadi Center have TV?"
+msgstr "तुमच्या अंगणवाडी केंद्रात टीव्ही आहे का?"
+
+#: .\home\templates\viewMap.html:325
+msgid "Is the TV in working condition?"
+msgstr "टीव्ही कार्यरत स्थितीत आहे का?"
+
+#: .\home\templates\viewMap.html:326
+msgid "Does your Anganwadi center have a courtyard garden?"
+msgstr "तुमच्या अंगणवाडी केंद्रात अंगण बाग आहे का?"
+
+#: .\home\templates\viewMap.html:327
+msgid ""
+"If not, does your Anganwadi center have its own space to create a backyard "
+"garden?"
+msgstr ""
+"नाही तर, तुमच्या अंगणवाडी केंद्राकडे घरामागील अंगण तयार करण्यासाठी स्वतःची जागा आहे का"
+"बाग?"
+
+#: .\home\templates\viewMap.html:328
+msgid "Are there vacancies in your Anganwadi Centre?"
+msgstr "तुमच्या अंगणवाडी केंद्रात रिक्त जागा आहेत का?"
+
+#: .\home\templates\viewMap.html:329
+msgid "Which of the following posts are vacant?"
+msgstr "खालीलपैकी कोणती पदे रिक्त आहेत?"
+
+#: .\home\templates\viewMap.html:330
+msgid "Which of the following posts are vacant?/Anganwadi Sevika"
+msgstr "खालीलपैकी कोणती पदे रिक्त आहेत?/अंगणवाडी सेविका"
+
+#: .\home\templates\viewMap.html:331
+msgid "Which of the following posts are vacant?/Asst"
+msgstr "खालीलपैकी कोणती पदे रिक्त आहेत?/सहाय्यक"
+
+#: .\home\templates\viewMap.html:332
+msgid ""
+"Has the process of filling vacancies in this Anganwadi Center started? "
+"Vacancies ?/help"
+msgstr ""
+"या अंगणवाडी केंद्रातील रिक्त पदे भरण्याची प्रक्रिया सुरू झाली आहे का?"
+"रिक्त जागा ?/मदत"
+
+#: .\home\templates\viewMap.html:333
+msgid "What is the total number of children aged 0-6 months in your Anganwadi?"
+msgstr "तुमच्या अंगणवाडीत 0-6 महिने वयोगटातील एकूण मुलांची संख्या किती आहे?"
+
+#: .\home\templates\viewMap.html:334
+msgid ""
+"What is the total number of children aged 6 months to 3 years in your "
+"Anganwadi?"
+msgstr "तुमच्या 6 महिने ते 3 वर्षे वयोगटातील एकूण मुलांची संख्या किती आहेअंगणवाडी?"
+
+#: .\home\templates\viewMap.html:335
+msgid ""
+"What is the total number of children aged 3 to 6 years in your Anganwadi?"
+msgstr "तुमच्या अंगणवाडीत 3 ते 6 वयोगटातील एकूण मुलांची संख्या किती आहे?"
+
+#: .\home\templates\viewMap.html:336
+msgid "Total number of children"
+msgstr "एकूण मुलांची संख्या"
+
+#: .\home\templates\viewMap.html:337
+msgid "What is the total number of pregnant mothers in your Anganwadi?"
+msgstr "तुमच्या अंगणवाडीत एकूण गरोदर मातांची संख्या किती आहे?"
+
+#: .\home\templates\viewMap.html:338
+msgid "What is the total number of lactating mothers in your Anganwadi?"
+msgstr "तुमच्या अंगणवाडीत एकूण स्तनदा मातांची संख्या किती आहे?"
+
+#: .\home\templates\viewMap.html:339
+msgid "Total number of pregnant and lactating mothers"
+msgstr "गरोदर आणि स्तनदा मातांची एकूण संख्या"
+
+#: .\home\templates\viewMap.html:340
+msgid ""
+"How many registered children have been weighed in your Anganwadi center in "
+"March 2022?"
+msgstr "तुमच्या अंगणवाडी केंद्रात किती मुलांचे वजन नोंदवले गेलेमार्च 2022?"
+
+#: .\home\templates\viewMap.html:341
+msgid ""
+"How many registered children have their height measured in March 2022 in "
+"your Anganwadi Centre?"
+msgstr "मार्च 2022 मध्ये किती नोंदणीकृत मुलांची उंची मोजली गेलीतुमचे अंगणवाडी केंद्र?"
+
+#: .\home\templates\viewMap.html:342
+#, fuzzy
+#| msgid ""
+#| "What is the number of acutely malnourished (SAM) children registered in "
+#| "your Anganwadi center during January 2022-March 2022?"
+msgid ""
+"What is the number of severely underweight (SUW) children registered in your "
+"Anganwadi center during January 2022-March 2022?"
+msgstr ""
+"तुमच्यामध्ये नोंदणीकृत तीव्र कुपोषित (एसएएम) मुलांची संख्या किती आहेजानेवारी 2022 ते मार्च "
+"2022 दरम्यान अंगणवाडी केंद्र?"
+
+#: .\home\templates\viewMap.html:343
+msgid ""
+"What is the number of severely underweight (SUW) infants who received "
+"additional THR during January 2022-March 2022 in your Anganwadi center?"
+msgstr ""
+"गंभीरपणे कमी वजनाच्या (SUW) अर्भकांची संख्या किती आहेतुमच्या अंगणवाडी केंद्रात जानेवारी "
+"2022-मार्च 2022 दरम्यान अतिरिक्त THR?"
+
+#: .\home\templates\viewMap.html:344
+msgid ""
+"What is the number of acutely malnourished (SAM) children registered in your "
+"Anganwadi center during January 2022-March 2022?"
+msgstr ""
+"तुमच्यामध्ये नोंदणीकृत तीव्र कुपोषित (एसएएम) मुलांची संख्या किती आहेजानेवारी 2022 ते मार्च "
+"2022 दरम्यान अंगणवाडी केंद्र?"
+
+#: .\home\templates\viewMap.html:370
+msgid "Add Filter"
+msgstr "फिल्टर जोडा"
+
 #: .\home\templates\viewHome2.html:13
 #, fuzzy
 #| msgid "Home"
