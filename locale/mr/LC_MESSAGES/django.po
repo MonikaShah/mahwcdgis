@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-02 22:49+0530\n"
+"POT-Creation-Date: 2023-12-04 07:57+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,9 +186,58 @@ msgstr "संपर्क करा"
 msgid "Contact Us"
 msgstr "संपर्क करा"
 
+#: .\home\templates\base_map_1.html:394
+#: .\home\templates\partials\footer.html:5
+msgid "Designed and Developed at"
+msgstr "येथे डिझाइन आणि विकसित केले"
+
+#: .\home\templates\base_map_1.html:397
+msgid "RAJMATA JIJAU MOTHER-CHILD HEALTH & NUTRITION MISSION"
+msgstr "राजमाता जिजाऊ माता-मुलाचे आरोग्य आणि पोषण मिशन"
+
+#: .\home\templates\base_map_1.html:398
+msgid ""
+"Maharashtra was the first state in the country to take a decision to tackle "
+"malnutrition in ‘Mission – mode’ and with this purpose, "
+msgstr ""
+"नियंत्रणाचा निर्णय घेणारे महाराष्ट्र हे देशातील पहिले राज्य आहे"
+कुपोषण ‘मिशन – मोड’ मध्ये आणि या उद्देशाने,
+
+#: .\home\templates\base_map_1.html:399
+msgid "Rajmata Jijau Mother – Child Health &amp; Nutrition"
+msgstr "राजमाता जिजाऊ माता-बाल आरोग्य पोषण अभियान"
+
+#: .\home\templates\base_map_1.html:400
+msgid ""
+"Mission was established. The first phase of the Mission was set up in 2005, "
+"and the second phase started in 2011 and the third phase in 2017. The aim of "
+"the Mission is to reduce child malnutrition in Maharashtra by focusing on "
+"the child's first 1000 days from conception."
+msgstr ""
+"याला सामोरे जाण्याचा निर्णय घेणारे महाराष्ट्र हे देशातील पहिले राज्य आहे.मिशन – मोडमध्ये "
+"कुपोषण आणि याच उद्देशाने, <b>राजमाता जिजाऊमाता - बालकाचे आरोग्य आणि पोषण</b> मिशन "
+"स्थापन करण्यात आले. पहिले मिशनचा टप्पा 2005 मध्ये स्थापित झाला आणि दुसरा टप्पा 2011 "
+"आणि 2017 मध्ये तिसरा टप्पा. मिशनचे उद्दिष्ट बालक कमी करणे आहेमुलांच्या पहिल्या 1000 दिवसांवर लक्ष केंद्रित करून महाराष्ट्रातील कुपोषणगर्भधारणा."
+
+#: .\home\templates\base_map_1.html:404
+msgid "CONTACT US"
+msgstr ""
+
+#: .\home\templates\base_map_1.html:410
+msgid ""
+"Address:-  Rajmata Jijau Mother-Child Health and Nutrition Mission, "
+"Department of Women and Child Development, Government of Maharashtra 8th "
+"Floor, New Mantralay, Beside G.T. Hospital Complex, Lokmanya Tilak Road, "
+"Mumbai, Maharashtra-400001"
+msgstr ""
+"राजमाता जिजाऊ माता-बाल आरोग्य व पोषण अभियान,"
+"महिला व बाल विकास विभाग,तिसरा "
+"मजला, नवीन प्रशासकीय इमारत," 
+"मंत्रालय,मुंबई-400 032"
+
 #: .\home\templates\contact_us.html:576
 msgid "ADDRESS"
-msgstr ""
+msgstr "पत्ता"
 
 #: .\home\templates\contact_us.html:576
 msgid ""
@@ -210,10 +259,6 @@ msgstr "संपर्क करा"
 #: .\home\templates\mainpage.html:196
 msgid "Visitors Count"
 msgstr ""
-
-#: .\home\templates\partials\footer.html:5
-msgid "Designed and Developed at"
-msgstr "येथे डिझाइन आणि विकसित केले"
 
 #: .\home\templates\partials\footer.html:9
 msgid "Rajmata Jijau Mother-Child Health &#038; Nutrition Mission"
@@ -658,7 +703,6 @@ msgstr "ट्विटर वर आमचे अनुसरण करा"
 msgid "Follow Us on Instagram"
 msgstr "इंस्टाग्राम आमचे अनुसरण करा"
 
-
 #: .\home\templates\viewMap.html:282
 msgid "Select Taluka"
 msgstr "तालुका निवडा"
@@ -693,8 +737,8 @@ msgid ""
 "If yes, then is it possible to move your Anganwadi Center to the nearest "
 "Government School or Government premises ?"
 msgstr ""
-"होय, तर तुमचे अंगणवाडी केंद्र जवळच्या ठिकाणी हलवणे शक्य आहे का"
-"सरकारी शाळा की सरकारी जागा?"
+"होय, तर तुमचे अंगणवाडी केंद्र जवळच्या ठिकाणी हलवणे शक्य आहे कासरकारी शाळा की सरकारी "
+"जागा?"
 
 #: .\home\templates\viewMap.html:305
 msgid "If no, then What is the name of the owner of the place ?"
@@ -712,9 +756,7 @@ msgstr "तुमच्या अंगणवाडी केंद्राल�
 msgid ""
 "Does your Anganwadi center have equipment to measure weight of small "
 "children ?"
-msgstr ""
-"तुमच्या अंगणवाडी केंद्रात लहान वजन मोजण्यासाठी उपकरणे आहेत का"
-"मुले?"
+msgstr "तुमच्या अंगणवाडी केंद्रात लहान वजन मोजण्यासाठी उपकरणे आहेत कामुले?"
 
 #: .\home\templates\viewMap.html:309
 msgid "Is the weight machine for children, working ?"
@@ -733,8 +775,7 @@ msgid ""
 "Does your Anganwadi center have equipment (Infantometer) to measure length "
 "of small children ?"
 msgstr ""
-"तुमच्या अंगणवाडी केंद्रात लांबी मोजण्यासाठी उपकरणे (इन्फँटोमीटर) आहेत का"
-"लहान मुलांची?"
+"तुमच्या अंगणवाडी केंद्रात लांबी मोजण्यासाठी उपकरणे (इन्फँटोमीटर) आहेत कालहान मुलांची?"
 
 #: .\home\templates\viewMap.html:313
 msgid "Is the Infantometer for children, working ?"
@@ -744,9 +785,7 @@ msgstr "मुलांसाठी इन्फँटोमीटर कार�
 msgid ""
 "Does your Anganwadi center have any equipment (Stadiometer) to measure "
 "height ?"
-msgstr ""
-"तुमच्या अंगणवाडी केंद्रात मोजण्यासाठी काही उपकरणे (स्टेडीओमीटर) आहेत का"
-"उंची?"
+msgstr "तुमच्या अंगणवाडी केंद्रात मोजण्यासाठी काही उपकरणे (स्टेडीओमीटर) आहेत काउंची?"
 
 #: .\home\templates\viewMap.html:315
 msgid "Is Stadiometer working"
@@ -759,8 +798,7 @@ msgstr "तुमच्या अंगणवाडी केंद्रात 
 #: .\home\templates\viewMap.html:317
 msgid ""
 "Does your Anganwadi center have drinking water available throughout the year?"
-msgstr ""
-"तुमच्या अंगणवाडी केंद्रात वर्षभर पिण्याचे पाणी उपलब्ध आहे का?"
+msgstr "तुमच्या अंगणवाडी केंद्रात वर्षभर पिण्याचे पाणी उपलब्ध आहे का?"
 
 #: .\home\templates\viewMap.html:318
 msgid "Does your Anganwadi center have tap water connection?"
@@ -804,8 +842,8 @@ msgid ""
 "If not, does your Anganwadi center have its own space to create a backyard "
 "garden?"
 msgstr ""
-"नाही तर, तुमच्या अंगणवाडी केंद्राकडे घरामागील अंगण तयार करण्यासाठी स्वतःची जागा आहे का"
-"बाग?"
+"नाही तर, तुमच्या अंगणवाडी केंद्राकडे घरामागील अंगण तयार करण्यासाठी स्वतःची जागा आहे "
+"काबाग?"
 
 #: .\home\templates\viewMap.html:328
 msgid "Are there vacancies in your Anganwadi Centre?"
@@ -828,8 +866,7 @@ msgid ""
 "Has the process of filling vacancies in this Anganwadi Center started? "
 "Vacancies ?/help"
 msgstr ""
-"या अंगणवाडी केंद्रातील रिक्त पदे भरण्याची प्रक्रिया सुरू झाली आहे का?"
-"रिक्त जागा ?/मदत"
+"या अंगणवाडी केंद्रातील रिक्त पदे भरण्याची प्रक्रिया सुरू झाली आहे का?रिक्त जागा ?/मदत"
 
 #: .\home\templates\viewMap.html:333
 msgid "What is the total number of children aged 0-6 months in your Anganwadi?"
@@ -906,12 +943,6 @@ msgstr ""
 msgid "Add Filter"
 msgstr "फिल्टर जोडा"
 
-#: .\home\templates\viewHome2.html:13
-#, fuzzy
-#| msgid "Home"
-msgid "women"
-msgstr "मुख्यपृष्ठ"
-
 #: .\home\templates\viewWcdMap.html:288 .\home\templates\viewWcdMap.html:748
 #: .\home\templates\viewWcdMap.html:1295
 msgid "Women State Home"
@@ -946,22 +977,21 @@ msgid "Working Women Hostel"
 msgstr "कार्यरत महिला वसतिगृह"
 
 #: .\home\templates\viewWcdMap.html:312
-#, fuzzy
-#| msgid "Set Range"
 msgid "Set Range(Kms)"
 msgstr "श्रेणी सेट करा"
 
 #: .\home\templates\viewWcdMap.html:1377
-#, fuzzy
-#| msgid "One Stop Center"
 msgid "One Stop Centers"
 msgstr "वन स्टॉप सेंटर"
 
 #: .\home\templates\viewWcdMap.html:1445
-#, fuzzy
-#| msgid "Counselling Center"
 msgid "Counselling Centers"
 msgstr "समुपदेशन केंद्र"
+
+#, fuzzy
+#~| msgid "Home"
+#~ msgid "women"
+#~ msgstr "मुख्यपृष्ठ"
 
 #~ msgid "Clear Selection"
 #~ msgstr "निवड साफ करा"
@@ -995,9 +1025,6 @@ msgstr "समुपदेशन केंद्र"
 
 #~ msgid "Email ID: psec.wchd@maharashtra.gov.in"
 #~ msgstr "ईमेल आयडी: psec.wchd@maharashtra.gov.in"
-
-#~ msgid " Select Project"
-#~ msgstr "प्रकल्प निवडा"
 
 #, fuzzy
 #~ msgid "Download Data"
