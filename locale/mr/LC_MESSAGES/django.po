@@ -201,7 +201,7 @@ msgid ""
 "malnutrition in ‘Mission – mode’ and with this purpose, "
 msgstr ""
 "नियंत्रणाचा निर्णय घेणारे महाराष्ट्र हे देशातील पहिले राज्य आहे"
-कुपोषण ‘मिशन – मोड’ मध्ये आणि या उद्देशाने,
+"कुपोषण ‘मिशन – मोड’ मध्ये आणि या उद्देशाने,"
 
 #: .\home\templates\base_map_1.html:399
 msgid "Rajmata Jijau Mother – Child Health &amp; Nutrition"
