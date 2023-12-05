@@ -202,7 +202,7 @@ def viewCCMap(request):
                 d2 = Jjb.objects.filter(district=request.POST.get('district'))
                 print(d2)
             if cwc!=None:
-                d3 = CounsellingCentresJuly23.objects.filter(district=request.POST.get('district'))
+                d3 = Cwc.objects.filter(district=request.POST.get('district'))
             #     #print(d3)
             if ak!=None:
                 d4 = AbhayKendra.objects.filter(district=request.POST.get('district'))
