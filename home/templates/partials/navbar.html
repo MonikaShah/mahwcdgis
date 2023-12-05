@@ -108,16 +108,16 @@
                 <li ><a onclick="funct()">{% trans "Map"%}</a>
                   <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
                     <ul style="list-style-type: none; padding: 0;">                      
-                      <li style="margin: 0;"><a onclick="opn_sub()">WCD Maps</a>
+                      <li style="margin: 0;"><a onclick="opn_sub()">{% trans "WCD Maps"%}</a>
                         <div id="mob-sub" style="display: none;">
                           <ul style="list-style-type: none;">
-                            <li style="padding: 5px; margin: 0;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
-                            <li style="padding: 5px;"><a href="{% url 'viewCCMap' %}">Child Institutes </a></li>
+                            <li style="padding: 5px; margin: 0;"><a href="{% url 'viewWcdMap' %}">{% trans "Women Institutes"%}</a></li><br>
+                            <li style="padding: 5px; margin: 0;"><a href="{% url 'viewCCMap' %}">{% trans "Child Institutes"%} </a></li>
 
                           </ul>
                         </div>
                       </li><br>
-                      <li style="padding: 0; margin:0;"><a href="{% url 'map' %}">ICDS Maps</a></li>
+                      <li style="padding: 0; margin:0;"><a href="{% url 'map' %}">{% trans "ICDS Maps"%}</a></li>
                     </ul>
                   </div>
                 </li>
