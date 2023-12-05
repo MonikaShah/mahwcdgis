@@ -22,12 +22,12 @@
                 <ul style="list-style: none;">
                   <li style="float: left;" ><a href="{% url 'homepage' %}">{% trans "Home" %}</a></li>
                   <li style="float: left; cursor: pointer;"><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseleave="document.getElementById('map-optn').style.display='none'">{% trans "Maps" %}</a>
-                    <div onmouseleave="document.getElementById('map-optn').style.display='none'; document.getElementById('sub').style.display='none'" onmouseover="document.getElementById('map-optn').style.display='block'" id="map-optn"  style="position:fixed; display: none;background: #fff;padding: 0px;  border: 1px black solid;">
+                    <div onmouseleave="document.getElementById('map-optn').style.display='none'; document.getElementById('sub').style.display='none'" onmouseover="document.getElementById('map-optn').style.display='block'" id="map-optn"  style="position:fixed; display: none;background: #fff;padding: 0px;  border: 1px black solid; z-index: 1000;">
                       <ul style="list-style-type: none; padding: 0;">
-                        <li style="padding: 5px; cursor: pointer;" onclick="openMapSubOptions()"><a >{% trans "WCD Maps" %}</a></li>
+                        <li style="padding: 5px; cursor: pointer; border: 1px solid black; border-radius: 5px; margin: 3px;" onclick="openMapSubOptions()"><a >{% trans "WCD Maps" %}</a></li>
                         <li>
-                          <div id="sub" onmouseover="//document.getElementById('sub').style.display='block'" onmouseleave="//document.getElementById('sub').style.display='none'" style="display: none; position: relative; background: white; border: 1px black solid; padding: 10px;">
-                            <ul style="list-style-type: none;padding: 10px 0px;">
+                          <div id="sub" onmouseover="//document.getElementById('sub').style.display='block'" onmouseleave="//document.getElementById('sub').style.display='none'" style="display: none; position: relative; background: white; padding: 10px;">
+                            <ul style="list-style-type: square;">
                               <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">{% trans "Women Institutes" %}</a></li>
                               <li style="padding: 5px;"><a href="{% url 'viewCCMap' %}">{% trans "Child Institutes" %} </a></li>
                             </ul>
@@ -45,7 +45,7 @@
                             }
                           </script>
                         </li>
-                        <li style="padding: 5px;" ><a href="{% url 'map' %}">{% trans "ICDS Maps" %} </a></li><br>
+                        <li style="padding: 5px; border: 1px solid black; border-radius: 5px; margin: 3px;" ><a href="{% url 'map' %}">{% trans "ICDS Maps" %} </a></li>
                       </ul>
                     </div>
                   </li>
@@ -72,7 +72,7 @@
               <form action="{% url 'set_language' %}" method="post">
                 {% csrf_token %}
                 <input name="next" type="hidden" value="{{ redirect_to }}" />            
-                <select name="language" style="width: auto;" id="">
+                <select name="language" style="width: auto; padding: 5px" id="">
                   {% get_current_language as LANGUAGE_CODE %}
                   {% get_available_languages as LANGUAGES %}
                   {% get_language_info_list for LANGUAGES as languages %}
@@ -104,8 +104,8 @@
           <div style="display: flex;">
             <div class="stm-navigation__default_mob">
               <ul style="list-style: none;">
-                <li ><a href="{% url 'homepage' %}">Home</a></li>
-                <li ><a onclick="funct()">Map</a>
+                <li ><a href="{% url 'homepage' %}">{% trans "Home" %}</a></li>
+                <li ><a onclick="funct()">{% trans "Map"%}</a>
                   <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
                     <ul style="list-style-type: none; padding: 0;">                      
                       <li style="margin: 0;"><a onclick="opn_sub()">WCD Maps</a>
@@ -121,7 +121,7 @@
                     </ul>
                   </div>
                 </li>
-                <li ><a href="{% url 'about_us' %}">About Us</a>
+                <li ><a href="{% url 'about_us' %}">{% trans "About Us"%}</a>
                 <!-- <li id="about" onclick="aboutdd()"><a aria-disabled="true">About Us</a>
                 <ul id="about_list" style="list-style-type: none; color:white;font-family:Poppins;display:none;">
                   <li><a href="{% url 'what-we-do' %}">What we do</a></li>
@@ -129,19 +129,25 @@
                   <li><a href="{% url 'partners' %}">Partners</a></li>
                 </ul> -->
                 </li>
-                <li ><a href="{% url 'contact_us' %}">Contacts</a></li>
-                <li><div class="stm-header__cell-1 stm-header__cell_right-1" style="width:100%;display: flex; align-items:center;">
-                  <div style="display: flex; ">
-                    <div>
-                      <a href="{% url 'homepage' %}"><span style="color: white; font-size:15px;font-family:Poppins;">English</span></a>
-                    </div>
-                  </div>
-                  <div style="display: flex; margin-left:30px;">
-                    <div>
-                      <a href="mr"><span style="color: white; font-size:15px;font-family:Poppins;">मराठी</span></a>
-                    </div>
-                  </div>
-                  <div style="display: flex;"></div>
+                <li ><a href="{% url 'contact_us' %}">{% trans "Contacts"%}</a></li>
+                <li><div style="display: flex;">
+              
+                  <form action="{% url 'set_language' %}" method="post">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ redirect_to }}" />            
+                    <select name="language" style="width: auto; padding: 5px" >
+                      {% get_current_language as LANGUAGE_CODE %}
+                      {% get_available_languages as LANGUAGES %}
+                      {% get_language_info_list for LANGUAGES as languages %}
+                      {% for language in languages %} 
+                        <option value="{{ language.code }}"
+                          {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
+                              {{ language.name_local }} ({{ language.code }})
+                        </option>    
+                      {% endfor %}<br>
+                    </select>  <input type = "submit" value ="Go">
+                </form>
+                  
                 </div></li>
               </ul>
             </div>
