@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 23:16+0530\n"
+"POT-Creation-Date: 2023-12-05 23:24+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -208,21 +208,25 @@ msgstr "नकाशा"
 
 #: .\home\templates\base_map_12.html:253
 #: .\home\templates\partials\navbar.html:27
+#: .\home\templates\partials\navbar.html:111
 msgid "WCD Maps"
 msgstr "WCD नकाशे"
 
 #: .\home\templates\base_map_12.html:257
 #: .\home\templates\partials\navbar.html:31
+#: .\home\templates\partials\navbar.html:114
 msgid "Women Institutes"
 msgstr "महिला संस्था"
 
 #: .\home\templates\base_map_12.html:258
 #: .\home\templates\partials\navbar.html:32
+#: .\home\templates\partials\navbar.html:115
 msgid "Child Institutes"
 msgstr "बाल संस्था"
 
 #: .\home\templates\base_map_12.html:274
 #: .\home\templates\partials\navbar.html:48
+#: .\home\templates\partials\navbar.html:120
 msgid "ICDS Maps"
 msgstr "ICDS नकाशे"
 
