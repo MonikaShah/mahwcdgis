@@ -106,6 +106,26 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
+
+<link
+  rel="stylesheet"
+  id="pearl-theme-styles-css"
+  href='{% static "wp-content/themes/pearl/assets/css/app.css" %}'
+  type="text/css"
+  media="all"
+/>
+
+<link
+      rel="stylesheet"
+      id="pearl-theme-custom-styles-css"
+      href='{% static "wp-content/uploads/stm_uploads/skin-custom.css" %}'
+      type="text/css"
+      media="all"
+    />
+    
+
+
 </head>
 
   <body>
@@ -123,6 +143,14 @@ body {
 
 .header {
     height: 50px;
+}
+
+.stm-navigation__default-1 ul > li > a {
+    color: #000000;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: "Poppins";
+    padding: 0 20px;
 }
 
 .mobileShow {display: none;}
@@ -149,250 +177,68 @@ body {
 img{
   height:auto;
 }
-.stm-navigation__default ul > li {
-  float: left;
-}
+
 
 .stm-header{
   padding: 12px 0;
 }
 
-.stm-navigation__default ul > li >a {
-  color: #000000;
-  font-size: 15px;
-  font-family:'Poppins';
-  font-weight: 700;
-  padding: 0 20px;
-}
 
-.stm-navigation__default ul > li >a:hover {
-  border-bottom: 3.5px solid;
-  padding-bottom: 10px;
-}
 
 .container{
   max-width: 1350px;
   margin: 0 auto 0 auto;
-}
-
-@media screen and (max-width: 1024px) {
-  .container {
-    display: none;
-  }
-  .stm-header{
-    padding-top: 12px;
-  }
-
-  .stm-header__row{
-    width: 270px;
-    height: 100%;
-    position: fixed;
-    background-color: #000000 ;
-  }
-  
-  .stm-navigation__default_mob ul > li >a {
-    color: #fff;
-    font-size: 15px;
-    font-family:'Poppins';
-    font-weight: 700;
-  }
-
-
-  
-  .stm-navigation__default_mob ul > li{
-    margin: 30px 0;
-  }
-
-  #footer-main{
-    flex-direction: column;
-  }
-  
+  display: block;
 }
 
 @media screen and (min-width: 1025px) {
   .container-mob {
     display: none;
   }
-
-  @media screen and (min-width: 1200px){
-    .container-big {
-      max-width: 1140px;
-  }
 }
 
+@media screen and (max-width: 1024px) {
+  .stm-header-new > .container {
+    display: none;
+  }
+
+  .site-content {
+    position: relative;
+    margin: 0px;
+  }
+
+  .stm-header-new {
+    position: relative;
+    padding-top: 12px;
+  }
+
+  .stm-header__row-1 {
+    width: 75%;
+    height: 100%;
+    background-color: #000000;
+  }
+
+  .stm-navigation__default_mob ul > li > a {
+    color: #fff;
+    font-size: 15px;
+    font-family: "Poppins";
+    font-weight: 700;
+  }
+
+  .stm-navigation__default_mob ul > li {
+    margin: 30px 0;
+  }
+
+  #footer-main {
+    flex-direction: column;
+  }
 }
 
   </style>
  
+  {% include 'partials/navbar.html' %} {% block contentnav %}{% endblock %}
 
 
-<div class="stm-header">
-    <div class="container">
-        <div class="stm-header__row stm-header__row_center" style="display: flex; width:100%; box-sizing:border-box;">
-          <div class="stm-header__cell stm-header__cell_left" style="width:100%;display: flex; justify-content: flex-start;"> 
-            <div class="" style="display: flex;">
-              <div><a href=""><img style="height:100px;" src="{% static 'GoM.png' %}" alt=""></a></div>
-              {% comment %} <div><a href=""><img src="https://mahnm.in/wp-content/uploads/2020/11/logoweb.png" alt=""></a></div> {% endcomment %}
-              <div><a href=""><img src="{% static 'WCD Logo_PNG.png' %}" alt=""></a></div>
-            </div>
-          </div>
-          <div class="stm-header__cell stm-header__cell_center" style="min-width:fit-content;display: flex; justify-content: center; align-items:center;">
-            <div style="display: flex;">
-              <div class="stm-navigation__default">
-                <style>
-                  .stm-navigation__default ul > li{
-                    float: none;
-                  }
-                </style>
-                <ul style="list-style: none;">
-                  <li style="float: left;"><a href="{% url 'homepage' %}">{% trans "Home" %}</a></li>
-                  <li style="float: left; cursor: pointer;"><a onmouseover="document.getElementById('map-optn').style.display='block'" onmouseleave="document.getElementById('map-optn').style.display='none'">{% trans "Maps" %}</a>
-                    <div onmouseleave="document.getElementById('map-optn').style.display='none'; document.getElementById('sub').style.display='none'" onmouseover="document.getElementById('map-optn').style.display='block'" id="map-optn"  style="position:fixed; display: none;background: #fff;padding: 0px;  border: 1px black solid; z-index: 1000;">
-                      <ul style="list-style-type: none; padding: 0;">
-                        <li style="padding: 5px; cursor: pointer;" onclick="openMapSubOptions()"><a >{% trans "WCD Maps" %}</a></li>
-                        <li>
-                          <div id="sub" onmouseover="//document.getElementById('sub').style.display='block'" onmouseleave="//document.getElementById('sub').style.display='none'" style="display: none; position: relative; background: white; border: 1px black solid; padding: 10px;">
-                            <ul style="list-style-type: none;padding: 10px 0px;">
-                              <li style="padding: 5px;"><a href="{% url 'viewWcdMap' %}">{% trans "Women Institutes" %}</a></li>
-                              <li style="padding: 5px;"><a href="{% url 'viewCCMap' %}">{% trans "Child Institutes" %} </a></li>
-                            </ul>
-                          </div>
-                          <script>
-                            var mapSubOptnOpen = false;
-                            function openMapSubOptions(){
-                              if(!mapSubOptnOpen){
-                                document.getElementById('sub').style.display='block';
-                                mapSubOptnOpen = true;
-                              }else{
-                                document.getElementById('sub').style.display='none';
-                                mapSubOptnOpen = false;
-                              }
-                            }
-                          </script>
-                        </li>
-                        <li style="padding: 5px;" ><a href="{% url 'map' %}">{% trans "ICDS Maps" %} </a></li><br>
-                      </ul>
-                    </div>
-                  </li>
-                  <li style="float: left;" ><a href="{% url 'about_us' %}">{% trans "About Us" %}</a>
-                  <!-- <li onmouseover="document.getElementById('about').style.display='block'" onmouseleave="document.getElementById('about').style.display='none'"><a href="">About Us</a>
-                    <div id="about" style="position: absolute;z-index:1111;background-color:white; display:none;">
-                      <ul style="list-style: none;">
-                        <li style="float: none;"><a href="{% url 'what-we-do' %}">WHAT WE DO</a></li>
-                        <li style="float: none;"><a href="{% url 'our-team' %}">OUR TEAM</a></li>
-                        <li style="float: none;"><a href="{% url 'partners' %}">PARTNERS</a></li>
-                      </ul>
-                    </div>
-                  </li> -->
-                  <li style="float: left;" ><a href="{% url 'contact_us' %}">{% trans "Our Contacts" %}</a></li>
-                </ul>
-
-              </div>
-            </div>
-          </div>
-
-          <div class="stm-header__cell stm-header__cell_right" style="width:100%;display: flex; justify-content: flex-end; align-items:center;">
-
-            <form action="{% url 'set_language' %}" method="post">
-              {% csrf_token %}
-              <input name="next" type="hidden" value="{{ redirect_to }}" />            
-              <select name="language" style="width: auto;" id="">
-                {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
-                {% get_language_info_list for LANGUAGES as languages %}
-                {% for language in languages %} 
-                    <option value="{{ language.code }}"
-                      {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}>
-                          {{ language.name_local }} ({{ language.code }})
-                    </option>    {% endfor %}
-              </select>  <input type = "submit" value ="Go">
-          </form>
-            <div style="display: flex; margin-left:30px;">
-              <!-- <div>
-                <a href=""><span style="color: #000000; font-size:15px;font-family:Poppins;">English</span></a>
-              </div> -->
-            </div>
-            <div style="display: flex; margin-left:30px;">
-              <!-- <div>
-                <a href=""><span style="color: #000000; font-size:15px;font-family:Poppins;">मराठी</span></a>
-              </div> -->
-            </div>
-            <div style="display: flex;"></div>
-          </div>
-        </div>
-    </div>
-
-
-
-    <div class="container-mob" >
-      
-      <div class="stm-header__row stm-header__row_center" id="mob-div" style="display: none; flex-direction: column; z-index:3;padding-top:80px;padding-left:40px;overflow:scroll;">
-        <div class="stm-header__cell stm-header__cell_left">
-          
-        </div>
-        <div class="stm-header__cell stm-header__cell_center">
-          <div style="display: flex;">
-            <div class="stm-navigation__default_mob">
-              <ul style="list-style: none;">
-                <li ><a href="{% url 'homepage' %}">Home</a></li>
-                <li ><a onclick="funct()">Map</a>
-                  <div id="map_optn" style="position:relative; display: none;padding: 10px; margin-top: 1%;">
-                    <ul style="list-style-type: none; padding: 0;">
-                      <li style="margin: 0;"><a onclick="opn_sub()">WCD Maps</a>
-                        <div id="mob-sub" style="display: none;">
-                          <ul style="list-style-type: none;">
-                            <li style="padding: 5px; margin: 0;"><a href="{% url 'viewWcdMap' %}">Women Institutes</a></li><br>
-                            <li style="padding: 5px; margin: 0;"><a href="{% url 'viewCCMap' %}">Child Institutes</a></li>
-                          </ul>
-                        </div>
-                      </li><br>
-                      <li style="padding: 5px; margin:0;"><a href="{% url 'map' %}">ICDS Maps</a></li>
-                    </ul>
-                  </div>
-                </li>
-                <li ><a href="{% url 'about_us' %}">About Us</a>
-                <!-- <li id="about" onclick="aboutdd()"><a aria-disabled="true">About Us</a>
-                <ul id="about_list" style="list-style-type: none; color:white;font-family:Poppins;display:none;">
-                  <li><a href="{% url 'what-we-do' %}">What we do</a></li>
-                  <li><a href="{% url 'our-team' %}">Our Team</a></li>
-                  <li><a href="{% url 'partners' %}">Partners</a></li>
-                </ul>
-                </li> -->
-                <li ><a href="{% url 'contact_us' %}">{% trans "Contact Us" %}</a></li>
-                <li><div class="stm-header__cell stm-header__cell_right" style="width:100%;display: flex;  align-items:center;">
-                  <div style="display: flex; ">
-                    <div>
-                      <a href=""><span style="color: white; font-size:15px;font-family:Poppins;">English</span></a>
-                    </div>
-                  </div>
-                  <div style="display: flex; margin-left:30px;">
-                    <div>
-                      <a href=""><span style="color: white; font-size:15px;font-family:Poppins;">मराठी</span></a>
-                    </div>
-                  </div>
-                  <div style="display: flex;"></div>
-                </div></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="stm-header__cell stm-header__cell_right"></div>
-      </div>
-
-      <div class="" style="display: flex;">
-        <div style="display: flex;flex-direction:row;width:-webkit-fill-available;justify-content:center;">
-          <div><a href=""><img style="height:100px;" src="{% static 'GoM.png' %}" alt=""></a></div>
-          {% comment %} <div><a href=""><img src="https://mahnm.in/wp-content/uploads/2020/11/logoweb.png" alt=""></a></div> {% endcomment %}
-          <div><a href=""><img src="{% static 'WCD Logo_PNG.png' %}" alt=""></a></div>
-
-        </div>
-        <div style="display: flex; justify-content: center;align-items:center; ">
-          <img style="height: 20px; width:20px;" id="open" onclick="side_nav_open()" src="{% static 'bars-solid.svg' %}"  alt="">
-          <img style="height: 20px; width:20px; display:none;" onclick="side_nav_close()" id="close" src="{% static 'xmark-solid.svg' %}" alt="">
-        </div>
-      </div>
-    </div>
-</div>
 <div id="load" style="height: 100%; width: 100%; background: white;opacity: 0.5; position: absolute;z-index: 11111;display: none; justify-content: center; align-items:center;">
   <img style="height: 200px; width: 200px;" src="{% static 'loading.gif' %}" alt="">
 </div>
