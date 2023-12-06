@@ -299,6 +299,7 @@ class Saa(models.Model):
     office_sitting_arrangement = models.CharField(max_length=100, blank=True, null=True)
     children_room_id = models.CharField(max_length=100, blank=True, null=True)
     children_room = models.CharField(max_length=100, blank=True, null=True)
+    district = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         managed = False
