@@ -1008,22 +1008,26 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.name_plate_photo_id!=''){
+                    //if(d[x].fields.name_plate_photo_id!=''){
+                    if(d[x].fields.name_plate_photo!=''){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        var str_img = d[x].fields.name_plate_photo.split('%2F')[4]
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.name_plate_photo_id
+                        filename=d[x].fields.name_plate_photo.split('%2F')[4]
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/SAA_All_Data/".concat(filename).concat("'></br>");
+                        
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.office_sitting_arrangement_id!=''){
+                    if(d[x].fields.office_sitting_arrangement!=''){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
+                        
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.office_sitting_arrangement_id
+                        filename=d[x].fields.office_sitting_arrangement.split('%2F')[4]
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1031,11 +1035,11 @@ function plotData(d, optn){
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
                     
-                    if(d[x].fields.children_room_id!=''){
+                    if(d[x].fields.children_room!=''){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.children_room_id
+                        filename=d[x].fields.children_room.split('%2F')[4]
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1046,7 +1050,7 @@ function plotData(d, optn){
                   } 
                  
                 }
-                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Special Adoption Agency" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Children Room Photo`+htm_5+`</div>`)
+                point.bindPopup(`<div style="height:200px; overflow-y: scroll; background: white; color: black;"><h5>{% trans "Special Adoption Agency" %}</h5>`+htm+`<br>`+ `NamePlate-EntryDoor Photo`+str_img+" "+htm_1+`<br>`+`Sitting Arrangement Photo`+htm_2+`<br>`+`Children Room Photo`+htm_5+`</div>`)
 
             }
             if(optn=="dcpo"){
