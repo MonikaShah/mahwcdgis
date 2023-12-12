@@ -1232,44 +1232,44 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.entrydoor_photo_id!=''){
+                    if(d[x].fields.entrydoor_photo!='' && d[x].fields.entrydoor_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.entrydoor_photo_id
+                        filename=d[x].fields.entrydoor_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                    if(d[x].fields.sitting_arrangement_room!='' && d[x].fields.sitting_arrangement_room!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.sitting_arrangement_room_id
+                        filename=d[x].fields.sitting_arrangement_room.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.kitchen_photo_id!=''){
+                    if(d[x].fields.kitchen_photo!='' && d[x].fields.kitchen_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str6 = htm_3.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.kitchen_photo_id
+                        filename=d[x].fields.kitchen_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         // //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/WSH_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.room_dormitory_photo_id!=''){
+                    if(d[x].fields.room_dormitory_photo!='' && d[x].fields.room_dormitory_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.room_dormitory_photo_id
+                        filename=d[x].fields.room_dormitory_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         // //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1277,11 +1277,11 @@ function plotData(d, optn){
                         var str7 = htm_4.concat("' alt='image not found'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sign_photo_id!=''){
+                    if(d[x].fields.sign_photo!='' && d[x].fields.sign_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.sign_photo_id
+                        filename=d[x].fields.sign_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         // //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1313,45 +1313,45 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.name_plate_photo_id!=''){
+                    if(d[x].fields.name_plate_photo!='' && d[x].fields.name_plate_photo!=null){
                         // alert("2 rigt")
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.name_plate_photo_id
+                        filename=d[x].fields.name_plate_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         ////console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' alt=':Sorry! Image not found.' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sitting_arrangement_photo_id!=''){
+                    if(d[x].fields.sitting_arrangement_photo!='' && d[x].fields.sitting_arrangement_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.sitting_arrangement_photo_id
+                        filename=d[x].fields.sitting_arrangement_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' alt=':Sorry! Image not found.' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.kitchen_photo_id!=''){
+                    if(d[x].fields.kitchen_photo!='' && d[x].fields.kitchen_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str6 = htm_3.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.kitchen_photo_id
+                        filename=d[x].fields.kitchen_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' alt=':Sorry! Image not found.' src='/static/map/One_Stop_Center_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.room_dormitory_photo_id!=''){
+                    if(d[x].fields.room_dormitory_photo!='' && d[x].fields.room_dormitory_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.room_dormitory_photo_id
+                        filename=d[x].fields.room_dormitory_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1359,11 +1359,11 @@ function plotData(d, optn){
                         var str7 = htm_4.concat("' alt='image not found'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sign_photo_id!=''){
+                    if(d[x].fields.sign_photo!='' && d[x].fields.sign_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.sign_photo_id
+                        filename=d[x].fields.sign_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1393,22 +1393,22 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                    if(d[x].fields.nameplate_entrydoor_photo1!='' && d[x].fields.nameplate_entrydoor_photo1!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        filename=d[x].fields.nameplate_entrydoor_photo1.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Counselling_centers/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                    if(d[x].fields.sitting_arrangement_photo2!='' && d[x].fields.sitting_arrangement_photo2!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        filename=d[x].fields.sitting_arrangement_photo2.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1461,44 +1461,44 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.entrydoor_photo_id!=''){
+                    if(d[x].fields.entrydoor_photo!='' && d[x].fields.entrydoor_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.entrydoor_photo_id
+                        filename=d[x].fields.entrydoor_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                    if(d[x].fields.sitting_arrangement_room!='' && d[x].fields.sitting_arrangement_room!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.sitting_arrangement_room_id
+                        filename=d[x].fields.sitting_arrangement_room.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.kitchen_photo_id!=''){
+                    if(d[x].fields.kitchen_photo!='' && d[x].fields.kitchen_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str6 = htm_3.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.kitchen_photo_id
+                        filename=d[x].fields.kitchen_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/Swadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.room_dormitory_photo_id!=''){
+                    if(d[x].fields.room_dormitory_photo!='' && d[x].fields.room_dormitory_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.room_dormitory_photo_id
+                        filename=d[x].fields.room_dormitory_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1506,11 +1506,11 @@ function plotData(d, optn){
                         var str7 = htm_4.concat("' alt='image not found'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sign_photo_id!=''){
+                    if(d[x].fields.sign_photo!='' && d[x].fields.sign_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.sign_photo_id
+                        filename=d[x].fields.sign_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1540,44 +1540,44 @@ function plotData(d, optn){
                     if (d[x].fields.hasOwnProperty(key)) {
                       htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.nameplate_entrydoor_photo1_id!=''){
+                    if(d[x].fields.nameplate_entrydoor_photo1!='' && d[x].fields.nameplate_entrydoor_photo1!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.nameplate_entrydoor_photo1_id
+                        filename=d[x].fields.nameplate_entrydoor_photo1.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sitting_arrangement_photo2_id!=''){
+                    if(d[x].fields.sitting_arrangement_photo2!='' && d[x].fields.sitting_arrangement_photo2!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.sitting_arrangement_photo2_id
+                        filename=d[x].fields.sitting_arrangement_photo2.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.kitchen_photo3_id!=''){
+                    if(d[x].fields.kitchen_photo3!='' && d[x].fields.kitchen_photo3!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str6 = htm_3.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.kitchen_photo3_id
+                        filename=d[x].fields.kitchen_photo3.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' alt='Sorry! Image not found.' src='/static/map/Ujjwalgreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.room_dormitory_photo4_id!=''){
+                    if(d[x].fields.room_dormitory_photo4!='' && d[x].fields.room_dormitory_photo4!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.room_dormitory_photo4_id
+                        filename=d[x].fields.room_dormitory_photo4.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1585,11 +1585,11 @@ function plotData(d, optn){
                         var str7 = htm_4.concat("' alt='image not found'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.signature_photo5_id!=''){
+                    if(d[x].fields.signature_photo5!='' && d[x].fields.signature_photo5!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.signature_photo5_id
+                        filename=d[x].fields.signature_photo5.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1625,44 +1625,44 @@ function plotData(d, optn){
                         // else
                             htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.entrydoor_photo_id!=''){
+                    if(d[x].fields.entrydoor_photo!='' && d[x].fields.entrydoor_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.entrydoor_photo_id
+                        filename=d[x].fields.entrydoor_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sitting_arrangement_room_id!=''){
+                    if(d[x].fields.sitting_arrangement_room!='' && d[x].fields.sitting_arrangement_room!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.sitting_arrangement_room_id
+                        filename=d[x].fields.sitting_arrangement_room.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.room_dormitory_photo_id!=''){
+                    if(d[x].fields.room_dormitory_photo!='' && d[x].fields.room_dormitory_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str6 = htm_3.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.room_dormitory_photo_id
+                        filename=d[x].fields.room_dormitory_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/Aadhargreh_All_Data/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sign_photo_id!=''){
+                    if(d[x].fields.sign_photo!='' && d[x].fields.sign_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.sign_photo_id
+                        filename=d[x].fields.sign_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
@@ -1711,44 +1711,44 @@ function plotData(d, optn){
                         // else
                             htm = htm+`${key}: ${d[x].fields[key]}<br>`
                     }
-                    if(d[x].fields.gate_photo1!=''){
+                    if(d[x].fields.gate_photo1!='' && d[x].fields.gate_photo1!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str4 = htm_1.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.gate_photo1_id
+                        filename=d[x].fields.gate_photo1.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_1=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.room_photo2!=''){
+                    if(d[x].fields.room_photo2!='' && d[x].fields.room_photo2!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str5 = htm_2.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.room_photo2_id
+                        filename=d[x].fields.room_photo2.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_2=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.commomroom3_id!=''){
+                    if(d[x].fields.commomroom3_photo3!='' && d[x].fields.commomroom3_photo3!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         var str6 = htm_3.concat("' alt='image not found'></br>");
-                        filename=d[x].fields.commomroom3_id
+                        filename=d[x].fields.commomroom_photo3.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
                         htm_3=" <img class = 'popupimage1' src='/static/map/WWH_ZIP_DATA/".concat(filename).concat("'></br>");
                         // var str4 = htm_1.concat("' alt='image not found'></br>");
                     }
-                    if(d[x].fields.sign_photo_id!=''){
+                    if(d[x].fields.sign_photo!='' && d[x].fields.sign_photo!=null){
                         // let img_name = feature.properties.img1.split(".")[0] + ".jpg";
                         // var str3 = " <img class = 'popupimage1' src='/static/map/cmp_images/".concat(img_name);
                         
-                        filename=d[x].fields.sign_photo_id
+                        filename=d[x].fields.sign_photo.split('%2F')[4];
                         // .split(".")[0] + ".jpg";
                         //console.log("filename is : "+filename)
                         // alert(filename)
