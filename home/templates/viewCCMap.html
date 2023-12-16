@@ -424,6 +424,9 @@ legend.addTo(mymap);
             console.log(e)
         })
         DistrictSelected = $(this).val();
+        if(DistrictSelected == "Mumbai Suburban"){
+            DistrictSelected = "mumbai_suburb";
+        }
         var optionsList;
         var htmlString = "";
     
