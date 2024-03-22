@@ -246,7 +246,7 @@
             <option value="Kolhapur">{% trans "Kolhapur" %}</option>
             <option value="Latur">{% trans "Latur" %}</option>
             <option value="Mumbai City">{% trans "Mumbai City" %}</option>
-            <option value="mumbai_suburb">{% trans "Mumbai Suburban" %}</option>
+            <option value="Mumbai Suburban">{% trans "Mumbai Suburban" %}</option>
             <option value="Nagpur">{% trans "Nagpur" %}</option>
             <option value="Nanded">{% trans "Nanded" %}</option>
             <option value="Nashik">{% trans "Nashik" %}</option>
@@ -424,6 +424,9 @@ legend.addTo(mymap);
             console.log(e)
         })
         DistrictSelected = $(this).val();
+        if(DistrictSelected == "Mumbai Suburban"){
+            DistrictSelected = "mumbai_suburb";
+        }
         var optionsList;
         var htmlString = "";
     
