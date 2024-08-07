@@ -407,7 +407,7 @@ var source = L.wms.source(
 //         // cql_filter: 'state=Maharashtra'
 // 	});
 
-var wms = L.tileLayer.wms('https://geoserver2.communitygis.net/geoserver/wms', {
+var wms = L.tileLayer.wms('https://geonode.communitygis.in/geoserver/wms', {
   layers: 'geonode:states_in_india',
   format: 'image/png',
   transparent: 'true',
@@ -449,8 +449,8 @@ var baseLayers = {
 var overlays = {
       //"States":indiaState,
       "OSM":lyrOSM2,
-      "Satellite":lyrImagery,
-      //"Maharashtra Schools":mahaSchools
+      "Satellite Map":lyrImagery,
+      // "Maharashtra Schools":mahaSchools
 };
 
 var layercontrol = L.control.layers(overlays, baseLayers).addTo(mymap);
