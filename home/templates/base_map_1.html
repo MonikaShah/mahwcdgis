@@ -387,7 +387,10 @@ var source = L.wms.source(
   });
   mymap.messagebox.options.timeout = 5000;
   mymap.messagebox.setPosition("bottomright");
-  lyrOSM = L.tileLayer.provider('OpenStreetMap.Mapnik');
+  lyrOSM = L.tileLayer("https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}", {
+        maxZoom: 20,
+        attribution: "&copy; Google"
+    });
   lyrOSM2 = L.tileLayer.provider('OpenStreetMap.Mapnik');
   lyrImagery = L.tileLayer.provider('Esri.WorldImagery');
   mymap.addLayer(lyrOSM);
