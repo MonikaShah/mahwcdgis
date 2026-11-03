@@ -307,6 +307,7 @@
     <div class="border"><label>{% trans "Proximity of Facilities" %}</label><br>
         <button type="button" class="btn-sm btn-primary" id='locate'>{% trans "Your Location" %}</button>
         <button type="button" class="btn-sm btn-primary" id='setlocation'>{% trans "Set Location" %}</button>
+        <button type="button" class="btn-sm btn-primary" id='find-nearest'>Find Nearest Facility</button>
         <!-- <button type="button" class="btn btn-primary" id='find-nearest'>Find Nearest Facility</button> -->
         <div id="slider">
             <label>{% trans "Set Range(Kms)" %}</label><br>
@@ -1925,14 +1926,7 @@ slider.oninput = function() {
     //////// BUFFER
 var circle = new L.circle();
 $setbuffer.on('click', function(e) {
-    // if (oldhfbb) {
-    //     mymap.removeLayer(circle);
-    //     oldhfbb.forEach(layer => mymap.removeLayer(layer));
-    //     // oldhfbb = null;
-    //     healthFacilityInBB = null;
-    //     healthFacility2 = null;
-    //     healthFacility1 = null;
-    // }
+    
     mymap.removeLayer(circle);
 
     var radius = (output.innerHTML) * 1000;
@@ -1944,32 +1938,81 @@ $setbuffer.on('click', function(e) {
     }
     circle = new L.circle(circleCenter, radius, circleOptions);
     circle.addTo(mymap);
-    // let keys = Object.keys(activatedHealthFacility);
-    // let k = '';
-    // keys.forEach((v, i) => {
-    //         k = v;
-    //         if (k === "Allo")
-    //             querybufAllo(currentPos,k);
-    //         if (k === 'Alt')
-    //             querybufALt(currentPos,k);
-    //         if (k === 'CHC')
-    //             querybufCHC(currentPos,k);
-    //         if (k === 'PHC')
-    //             querybufPHC(currentPos,k);
-    //         if (k === 'DCH' || k === 'DCHC' || k === 'DCCC')
-    //             queryArog(currentPos,k);
-    //         if (k === 'hospital' || k === 'subcenter' || k === 'mhu' || k === 'phc' || k === 'clinic' || k === 'phu' || k === 'ashu' || k === 'mobmedu' || k === 'hfwi' || k === 'mhi' || k === 'dc' || k === 'phrmcy' || k === 'optical' || k === 'delvry' || k === 'dropin' || k === 'dspnsry' || k === 'dropin' || k === 'othr')
-    //             querybuf(currentPos,k);
-
-    //     })
-    //     //querybuf(currentPos);
-
-
+   
 });
 var highlight = L.circleMarker()
     // let indstate = document.getElementById('indstate').value;
 
+    let Facility = L.layerGroup(); // Initialize the Facility layer group
+// let facilityLayer = L.layerGroup(); // Layer group for facility markers and lines
+// let currentPos = null; // Current position of the user, initially null
+
+// Find Nearest Well button click event
+$findNearest.on('click', function (e) {
+    // alert("Button clicked");
+    if (currentPos) {
+        queryFeatures(currentPos, 1); // Query for the nearest facility
+    } else {
+        alert("Please set a location first by double-clicking on the map.");
+    }
+});
+
+// Function to query the nearest facility
+function queryFeatures(currentPos, numResults) {
+    // alert("in quwery features"+currentPos+"- "+numResults)
+    if (!currentPos) {
+        // alert("Current position is not set.");
+        return;
+    }
+
+    if (!Facility || !Facility.eachLayer) {
+        alert("Facilities are not properly initialized.");
+        return;
+    }
+    else{
+        alert("facilites are there")
+    }
+
+    let distances = [];
+
+    // Calculate distances from current position to each facility
+   
+        Facility.eachLayer(function (l) {
+            var distance = L.latLng(currentPos).distanceTo(l.getLatLng()) / 1000;
+            distances.push(distance);
+        });
+        distances.sort(function (a, b) {
+            return a - b;
+        });
+
+        Facility.eachLayer(function (l) {
+            var distance = L.latLng(currentPos).distanceTo(l.getLatLng()) / 1000;
+            if (distance < distances[numResults]) {
+                l.bindTooltip(distance.toLocaleString() + ' km from current location.');
+                L.polyline([currentPos, l.getLatLng()], {
+                    color: 'blue',
+                    weight: 4,
+                    opacity: .5,
+                }).addTo(facilityLayer);
+            }
+        });
+        oldLayer = facilityLayer;
+        mymap.flyToBounds(facilityLayer.getBounds(), {
+            duration: 3,
+            easeLinearity: .1
+        });
+        mymap.on('zoomend', function () {
+            mymap.addLayer(facilityLayer);
+        });
+    }
 
 
+// Example to set currentPos on map double-click event
+mymap.on('dblclick', function (e) {
+    currentPos = e.latlng;
+    if (currentPos) {
+        L.marker(currentPos).addTo(mymap).bindPopup("Current location").openPopup();
+    }
+});
 </script>
 {% endblock %}
